@@ -10,20 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180922094922) do
-
-  create_table "hotels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "hotel_name"
-    t.string "hotel_address"
-    t.string "hotel_phone_number"
-    t.float "hotel_price", limit: 24
-    t.float "hotel_area", limit: 24
-    t.float "hotel_rating", limit: 24
-    t.integer "hotel_status"
-    t.integer "hotel_owner"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180922094843) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
