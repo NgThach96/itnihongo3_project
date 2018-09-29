@@ -1,0 +1,21 @@
+<div class="col-md-3 col-sm-12 text-right">
+  <ul class="nav-icons">
+    <% if user_signed_in? %>
+      <li>
+        <h3>Hello, <%= current_user.email %>!</h3>
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to new_user_registration_path do %>
+          <i class="ion-person-add"></i><div>Register</div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_session_path do %>
+          <i class="ion-person"></i><div>Login</div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

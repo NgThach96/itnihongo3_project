@@ -1,0 +1,57 @@
+<%= form_with(model: review, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :food_name %>
+    <%= form.text_field :food_name, id: :review_food_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_name %>
+    <%= form.text_field :store_name, id: :review_store_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_address %>
+    <%= form.text_field :store_address, id: :review_store_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :food_picture %>
+    <%= form.text_field :food_picture, id: :review_food_picture %>
+  </div>
+
+  <div class="field">
+    <%= form.label :taste_rate %>
+    <%= form.number_field :taste_rate, id: :review_taste_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :safety_rate %>
+    <%= form.number_field :safety_rate, id: :review_safety_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_rate %>
+    <%= form.number_field :price_rate, id: :review_price_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :review_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
