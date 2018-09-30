@@ -19,46 +19,52 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
     <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="scripts/bootstrap/bootstrap.min.css">
+    <%= stylesheet_link_tag "/scripts/bootstrap/bootstrap.min.css" %>
     <!-- IonIcons -->
-    <link rel="stylesheet" href="scripts/ionicons/css/ionicons.min.css">
+    <%= stylesheet_link_tag "/scripts/ionicons/css/ionicons.min.css" %>
     <!-- Toast -->
-    <link rel="stylesheet" href="scripts/toast/jquery.toast.min.css">
+    <%= stylesheet_link_tag "/scripts/toast/jquery.toast.min.css" %>
     <!-- OwlCarousel -->
-    <link rel="stylesheet" href="scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+    <%= stylesheet_link_tag "/scripts/owlcarousel/dist/assets/owl.carousel.min.css" %>
+
+    <%= stylesheet_link_tag "/scripts/owlcarousel/dist/assets/owl.theme.default.min.css" %>
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="scripts/magnific-popup/dist/magnific-popup.css">
-    <link rel="stylesheet" href="scripts/sweetalert/dist/sweetalert.css">
+    <%= stylesheet_link_tag "/scripts/magnific-popup/dist/magnific-popup.css" %>
+    <%= stylesheet_link_tag "/scripts/sweetalert/dist/sweetalert.css" %>
+
     <!-- Custom style -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/skins/all.css">
-    <link rel="stylesheet" href="css/demo.css">
+    <%= stylesheet_link_tag "/css/style.css" %>
+    <%= stylesheet_link_tag "/css/skins/all.css" %>
+    <%= stylesheet_link_tag "/css/demo.css" %>
   </head>
 
   <body class="skin-orange">
 
-    <%= render "layouts/header" %>
+    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
+      <%= render "layouts/header" %>
+    <% end %>`
 
     <!-- content -->
     <%= yield %>
 
     <!-- Start footer -->
-    <%= render "layouts/footer" %>
+    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
+      <%= render "layouts/footer" %>
+    <% end %>`
     <!-- End Footer -->
 
     <!-- JS -->
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery.migrate.js"></script>
-    <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <%= javascript_include_tag '/js/jquery.js' %>
+    <%= javascript_include_tag '/js/jquery.migrate.js' %>
+    <%= javascript_include_tag '/scripts/bootstrap/bootstrap.min.js' %>
     <script>var $target_end=$(".best-of-the-week");</script>
-    <script src="scripts/jquery-number/jquery.number.min.js"></script>
-    <script src="scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-    <script src="scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script src="scripts/easescroll/jquery.easeScroll.js"></script>
-    <script src="scripts/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="scripts/toast/jquery.toast.min.js"></script>
-    <script src="js/demo.js"></script>
-    <script src="js/e-magz.js"></script>
+    <%= javascript_include_tag '/scripts/jquery-number/jquery.number.min.js' %>
+    <%= javascript_include_tag '/scripts/owlcarousel/dist/owl.carousel.min.js' %>
+    <%= javascript_include_tag '/scripts/magnific-popup/dist/jquery.magnific-popup.min.js' %>
+    <%= javascript_include_tag '/scripts/easescroll/jquery.easeScroll.js' %>
+    <%= javascript_include_tag '/scripts/sweetalert/dist/sweetalert.min.js' %>
+    <%= javascript_include_tag '/scripts/toast/jquery.toast.min.js' %>
+    <%= javascript_include_tag '/js/demo.js' %>
+    <%= javascript_include_tag '/js/e-magz.js' %>
   </body>
 </html>
