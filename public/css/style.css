@@ -224,6 +224,10 @@
   font-weight: 900;
   src: url("../fonts/Merriweather-Black.ttf");
 }
+
+a:hover {
+    background-color: #fff;
+}
 /* End Merriweather */
 /*
  * Variable
@@ -1284,6 +1288,7 @@ section.search .search-result {
   margin: 0;
   margin-top: 27px;
 }
+
 .firstbar .nav-icons li {
   display: block;
   float: left;
@@ -1301,7 +1306,7 @@ section.search .search-result {
 }
 .firstbar .nav-icons li a div {
   float: left;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-weight: 500;
   letter-spacing: 1px;
   margin-top: 3px;
@@ -1505,9 +1510,9 @@ article footer .btn-primary:focus {
 
 .love {
   color: #989898;
-  float: left;
   margin-top: 10px;
   position: relative;
+  margin-left: 15px;
 }
 .love i {
   display: inline-block;
@@ -4158,3 +4163,108 @@ blockquote {
 .container-small, .container-large {
     max-width: 100%;
 }
+
+.chart {
+  margin-top: 50px;
+}
+
+.bar {
+  fill: red; /* changes the background */
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer;
+  font-family: Helvetica, sans-serif;
+}
+.bar text {
+  color: black;
+}
+.bar:hover,
+.bar:focus {
+  fill: black;
+}
+.bar:hover text,
+.bar:focus text {
+  fill: red;
+}
+
+/* comment box */
+.pb-cmnt-container {
+  font-family: Lato;
+  margin-top: 15px;
+}
+
+.pb-cmnt-textarea {
+    resize: none;
+    padding: 20px;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #F2F2F2;
+}
+
+.panel-body {
+  border: 0px solid #FFFFFF;
+}
+
+/* graph */
+.graph-cont{
+  width: 100%;
+  max-width: 800px;
+  margin-top: 250px;
+}
+
+.bar{
+  height: 30px;
+  max-width: 100%;
+  margin: 0 auto 10px auto;
+  line-height: 30px;
+  font-size: 16px;
+  color: white;
+  background: #ecf0f1;
+}
+
+.user-setting {
+  text-transform: lowercase;
+  font-family: 'Raleway', sans-serif;
+}
+
+.like-comment {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+.like-comment .nav-icons{
+  float: left;
+  padding-left: 0px;
+}
+
+.like-comment .nav-icons li{
+  display: block;
+  float: left;
+}
+
+.like-comment .nav-icons li a {
+  display: inline-block;
+  color: #191E21;
+}
+
+.like-comment .nav-icons li a i {
+  font-size: 18px;
+  float: left;
+  width: 25px;
+  text-align: left;
+}
+
+.like-comment .nav-icons li a div {
+  float: left;
+  text-transform: lowercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+
+.like-comment .nav-icons li a:hover {
+  color: #F73F52;
+}
+

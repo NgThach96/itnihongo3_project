@@ -2,8 +2,10 @@
   <ul class="nav-icons">
     <% if user_signed_in? %>
       <li>
-        <h3>Hello, <%= current_user.email %>!</h3>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+        <a>
+        <i class="ion-person"></i><div class="user-setting"><%= current_user.email %>!</div>
+        <!--<%= link_to "logout", destroy_user_session_path, method: :delete %> -->
+        </a>
       </li>
     <% else %>
       <li>
