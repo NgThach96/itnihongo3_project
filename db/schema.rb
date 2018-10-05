@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180928074707) do
+ActiveRecord::Schema.define(version: 20181005075834) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.string "comment"
+    t.integer "emotion_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "title"
     t.string "food_name"
+    t.string "post_content"
     t.string "store_name"
     t.string "store_address"
     t.string "food_picture"
@@ -33,6 +44,11 @@ ActiveRecord::Schema.define(version: 20180928074707) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "address"
+    t.date "birthday"
+    t.integer "gender"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
