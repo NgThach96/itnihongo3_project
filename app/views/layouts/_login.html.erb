@@ -20,6 +20,13 @@
               <i class="icon ion-settings"></i>Settings
             <% end %>
           </li>
+          <% if current_user.is_admin %>
+							<li>
+                <%= link_to rails_admin.dashboard_path do%>
+                  <i class="icon ion-person"></i>Admin Page
+                <% end %>
+              </li>
+					<% end %>
           <li id="li_review">
             <a>
               <i class="icon ion-chatbox"></i>Review

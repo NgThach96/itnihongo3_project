@@ -51,7 +51,7 @@ class ReviewsController < ApplicationController
     end
 
     # find something
-    @reviews1 = Review.find([1,2,3,4])
+    # @reviews1 = Review.find([1,2,3,4])
   end
 
 
