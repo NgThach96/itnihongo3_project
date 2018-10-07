@@ -58,28 +58,6 @@
                     <img src="images/news/chickenfry.jpg" alt="Sample Article">
                   </a>
                 </figure>
-
-                <!-- bar_chart -->
-                <div class="graph-cont">
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">6/10</span>
-                    <div style="height: 30px; width: 60%; background-color: #FFB2B2">
-                      Safety Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">7/10</span>
-                    <div style="height: 30px; width: 70%; background-color: #FFB2B2">
-                      Price Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">10/10</span>
-                    <div style="height: 30px; width: 100%; background-color: #FFB2B2">
-                      Delicious Rate
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="details">
                 <div class="detail">
@@ -92,15 +70,22 @@
                     <%= review.created_at %>
                   </div>
                 </div>
-                <h1><a href="single.html"><%= review.title %></a></h1>
-                <p>
-                  <%= review.post_content %>
-                </p>
+                <h1>
+                  <a href="single.html"><%= review.title %></a>
+                </h1>
+                <p><%= review.store_name %></p>
+                <p><%= review.store_address %></p>
+                <p>3.2/5</p>
                 <footer>
                 </footer>
               </div>
             </div>
-
+            <div>
+            <hr>
+            <p>
+              <%= review.post_content %>
+            </p>
+            </div>
             <!-- Comment box -->
             <div class="like-comment">
               <ul class="nav-icons">
