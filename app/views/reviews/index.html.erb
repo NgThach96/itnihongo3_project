@@ -49,53 +49,43 @@
       <!-- Left site -->
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
-          <article class="col-md-12 article-list">
+          <% @reviews.each do |review| %>
+            <article class="col-md-12 article-list">
             <div class="inner">
               <div style="width: 300px; float: left">
                 <figure>
                   <a href="single.html">
-                    <img src="images/news/img11.jpg" alt="Sample Article">
+                    <img src="images/news/chickenfry.jpg" alt="Sample Article">
                   </a>
                 </figure>
-
-                <!-- bar_chart -->
-                <div class="graph-cont">
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">6/10</span>
-                    <div style="height: 30px; width: 60%; background-color: #FFB2B2">
-                      Safety Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">7/10</span>
-                    <div style="height: 30px; width: 70%; background-color: #FFB2B2">
-                      Price Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">10/10</span>
-                    <div style="height: 30px; width: 100%; background-color: #FFB2B2">
-                      Delicious Rate
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="details">
                 <div class="detail">
                   <div class="category">
-                    <a href="#">Film</a>
+                    <a href="#">
+                      <%= review.user.name %>
+                    </a>
                   </div>
-                  <div class="time">December 19, 2016</div>
+                  <div class="time">
+                    <%= review.created_at %>
+                  </div>
                 </div>
-                <h1><a href="single.html">Donec consequat arcu at ultrices sodales quam erat aliquet diam</a></h1>
-                <p>
-                n sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).
-                </p>
+                <h1>
+                  <a href="single.html"><%= review.title %></a>
+                </h1>
+                <p><%= review.store_name %></p>
+                <p><%= review.store_address %></p>
+                <p>3.2/5</p>
                 <footer>
                 </footer>
               </div>
             </div>
-
+            <div>
+            <hr>
+            <p>
+              <%= review.post_content %>
+            </p>
+            </div>
             <!-- Comment box -->
             <div class="like-comment">
               <ul class="nav-icons">
@@ -115,7 +105,8 @@
                   </div>
               </div>
             </div>
-          </article>
+            </article>
+          <% end %>
         </div>
       </div>
 
