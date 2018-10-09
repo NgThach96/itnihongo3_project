@@ -1,18 +1,10 @@
 class UsersController < Devise::RegistrationsController
-  def new
-    super
-  end
-
-  def create
-    # add custom create logic here
-    super
-  end
-
-  def update
-    super
-  end
 
   def show
     @user = User.find(params[:id])
+  end
+
+   def sign_up_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
