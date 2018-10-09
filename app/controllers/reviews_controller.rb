@@ -5,11 +5,15 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.all
+    @reviews1 = Review.find([1,2,3,4])
+    # @review2=Review.find(2)
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    @review = Review.find(params[:id])
+    @reviews_of_user = Review.find_by user_id:@review.user_id
   end
 
   # GET /reviews/new
@@ -72,3 +76,11 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:food_name, :store_name, :store_address, :food_picture, :taste_rate, :safety_rate, :price_rate, :user_id)
     end
 end
+
+
+
+
+
+# INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("1","Quá ngon","Xôi Hà Nội","Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la ","Xôi chả cua lạp xưởng ruốc - Xôi Bà Thảo","Số 41 Đường Thành, Hoàn Kiếm","5","4","3","1","2018-10-05 08:45:54","2018-10-05 08:45:54");
+# INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("2","50% đá là mất 30% trà sữa hả ???","Trà sữa","Mình uống rất nhiều quán rồi dù uống nhiều đá hay không vẫn full ly , lần đầu tiên 50% đá mà ly mất 1 khúc luôn mới ghê , bán đá hay bán trà sữa . Không hẹn gặp lại !!!
+# ","Hokkaido Tea","81 Âu Cơ, P.14, Quận 11, Thành phố Hồ Chí Minh","4","4","2","2","2017-07-04 08:45:54","2017-07-04 08:45:54"); 

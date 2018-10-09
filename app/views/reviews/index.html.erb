@@ -1,8 +1,6 @@
 <!--
 <p id="notice"><%= notice %></p>
-
 <h1>Reviews</h1>
-
 <table>
   <thead>
     <tr>
@@ -17,7 +15,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
@@ -36,10 +33,7 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-
 <%= link_to 'New Review', new_review_path %>
 -->
 
@@ -54,7 +48,7 @@
             <div class="inner">
               <div style="width: 300px; float: left">
                 <figure>
-                  <a href="single.html">
+                  <a href="/reviews/show/<%= review.id %>">
                     <img src="images/news/chickenfry.jpg" alt="Sample Article">
                   </a>
                 </figure>
@@ -71,7 +65,7 @@
                   </div>
                 </div>
                 <h1>
-                  <a href="single.html"><%= review.title %></a>
+                  <a href="reviews/show/<%= review.id %>"><%= review.title %></a>
                 </h1>
                 <p><%= review.store_name %></p>
                 <p><%= review.store_address %></p>
@@ -82,9 +76,10 @@
             </div>
             <div>
             <hr>
-            <p>
+            <!-- <p>
               <%= review.post_content %>
-            </p>
+            </p> -->
+            <a href="" title="">Readmore</a>
             </div>
             <!-- Comment box -->
             <div class="like-comment">
@@ -115,6 +110,7 @@
             <aside>
               <h1 class="aside-title">Popular <a href="#" class="all">See All <i class="ion-ios-arrow-right"></i></a></h1>
               <div class="aside-body">
+              <% @reviews1.each do |review| %>
                 <article class="article-mini">
                   <div class="inner">
                     <figure>
@@ -123,11 +119,12 @@
                       </a>
                     </figure>
                     <div class="padding">
-                      <h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
+                      <h1><a href="single.html"><%= review.title %></a></h1>
                     </div>
                   </div>
                 </article>
-                <article class="article-mini">
+              <% end %>
+               <!--  <article class="article-mini">
                   <div class="inner">
                     <figure>
                       <a href="single.html">
@@ -186,11 +183,11 @@
                       <h1><a href="single.html">Morbi vitae nisl ac mi luctus aliquet a vitae libero</a></h1>
                     </div>
                   </div>
-                </article>
+                </article> -->
               </div>
             </aside>
 
-            <aside>
+            <!-- <aside>
               <ul class="nav nav-tabs nav-justified" role="tablist">
                 <li class="active">
                   <a href="#recomended" aria-controls="recomended" role="tab" data-toggle="tab">
@@ -321,7 +318,7 @@
                   </div>
                 </div>
               </div>
-            </aside>
+            </aside> -->
           </div>
   </div>
 </section>
