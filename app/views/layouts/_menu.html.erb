@@ -1,10 +1,5 @@
 <nav class="menu">
         <div class="container">
-          <div class="brand">
-            <a href="#">
-              <img src="images/logo.png" alt="Magz Logo">
-            </a>
-          </div>
           <div class="mobile-toggle">
             <a href="#" data-toggle="menu" data-target="#menu-list"><i class="ion-navicon-round"></i></a>
           </div>
@@ -14,25 +9,6 @@
           <div id="menu-list">
             <ul class="nav-list">
               <li class="for-tablet nav-title"><a>Menu</a></li>
-              <li class="for-tablet"><a href="login.html">Login</a></li>
-              <li class="for-tablet"><a href="register.html">Register</a></li>
-              <li><a href="category.html">Standard</a></li>
-              <li class="dropdown magz-dropdown">
-                <a href="category.html">Pages <i class="ion-ios-arrow-right"></i></a>
-                <ul class="dropdown-menu">
-                  <li><a href="index.html">Home</a></li>
-                  <li class="dropdown magz-dropdown">
-                    <a href="#">Authentication <i class="ion-ios-arrow-right"></i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="login.html">Login</a></li>
-                      <li><a href="register.html">Register</a></li>
-                      <li><a href="forgot.html">Forgot Password</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-              </li>
-
               <% if user_signed_in? %>
                 <li class="dropdown magz-dropdown">
                   <a href="#">Account Setting <i class="ion-ios-arrow-right"></i>
@@ -57,6 +33,9 @@
                     </li>
                   </ul>
                 </li>
+              <% else %>
+                <li class="for-tablet"><a href="login.html">Login</a></li>
+                <li class="for-tablet"><a href="register.html">Register</a></li>
               <% end %>
             </ul>
           </div>

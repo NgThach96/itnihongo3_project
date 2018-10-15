@@ -37,14 +37,16 @@
 <%= link_to 'New Review', new_review_path %>
 -->
 
-<section class="home">
+<section class="home review-list">
   <div class="container">
     <div class="row">
       <!-- Left site -->
+      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
+          </div>
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
-            <article class="col-md-12 article-list">
+            <article class="col-md-12 article-list review-card">
             <div class="inner">
               <div style="width: 300px; float: left">
                 <figure>
@@ -101,222 +103,13 @@
             </article>
           <% end %>
         </div>
+        <div class="pagination" style="width: 100%; text-align: center; font-size: 15px">
+          <%= will_paginate @users %>
+        </div>
       </div>
 
-      <div class="col-xs-6 col-md-4 sidebar" id="sidebar">
-            <div class="sidebar-title for-tablet">Sidebar</div>
-            <aside>
-              <h1 class="aside-title">Popular <a href="#" class="all">See All <i class="ion-ios-arrow-right"></i></a></h1>
-              <div class="aside-body">
-              <% @reviews1.each do |review| %>
-                <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img07.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html"><%= review.title %></a></h1>
-                    </div>
-                  </div>
-                </article>
-              <% end %>
-               <!--  <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img14.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                    </div>
-                  </div>
-                </article>
-                <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img09.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html">Aliquam et metus convallis tincidunt velit ut rhoncus dolor</a></h1>
-                    </div>
-                  </div>
-                </article>
-                <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img11.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html">dui augue facilisis lacus fringilla pulvinar massa felis quis velit</a></h1>
-                    </div>
-                  </div>
-                </article>
-                <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img06.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html">neque est semper nulla, ac elementum risus quam a enim</a></h1>
-                    </div>
-                  </div>
-                </article>
-                <article class="article-mini">
-                  <div class="inner">
-                    <figure>
-                      <a href="single.html">
-                        <img src="images/news/img03.jpg" alt="Sample Article">
-                      </a>
-                    </figure>
-                    <div class="padding">
-                      <h1><a href="single.html">Morbi vitae nisl ac mi luctus aliquet a vitae libero</a></h1>
-                    </div>
-                  </div>
-                </article> -->
-              </div>
-            </aside>
 
-            <!-- <aside>
-              <ul class="nav nav-tabs nav-justified" role="tablist">
-                <li class="active">
-                  <a href="#recomended" aria-controls="recomended" role="tab" data-toggle="tab">
-                    <i class="ion-android-star-outline"></i> Recomended
-                  </a>
-                </li>
-                <li>
-                  <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
-                    <i class="ion-ios-chatboxes-outline"></i> Comments
-                  </a>
-                </li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane active" id="recomended">
-                  <article class="article-fw">
-                    <div class="inner">
-                      <figure>
-                        <a href="single.html">
-                          <img src="images/news/img16.jpg" alt="Sample Article">
-                        </a>
-                      </figure>
-                      <div class="details">
-                        <div class="detail">
-                          <div class="time">December 31, 2016</div>
-                          <div class="category"><a href="category.html">Sport</a></div>
-                        </div>
-                        <h1><a href="single.html">Donec congue turpis vitae mauris</a></h1>
-                        <p>
-                          Donec congue turpis vitae mauris condimentum luctus. Ut dictum neque at egestas convallis.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                  <div class="line"></div>
-                  <article class="article-mini">
-                    <div class="inner">
-                      <figure>
-                        <a href="single.html">
-                          <img src="images/news/img05.jpg" alt="Sample Article">
-                        </a>
-                      </figure>
-                      <div class="padding">
-                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                        <div class="detail">
-                          <div class="category"><a href="category.html">Lifestyle</a></div>
-                          <div class="time">December 22, 2016</div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="article-mini">
-                    <div class="inner">
-                      <figure>
-                        <a href="single.html">
-                          <img src="images/news/img02.jpg" alt="Sample Article">
-                        </a>
-                      </figure>
-                      <div class="padding">
-                        <h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
-                        <div class="detail">
-                          <div class="category"><a href="category.html">Travel</a></div>
-                          <div class="time">December 21, 2016</div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <article class="article-mini">
-                    <div class="inner">
-                      <figure>
-                        <a href="single.html">
-                          <img src="images/news/img10.jpg" alt="Sample Article">
-                        </a>
-                      </figure>
-                      <div class="padding">
-                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                        <div class="detail">
-                          <div class="category"><a href="category.html">Healthy</a></div>
-                          <div class="time">December 20, 2016</div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="tab-pane comments" id="comments">
-                  <div class="comment-list sm">
-                    <div class="item">
-                      <div class="user">
-                        <figure>
-                          <img src="images/img01.jpg" alt="User Picture">
-                        </figure>
-                        <div class="details">
-                          <h5 class="name">Mark Otto</h5>
-                          <div class="time">24 Hours</div>
-                          <div class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="user">
-                        <figure>
-                          <img src="images/img01.jpg" alt="User Picture">
-                        </figure>
-                        <div class="details">
-                          <h5 class="name">Mark Otto</h5>
-                          <div class="time">24 Hours</div>
-                          <div class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="user">
-                        <figure>
-                          <img src="images/img01.jpg" alt="User Picture">
-                        </figure>
-                        <div class="details">
-                          <h5 class="name">Mark Otto</h5>
-                          <div class="time">24 Hours</div>
-                          <div class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside> -->
+      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
           </div>
   </div>
 </section>

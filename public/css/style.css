@@ -1858,19 +1858,7 @@ article footer .btn-primary:focus {
   /* Mega menu support */
   position: relative;
 }
-.menu .brand {
-  display: none;
-  float: left;
-  width: 100px;
-  height: 55px;
-  line-height: 52px;
-}
-.menu .brand img {
-  width: 100%;
-}
-.menu .brand a {
-  text-decoration: none;
-}
+
 .menu .mobile-toggle {
   font-size: 32px;
   line-height: 0;
@@ -1962,77 +1950,7 @@ article footer .btn-primary:focus {
   -webkit-transition: all .2s;
   -o-transition: all .2s;
 }
-.menu ul > li .dropdown-menu.megamenu {
-  display: block;
-  margin: 0;
-  left: 15px;
-  right: 15px;
-  z-index: 1999;
-  background-color: #fff;
-}
-.menu ul > li .dropdown-menu.megamenu .megamenu-inner {
-  padding: 20px;
-  padding-bottom: 15px;
-}
-.menu ul > li .dropdown-menu.megamenu .megamenu-title {
-  font-size: 16px;
-  position: relative;
-  font-weight: 800;
-  margin: 0;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-.menu ul > li .dropdown-menu.megamenu .megamenu-title .all {
-  position: absolute;
-  right: 0;
-  font-size: 12px;
-  font-weight: 700;
-  color: #383838;
-  top: 5px;
-}
-.menu ul > li .dropdown-menu.megamenu .megamenu-title .all i {
-  color: #F73F52;
-  margin-left: 5px;
-}
-.menu ul > li .dropdown-menu.megamenu .vertical-menu {
-  width: 100%;
-}
-.menu ul > li .dropdown-menu.megamenu .vertical-menu li {
-  display: inline-block;
-  width: 100%;
-  float: none;
-}
-.menu ul > li .dropdown-menu.megamenu .vertical-menu li a {
-  padding: 5px 0;
-  height: auto;
-  line-height: 34px;
-  border-bottom: 1px solid #f2f2f2;
-}
-.menu ul > li .dropdown-menu.megamenu .vertical-menu li a i {
-  margin-left: 0;
-  width: 20px;
-  float: left;
-}
-.menu ul > li .dropdown-menu.megamenu .vertical-menu li a:after {
-  top: 100%;
-}
-.menu ul > li .dropdown-menu.megamenu article {
-  margin-bottom: 0;
-}
-.menu ul > li .dropdown-menu.megamenu article .inner {
-  box-shadow: none;
-}
-.menu ul > li .dropdown-menu.megamenu article figure {
-  height: 170px;
-  margin-bottom: 0;
-}
-.menu ul > li .dropdown-menu.megamenu article .padding {
-  padding: 0;
-}
-.menu ul > li .dropdown-menu.megamenu article .padding h2 {
-  font-size: 16px;
-  line-height: 24px;
-}
+
 .menu ul > li .dropdown-menu > li {
   float: none;
   display: block;
@@ -4268,3 +4186,14 @@ blockquote {
   color: #F73F52;
 }
 
+
+.review-card {
+  background-color: #fff;
+  padding-top: 15px;
+  border-radius: 1px;
+  box-shadow: 0px 0px 1px grey;
+}
+
+.review-list {
+  background-color: #dfdfdf;
+}
