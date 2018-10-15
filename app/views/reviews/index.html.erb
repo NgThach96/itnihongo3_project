@@ -1,48 +1,8 @@
-<!--
-<p id="notice"><%= notice %></p>
-<h1>Reviews</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Food name</th>
-      <th>Store name</th>
-      <th>Store address</th>
-      <th>Food picture</th>
-      <th>Taste rate</th>
-      <th>Safety rate</th>
-      <th>Price rate</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.food_name %></td>
-        <td><%= review.store_name %></td>
-        <td><%= review.store_address %></td>
-        <td><%= review.food_picture %></td>
-        <td><%= review.taste_rate %></td>
-        <td><%= review.safety_rate %></td>
-        <td><%= review.price_rate %></td>
-        <td><%= review.user_id %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Review', new_review_path %>
--->
-
 <section class="home review-list">
   <div class="container">
     <div class="row">
       <!-- Left site -->
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
-          </div>
+      <div class="col-xs-6 col-md-2 sidebar" id="sidebar"></div>
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
@@ -107,10 +67,7 @@
           <%= will_paginate @users %>
         </div>
       </div>
-
-
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
-          </div>
+      <div class="col-xs-6 col-md-2 sidebar" id="sidebar"></div>
   </div>
 </section>
 

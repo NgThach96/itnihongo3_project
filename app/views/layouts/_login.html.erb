@@ -1,13 +1,53 @@
-<div class="col-md-3 col-sm-12 text-right">
-  <ul class="nav-icons">
+<div class="col-md-3 col-sm-12 text-right login-menu">
+  <!-- <ul class="nav-icons">
     <% if user_signed_in? %>
       <li>
         <a>
         <i class="ion-person"></i><div class="user-setting"><%= current_user.email %>!</div>
-        <!--<%= link_to "logout", destroy_user_session_path, method: :delete %> -->
         </a>
       </li>
     <% else %>
+      <li>
+        <%= link_to new_user_registration_path do %>
+          <i class="ion-person-add"></i><div>Register</div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_session_path do %>
+          <i class="ion-person"></i><div>Login</div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul> -->
+  <ul class="nav-list nav-icons">
+    <li class="for-tablet nav-title"><a>Menu</a></li>
+    <% if user_signed_in? %>
+      <li class="dropdown magz-dropdown">
+        <a href="#"><%= current_user.email %> <i style="float: right;" class="ion-ios-arrow-right"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to user_path(1) do%>
+              <i class="icon ion-person">
+              </i> My Account
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_user_registration_path do %>
+              <i class="icon ion-settings"></i>Settings
+            <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="icon ion-log-out"></i> Logout
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    <% else %>
+      <li class="for-tablet"><a href="login.html">Login</a></li>
+      <li class="for-tablet"><a href="register.html">Register</a></li>
       <li>
         <%= link_to new_user_registration_path do %>
           <i class="ion-person-add"></i><div>Register</div>
