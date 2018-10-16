@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   get 'reviews/show/:id' => 'reviews#show'
 
+  post 'comment/store' => 'comment#store'
+
   devise_for :users, :controllers => {:registrations => "users"}
 
   devise_scope :user do

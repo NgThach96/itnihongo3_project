@@ -11,7 +11,8 @@
               <div style="width: 300px; float: left">
                 <figure>
                   <a href="/reviews/show/<%= review.id %>">
-                    <img src="images/news/chickenfry.jpg" alt="Sample Article">
+                    <!-- <img src="images/news/chickenfry.jpg" alt="Sample Article"> -->
+                    <%= image_tag("news/chickenfry.jpg")%>
                   </a>
                 </figure>
               </div>
@@ -89,7 +90,33 @@
           <%= will_paginate @users %>
         </div>
       </div>
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar"></div>
+
+      <div class="col-xs-6 col-md-4 sidebar" id="sidebar">
+            <div class="sidebar-title for-tablet">Sidebar</div>
+            <aside>
+              <h1 class="aside-title">Popular <a href="#" class="all">See All <i class="ion-ios-arrow-right"></i></a></h1>
+              <div class="aside-body">
+              <% @reviews1.each do |review| %>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= review.id %>">
+                        <%= image_tag("news/img07.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= review.id %>"><%= review.title %></a></h1>
+                    </div>
+                    <div class="padding">Bài viết của <%= review.user.name%></div>
+                  </div>
+                </article>
+              <% end %>
+               
+              </div>
+            </aside>
+
+            
+          </div>
   </div>
 </section>
 
