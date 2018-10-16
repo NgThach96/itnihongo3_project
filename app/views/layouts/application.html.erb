@@ -41,17 +41,15 @@
 
   <body class="skin-orange">
 
-    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
-      <%= render "layouts/header" %>
-    <% end %>`
+    
+    <%= render "layouts/header" %>
 
     <!-- content -->
     <%= yield %>
 
     <!-- Start footer -->
-    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
-      <%= render "layouts/footer" %>
-    <% end %>`
+    
+    <%= render "layouts/footer" %>
     <!-- End Footer -->
 
     <!-- JS -->
