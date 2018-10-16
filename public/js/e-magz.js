@@ -36,7 +36,7 @@ $(function(){
 			$("section").eq(0).addClass("first");
 			$("section.first").css({
 				paddingTop: $("header.primary").outerHeight() + 15
-			})			
+			})
 		}
 		$(window).on("resize",function(){
 			if($("header.primary").length) {
@@ -47,7 +47,7 @@ $(function(){
 		});
 	}
 
-	var stickyHeader = function() {	
+	var stickyHeader = function() {
 		var didScroll;
 		$(window).on("scroll", function(event){
 			didScroll = true;
@@ -81,7 +81,7 @@ $(function(){
 	}
 
 	// love
-	var love = function() {	
+	var love = function() {
 		$(".love").each(function(){
 			$(this).find("div").html($.number($(this).find("div").html()));
 			$(this).click(function(){
@@ -114,6 +114,38 @@ $(function(){
 		});
 	}
 
+	// love
+	var dislike = function() {
+		$(".dislike").each(function(){
+			$(this).find("div").html($.number($(this).find("div").html()));
+			$(this).click(function(){
+				var countNow = $(this).find("div").html().replace(',', '');
+				if(!$(this).hasClass("active")) {
+					$(this).find(".animated").remove();
+					$(this).addClass("active");
+					$(this).find("i").removeClass("far");
+					$(this).find("i").removeClass("fa-thumbs-down");
+					$(this).find("i").addClass("fas fa-thumbs-down");
+					$(this).find("div").html(parseInt(countNow) + 1);
+					$(this).find("div").html($.number($(this).find("div").html()));
+					// add some code ("love")
+				}else{
+					$(this).removeClass("active");
+					$(this).find("i").removeClass("fas fa-thumbs-down");
+					$(this).find("i").addClass("far");
+					$(this).find("i").addClass("fa-thumbs-down");
+					$(this).find("div").html(parseInt(countNow) - 1);
+					$(this).find("div").html($.number($(this).find("div").html()));
+
+					// add some code ("unlove")
+				}
+				return false;
+			});
+		});
+	}
+
+
+
 
 	// newsletter
 	var newsletter = function() {
@@ -134,7 +166,7 @@ $(function(){
 					$this.find(".icon i").addClass("ion-checkmark");
 					$this.find(".icon i").removeClass("ion-load-b");
 					$this.find(".icon h1").html("Thank you!");
-					$this.find(".email").val("");				
+					$this.find(".email").val("");
 					$this.find(".btn").attr("disabled", false);
 					$this.find(".email").attr("disabled", false);
 					$.toast({
@@ -167,7 +199,7 @@ $(function(){
 			if($this.find(".email").val().trim().length < 1) {
 				$this.find(".email").focus();
 			}else{
-				/* 
+				/*
 				 * Add your ajax code
 				 * ------------------
 				 * For example:
@@ -177,10 +209,10 @@ $(function(){
 				 *  	data: $this.serialize(),
 				 * 		error: function() {
 				 * 			newsletter.error();
-				 * 		},	
+				 * 		},
 				 * 		beforeSend: function() {
 				 * 			newsletter.start();
-				 * 		},	
+				 * 		},
 				 * 		success: function() {
 				 * 			newsletter.end();
 				 * 		}
@@ -196,10 +228,10 @@ $(function(){
 			}
 
 			return false;
-		});		
+		});
 	}
 
-	var featuredImage = function() {	
+	var featuredImage = function() {
 	  $("#featured figure img").each(function(){
 	  	$(this).parent().css({
 	  		backgroundImage: 'url('+$(this).attr('src')+')',
@@ -226,7 +258,7 @@ $(function(){
 
 		$("#headline-nav [data-slide=prev]").click(function(){
 			headlineCarousel.trigger('prev.owl.carousel');
-		});		
+		});
 	}
 
   // floating label
@@ -239,7 +271,7 @@ $(function(){
 		  		$(this).parent().removeClass("focused");
 	  		}
 	  	});
-	  });  	
+	  });
   }
 
   // browser
@@ -255,7 +287,7 @@ $(function(){
 		});
 	}
 
-	var bestOfTheWeek = function() {	
+	var bestOfTheWeek = function() {
 		var botwCarousel = $(".carousel-1").owlCarousel({
 			items: 4,
 			itemElement: 'article',
@@ -363,7 +395,7 @@ $(function(){
 					video_list.trigger('next.owl.carousel');
 				});
 			}
-		});		
+		});
 	}
 
 	function convert_time(duration) {
@@ -398,7 +430,7 @@ $(function(){
 
 	var verticalSlider = function () {
 		$(".vertical-slider").each(function(ii){
-			var $this = $(this), 
+			var $this = $(this),
 					$item = $this.find($this.data("item")),
 					$item_height = 0,
 					$item_max = $this.data("max"),
@@ -467,7 +499,7 @@ $(function(){
 			setInterval(function(){
 				vs_next();
 			},10000);
-		});		
+		});
 	}
 
 	var featured = function() {
@@ -476,7 +508,7 @@ $(function(){
 			dots: false,
 			// autoplay: true,
 			loop: true
-		});		
+		});
 	}
 
 	var magnificGallery = function() {
@@ -491,7 +523,7 @@ $(function(){
 				},
 				preloader: true,
 	  		})
-		});		
+		});
 	}
 
 	// ease scroll
@@ -621,7 +653,7 @@ $(function(){
 					$(this).addClass("btn-primary");
 				}else{
 					$this.attr('type', 'text');
-					$this.val($("#passeye-"+i).val());				
+					$this.val($("#passeye-"+i).val());
 					$this.addClass("show");
 					$(this).removeClass("btn-primary");
 					$(this).addClass("btn-magz");
@@ -682,6 +714,8 @@ $(function(){
 	stickyHeader();
 
 	love();
+
+	dislike();
 
 	newsletter();
 
