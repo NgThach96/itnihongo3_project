@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @reviews_of_user = Review.find_by user_id:@review.user_id
+    @user_of_review = User.find_by id:@review.user_id
   end
 
   # GET /reviews/new
