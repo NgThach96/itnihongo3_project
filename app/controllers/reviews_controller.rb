@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  autocomplete :review, :food_name, :full => true
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
@@ -10,6 +11,13 @@ class ReviewsController < ApplicationController
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
     # Count number of like and dislike
+    if params[:search]
+      @reviews = Review.name_like(params[:search]).paginate(:page => params[:page], :per_page => 5)
+    else
+      @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+    end
+    @test = 5
+
     @likes = {}
     @dislikes = {}
     index = 0
