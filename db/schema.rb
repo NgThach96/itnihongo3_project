@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181007084222) do
+ActiveRecord::Schema.define(version: 20181007024028) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.bigint "review_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20181007084222) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "comment_id"
     t.bigint "user_id"
     t.text "reply"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20181007084222) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

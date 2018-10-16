@@ -36,21 +36,20 @@
     <%= stylesheet_link_tag "/css/style.css" %>
     <%= stylesheet_link_tag "/css/skins/all.css" %>
     <%= stylesheet_link_tag "/css/demo.css" %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   </head>
 
   <body class="skin-orange">
 
-    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
-      <%= render "layouts/header" %>
-    <% end %>`
+    
+    <%= render "layouts/header" %>
 
     <!-- content -->
     <%= yield %>
 
     <!-- Start footer -->
-    <% if params[:action] != 'new' && params[:controller] != 'devise/registrations' %>
-      <%= render "layouts/footer" %>
-    <% end %>`
+    
+    <%= render "layouts/footer" %>
     <!-- End Footer -->
 
     <!-- JS -->

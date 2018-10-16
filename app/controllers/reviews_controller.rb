@@ -1,19 +1,67 @@
 class ReviewsController < ApplicationController
+  autocomplete :review, :food_name, :full => true
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    # User Will_Paginate gem
+    # 5 review per page
+    @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+
+    # Count number of like and dislike
+    if params[:search]
+      @reviews = Review.name_like(params[:search]).paginate(:page => params[:page], :per_page => 5)
+    else
+      @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+    end
+    @test = 5
+
+    @likes = {}
+    @dislikes = {}
+    index = 0
+    @reviews.each do |review|
+      dislike = 0
+      like = 0
+      review.comments.each do |comment|
+        if comment.emotion_type == 1
+          like = like + 1
+        else
+          dislike = dislike + 1
+        end
+      end
+      @likes[review.id] = like
+      @dislikes[review.id] = dislike
+    end
+
+    # find something
     @reviews1 = Review.find([1,2,3,4])
-    # @review2=Review.find(2)
+  end
+
+
+  # Control like action in home page
+  def likeaction
+    emotion_type = params[:emotion_type]
+    type = params[:type]
+    reviewId = params[:review_id]
+    case params[:emotion_type]
+    when "1"
+      if type == "1"
+        puts("liked")
+      else
+        puts("unliked")
+      end
+    when "0"
+      puts("Disliked")
+    end
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @reviews_of_user = Review.find_by user_id:@review.user_id
+    @user_of_review = User.find_by id:@review.user_id
   end
 
   # GET /reviews/new
@@ -83,4 +131,4 @@ end
 
 # INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("1","Quá ngon","Xôi Hà Nội","Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la ","Xôi chả cua lạp xưởng ruốc - Xôi Bà Thảo","Số 41 Đường Thành, Hoàn Kiếm","5","4","3","1","2018-10-05 08:45:54","2018-10-05 08:45:54");
 # INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("2","50% đá là mất 30% trà sữa hả ???","Trà sữa","Mình uống rất nhiều quán rồi dù uống nhiều đá hay không vẫn full ly , lần đầu tiên 50% đá mà ly mất 1 khúc luôn mới ghê , bán đá hay bán trà sữa . Không hẹn gặp lại !!!
-# ","Hokkaido Tea","81 Âu Cơ, P.14, Quận 11, Thành phố Hồ Chí Minh","4","4","2","2","2017-07-04 08:45:54","2017-07-04 08:45:54"); 
+# ","Hokkaido Tea","81 Âu Cơ, P.14, Quận 11, Thành phố Hồ Chí Minh","4","4","2","2","2017-07-04 08:45:54","2017-07-04 08:45:54");
