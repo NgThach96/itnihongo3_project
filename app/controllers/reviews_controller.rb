@@ -5,7 +5,25 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+    @test = 5
+    @likes = {}
+    @dislikes = {}
+    index = 0
+    @reviews.each do |review|
+      dislike = 0
+      like = 0
+      review.comments.each do |comment|
+        if comment.emotion_type == 1
+          like = like + 1
+        else
+          dislike = dislike + 1
+        end
+      end
+      @likes[review.id] = like
+      @dislikes[review.id] = dislike
+    end
     @reviews1 = Review.find([1,2,3,4])
+
     # @review2=Review.find(2)
   end
 

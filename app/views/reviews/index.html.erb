@@ -29,9 +29,15 @@
                 <h1>
                   <a href="reviews/show/<%= review.id %>"><%= review.title %></a>
                 </h1>
-                <p><%= review.store_name %></p>
-                <p><%= review.store_address %></p>
-                <p>3.2/5</p>
+                <div class="store-div">
+                  <a class="store-name" href="#"><%= review.store_name %></a>
+                </div>
+                <div>
+                  <p><%= review.store_address %></p>
+                </div>
+                <div class="score-div">
+                  <a class="score">3.2/5</a>
+                </div>
                 <footer>
                 </footer>
               </div>
@@ -45,10 +51,26 @@
             <div class="like-comment">
               <ul class="nav-icons">
                 <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
+                  <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                    <div>
+                      <% @likes.each do |like| %>
+                        <% if like[0] == review.id %>
+                          <%= like[1] %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </a>
                 </li>
                 <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
+                  <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                    <div>
+                      <% @dislikes.each do |dislike| %>
+                        <% if dislike[0] == review.id %>
+                          <%= dislike[1] %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </a>
                 </li>
               </ul>
             </div>
