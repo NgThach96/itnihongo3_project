@@ -1,19 +1,67 @@
 class ReviewsController < ApplicationController
+  autocomplete :review, :food_name, :full => true
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /reviews
   # GET /reviews.json
   def index
+    # User Will_Paginate gem
+    # 5 review per page
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+
+    # Count number of like and dislike
+    if params[:search]
+      @reviews = Review.name_like(params[:search]).paginate(:page => params[:page], :per_page => 5)
+    else
+      @reviews = Review.paginate(:page => params[:page], :per_page => 5)
+    end
+    @test = 5
+
+    @likes = {}
+    @dislikes = {}
+    index = 0
+    @reviews.each do |review|
+      dislike = 0
+      like = 0
+      review.comments.each do |comment|
+        if comment.emotion_type == 1
+          like = like + 1
+        else
+          dislike = dislike + 1
+        end
+      end
+      @likes[review.id] = like
+      @dislikes[review.id] = dislike
+    end
+
+    # find something
     @reviews1 = Review.find([1,2,3,4])
-    # @review2=Review.find(2)
+  end
+
+
+  # Control like action in home page
+  def likeaction
+    emotion_type = params[:emotion_type]
+    type = params[:type]
+    reviewId = params[:review_id]
+    case params[:emotion_type]
+    when "1"
+      if type == "1"
+        puts("liked")
+      else
+        puts("unliked")
+      end
+    when "0"
+      puts("Disliked")
+    end
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @reviews_of_user = Review.find_by user_id:@review.user_id
+    @user_of_review = User.find_by id:@review.user_id
   end
 
   # GET /reviews/new

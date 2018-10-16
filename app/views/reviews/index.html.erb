@@ -2,7 +2,20 @@
   <div class="container">
     <div class="row">
       <!-- Left site -->
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar"></div>
+      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
+        <%= form_tag(reviews_path, :method => "get", id: "search-form") do %>
+    <!-- text field tag=action,args,identifier,placeholdertext... -->
+        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
+        <%#= autocomplete_field_tag 'review_name', '', reviews_autocomplete_review_food_name_path %>
+
+        <%= submit_tag "Search" %>
+        <%end%>
+        <script type="text/javascript" charset="utf-8">
+          $('#search').bind('railsAutocomplete.select', function(event, data){
+            $('#search-form').submit()
+            });
+        </script>
+      </div>
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
@@ -11,7 +24,8 @@
               <div style="width: 300px; float: left">
                 <figure>
                   <a href="/reviews/show/<%= review.id %>">
-                    <img src="images/news/chickenfry.jpg" alt="Sample Article">
+                    <!-- <img src="images/news/chickenfry.jpg" alt="Sample Article"> -->
+                    <%= image_tag("news/chickenfry.jpg")%>
                   </a>
                 </figure>
               </div>
@@ -27,11 +41,17 @@
                   </div>
                 </div>
                 <h1>
-                  <a href="reviews/show/<%= review.id %>"><%= review.title %></a>
+                  <a href="reviews/show/<%= review.id %>"><%= review.food_name %></a>
                 </h1>
-                <p><%= review.store_name %></p>
-                <p><%= review.store_address %></p>
-                <p>3.2/5</p>
+                <div class="store-div">
+                  <a class="store-name" href="#"><%= review.store_name %></a>
+                </div>
+                <div>
+                  <p><%= review.store_address %></p>
+                </div>
+                <div class="score-div">
+                  <a class="score">3.2/5</a>
+                </div>
                 <footer>
                 </footer>
               </div>
@@ -45,15 +65,43 @@
             <div class="like-comment">
               <ul class="nav-icons">
                 <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
+                  <% if user_signed_in? %>
+                    <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                  <% else %>
+                    <a href="#" class="custom-icon love-not-signin"><i class="ion-android-favorite-outline"></i>
+                  <% end %>
+
+                    <!-- Like[0]_review's id, Like[1]_review's like number  -->
+                    <div>
+                      <% @likes.each do |like| %>
+                        <% if like[0] == review.id %>
+                          <%= like[1] %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <span class="review_id" style="visibility: hidden;" ><%= review.id %></span>
+                  </a>
                 </li>
                 <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
+                  <% if user_signed_in? %>
+                    <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                  <% else %>
+                    <a href="#" class="custom-icon love-not-signin"><i class="far fa-thumbs-down"></i>
+                  <% end %>
+
+                    <div>
+                      <% @dislikes.each do |dislike| %>
+                        <% if dislike[0] == review.id %>
+                          <%= dislike[1] %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </a>
                 </li>
               </ul>
             </div>
 
-            <div class="pb-cmnt-container">
+            <div class="pb-cmnt-container comment-container">
               <div class="panel panel-info">
                   <div class="panel-body">
                       <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
@@ -67,7 +115,6 @@
           <%= will_paginate @users %>
         </div>
       </div>
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar"></div>
   </div>
 </section>
 

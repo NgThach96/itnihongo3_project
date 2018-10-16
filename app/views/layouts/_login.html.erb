@@ -3,7 +3,8 @@
     <% if user_signed_in? %>
       <li>
         <a>
-        <i class="ion-person"></i><div class="user-setting"><%= current_user.email %>!</div>
+        <i class="ion-person"></i><div class="user-setting"><%= current_user.name %></div>
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
         </a>
       </li>
     <% else %>
