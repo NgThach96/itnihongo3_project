@@ -1,11 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /reviews
   # GET /reviews.json
   def index
+    # User Will_Paginate gem
+    # 5 review per page
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
-    @test = 5
+
+    # Count number of like and dislike
     @likes = {}
     @dislikes = {}
     index = 0
@@ -22,9 +26,27 @@ class ReviewsController < ApplicationController
       @likes[review.id] = like
       @dislikes[review.id] = dislike
     end
-    @reviews1 = Review.find([1,2,3,4])
 
-    # @review2=Review.find(2)
+    # find something
+    @reviews1 = Review.find([1,2,3,4])
+  end
+
+
+  # Control like action in home page
+  def likeaction
+    emotion_type = params[:emotion_type]
+    type = params[:type]
+    reviewId = params[:review_id]
+    case params[:emotion_type]
+    when "1"
+      if type == "1"
+        puts("liked")
+      else
+        puts("unliked")
+      end
+    when "0"
+      puts("Disliked")
+    end
   end
 
   # GET /reviews/1

@@ -80,6 +80,15 @@ $(function(){
 		}
 	}
 
+
+	var loveNotSignin = function() {
+		$(".love-not-signin").each(function() {
+			$(this).click(function() {
+				alert("Please, Sign In");
+			})
+		})
+	}
+
 	// love
 	var love = function() {
 		$(".love").each(function(){
@@ -87,6 +96,7 @@ $(function(){
 			$(this).click(function(){
 				var countNow = $(this).find("div").html().replace(',', '');
 				if(!$(this).hasClass("active")) {
+		      var review_id = $(this).find(".review_id").html();
 					$(this).find(".animated").remove();
 					$(this).addClass("active");
 					$(this).find("i").removeClass("ion-android-favorite-outline");
@@ -99,6 +109,16 @@ $(function(){
 					  $(this).off(e);
 					});
 					// add some code ("love")
+					$.ajax({
+						url: "reviews/likeaction",
+						type: "POST",
+						data: { "emotion_type" : 1, "type" : 1, "review_id" : review_id },
+						dataType: "json",
+						success: function(data) {
+
+						}
+					});
+
 				}else{
 					$(this).find(".animated").remove();
 					$(this).removeClass("active");
@@ -108,6 +128,15 @@ $(function(){
 					$(this).find("div").html($.number($(this).find("div").html()));
 
 					// add some code ("unlove")
+					$.ajax({
+						url: "reviews/likeaction",
+						type: "POST",
+						data: { "emotion_type" : 1, "type" : 0 },
+						dataType: "json",
+						success: function(data) {
+
+						}
+					});
 				}
 				return false;
 			});
@@ -744,4 +773,6 @@ $(function(){
 	sendContactForm();
 
 	loadFile();
+
+	loveNotSignin();
 });

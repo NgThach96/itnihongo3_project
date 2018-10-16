@@ -51,7 +51,13 @@
             <div class="like-comment">
               <ul class="nav-icons">
                 <li>
-                  <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                  <% if user_signed_in? %>
+                    <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                  <% else %>
+                    <a href="#" class="custom-icon love-not-signin"><i class="ion-android-favorite-outline"></i>
+                  <% end %>
+
+                    <!-- Like[0]_review's id, Like[1]_review's like number  -->
                     <div>
                       <% @likes.each do |like| %>
                         <% if like[0] == review.id %>
@@ -59,10 +65,16 @@
                         <% end %>
                       <% end %>
                     </div>
+                    <span class="review_id" style="visibility: hidden;" ><%= review.id %></span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                  <% if user_signed_in? %>
+                    <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                  <% else %>
+                    <a href="#" class="custom-icon love-not-signin"><i class="far fa-thumbs-down"></i>
+                  <% end %>
+
                     <div>
                       <% @dislikes.each do |dislike| %>
                         <% if dislike[0] == review.id %>
