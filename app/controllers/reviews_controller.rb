@@ -16,7 +16,6 @@ class ReviewsController < ApplicationController
     else
       @reviews = Review.paginate(:page => params[:page], :per_page => 5)
     end
-    @test = 5
 
     @likes = {}
     @dislikes = {}
@@ -27,7 +26,9 @@ class ReviewsController < ApplicationController
       review.comments.each do |comment|
         if comment.emotion_type == 1
           like = like + 1
-        else
+        end
+
+        if comment.emotion_type == 0
           dislike = dislike + 1
         end
       end
@@ -45,15 +46,42 @@ class ReviewsController < ApplicationController
     emotion_type = params[:emotion_type]
     type = params[:type]
     reviewId = params[:review_id]
+    review = Review.find(reviewId)
+    comment = review.comments.find_by(user_id: current_user.id)
     case params[:emotion_type]
+    # 1 means user click like button
+    # 0 means user click dislike button
     when "1"
+      # type 1 means people click like else people unlike that
       if type == "1"
-        puts("liked")
+        if comment == nil
+          newCom = review.comments.new
+          newCom.user_id = current_user.id
+          newCom.emotion_type = 1
+          newCom.save
+        else
+          comment.emotion_type = 1
+          comment.save
+        end
       else
-        puts("unliked")
+          comment.emotion_type = -1
+          comment.save
       end
     when "0"
-      puts("Disliked")
+      if type == "1"
+        if comment == nil
+          newCom = review.comments.new
+          newCom.user_id = current_user.id
+          newCom.emotion_type = 0
+          newCom.save
+        else
+          comment.emotion_type = 0
+          comment.save
+        end
+      else
+          comment.emotion_type = -1
+          comment.save
+      end
     end
   end
 

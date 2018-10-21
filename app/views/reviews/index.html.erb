@@ -61,12 +61,28 @@
             <p>
               <%= review.post_content %>
             </p>
-            <!-- Comment box -->
+
+            <!-- Check if current user have liked this post  -->
+            <% if user_signed_in? %>
+              <% isCurUserLikedThisReview = 0 %>
+              <% review.comments.each do |comment| %>
+                <% if comment.user_id == current_user.id && comment.emotion_type == 1 %>
+                  <% isCurUserLikedThisReview = 1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <!-- Like icon -->
             <div class="like-comment">
               <ul class="nav-icons">
                 <li>
                   <% if user_signed_in? %>
-                    <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                  <!-- if user had liked this review then change icon -->
+                    <% if isCurUserLikedThisReview == 1 %>
+                      <a href="#" class="custom-icon love active"><i class="ion-android-favorite"></i>
+                    <% else %>
+                      <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                    <% end %>
                   <% else %>
                     <a href="#" class="custom-icon love-not-signin"><i class="ion-android-favorite-outline"></i>
                   <% end %>
@@ -79,16 +95,30 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <span class="review_id" style="visibility: hidden;" ><%= review.id %></span>
+                    <p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
                   </a>
                 </li>
+
+                <!-- Check if current user have disliked this post -->
+                <% if user_signed_in? %>
+                  <% isCurUserDislikedThisReview = 0 %>
+                  <% review.comments.each do |comment| %>
+                    <% if comment.user_id == current_user.id && comment.emotion_type == 0 %>
+                      <% isCurUserDislikedThisReview = 1 %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <!-- Dislike icon -->
                 <li>
                   <% if user_signed_in? %>
-                    <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                    <% if isCurUserDislikedThisReview == 1 %>
+                      <a href="#" class="custom-icon dislike active"><i class="fas fa-thumbs-down"></i>
+                    <% else %>
+                      <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                    <% end %>
                   <% else %>
                     <a href="#" class="custom-icon love-not-signin"><i class="far fa-thumbs-down"></i>
                   <% end %>
-
                     <div>
                       <% @dislikes.each do |dislike| %>
                         <% if dislike[0] == review.id %>
@@ -96,6 +126,7 @@
                         <% end %>
                       <% end %>
                     </div>
+                    <p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
                   </a>
                 </li>
               </ul>
