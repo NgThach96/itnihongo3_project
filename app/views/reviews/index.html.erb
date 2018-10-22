@@ -136,15 +136,27 @@
                 <div class="detailBox">
                   <div class="actionBox">
                       <ul class="commentList">
-                          <li>
-                              <div class="commenterImage">
-                                <img src="http://placekitten.com/40/40" />
-                              </div>
-                              <div class="commentText">
-                                  <p class="">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la</p> <span class="date sub-text">on March 5th, 2014</span>
 
-                              </div>
-                          </li>
+                          <% review.comments.each do |comment| %>
+                            <% if comment.comment != nil %>
+                            <li>
+                                <div class="commenterImage">
+                                  <%= image_tag("news/chickenfry.jpg")%>
+                                </div>
+                                <div class="commentText">
+                                    <p class="">
+                                      <span class="user-comment" style="color: red;margin-right: 5px; font-weight: bold;">
+                                      <%= comment.user.name %>
+                                      </span>
+                                      <%= comment.comment %>
+                                    </p>
+                                    <span class="date sub-text">
+                                      <%= comment.updated_at %>
+                                    </span>
+                                </div>
+                            </li>
+                            <% end %>
+                          <% end %>
                       </ul>
                       <form class="form-inline" role="form">
                           <div class="form-group test">
