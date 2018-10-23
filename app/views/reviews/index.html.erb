@@ -5,8 +5,8 @@
       <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
         <%= form_tag(reviews_path, :method => "get", id: "search-form") do %>
     <!-- text field tag=action,args,identifier,placeholdertext... -->
-        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
-        <%#= autocomplete_field_tag 'review_name', '', reviews_autocomplete_review_food_name_path %>
+        <%#= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
+        <%= autocomplete_field_tag 'review_name', '', reviews_autocomplete_review_food_name_path, :fields => {:food_name => '#food_element', :store_name => '#store_element'} %>
 
         <%= submit_tag "Search" %>
         <%end%>
@@ -41,7 +41,7 @@
                   </div>
                 </div>
                 <h1>
-                  <a href="reviews/show/<%= review.id %>"><%= review.title %></a>
+                  <a href="reviews/show/<%= review.id %>"><%= review.food_name %></a>
                 </h1>
                 <div class="store-div">
                   <a class="store-name" href="#"><%= review.store_name %></a>
@@ -61,12 +61,28 @@
             <p>
               <%= review.post_content %>
             </p>
-            <!-- Comment box -->
+
+            <!-- Check if current user have liked this post  -->
+            <% if user_signed_in? %>
+              <% isCurUserLikedThisReview = 0 %>
+              <% review.comments.each do |comment| %>
+                <% if comment.user_id == current_user.id && comment.emotion_type == 1 %>
+                  <% isCurUserLikedThisReview = 1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <!-- Like icon -->
             <div class="like-comment">
               <ul class="nav-icons">
                 <li>
                   <% if user_signed_in? %>
-                    <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                  <!-- if user had liked this review then change icon -->
+                    <% if isCurUserLikedThisReview == 1 %>
+                      <a href="#" class="custom-icon love active"><i class="ion-android-favorite"></i>
+                    <% else %>
+                      <a href="#" class="custom-icon love"><i class="ion-android-favorite-outline"></i>
+                    <% end %>
                   <% else %>
                     <a href="#" class="custom-icon love-not-signin"><i class="ion-android-favorite-outline"></i>
                   <% end %>
@@ -79,16 +95,30 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <span class="review_id" style="visibility: hidden;" ><%= review.id %></span>
+                    <p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
                   </a>
                 </li>
+
+                <!-- Check if current user have disliked this post -->
+                <% if user_signed_in? %>
+                  <% isCurUserDislikedThisReview = 0 %>
+                  <% review.comments.each do |comment| %>
+                    <% if comment.user_id == current_user.id && comment.emotion_type == 0 %>
+                      <% isCurUserDislikedThisReview = 1 %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <!-- Dislike icon -->
                 <li>
                   <% if user_signed_in? %>
-                    <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                    <% if isCurUserDislikedThisReview == 1 %>
+                      <a href="#" class="custom-icon dislike active"><i class="fas fa-thumbs-down"></i>
+                    <% else %>
+                      <a href="#" class="custom-icon dislike"><i class="far fa-thumbs-down"></i>
+                    <% end %>
                   <% else %>
                     <a href="#" class="custom-icon love-not-signin"><i class="far fa-thumbs-down"></i>
                   <% end %>
-
                     <div>
                       <% @dislikes.each do |dislike| %>
                         <% if dislike[0] == review.id %>
@@ -96,15 +126,43 @@
                         <% end %>
                       <% end %>
                     </div>
+                    <p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
                   </a>
                 </li>
               </ul>
             </div>
 
             <div class="pb-cmnt-container comment-container">
-              <div class="panel panel-info">
-                  <div class="panel-body">
-                      <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+                <div class="detailBox">
+                  <div class="actionBox">
+                      <ul class="commentList">
+
+                          <% review.comments.each do |comment| %>
+                            <% if comment.comment != nil %>
+                            <li>
+                                <div class="commenterImage">
+                                  <%= image_tag("news/chickenfry.jpg")%>
+                                </div>
+                                <div class="commentText">
+                                    <p class="">
+                                      <span class="user-comment" style="color: red;margin-right: 5px; font-weight: bold;">
+                                      <%= comment.user.name %>
+                                      </span>
+                                      <%= comment.comment %>
+                                    </p>
+                                    <span class="date sub-text">
+                                      <%= comment.updated_at %>
+                                    </span>
+                                </div>
+                            </li>
+                            <% end %>
+                          <% end %>
+                      </ul>
+                      <form class="form-inline" role="form">
+                          <div class="form-group test">
+                              <input class="form-control" type="text" placeholder="Your comments" />
+                          </div>
+                      </form>
                   </div>
               </div>
             </div>

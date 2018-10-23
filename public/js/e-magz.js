@@ -109,6 +109,20 @@ $(function(){
 					  $(this).off(e);
 					});
 					// add some code ("love")
+					$(".dislike").each(function() {
+						if ($(this).find(".review_id").html() == review_id) {
+							if($(this).hasClass("active")) {
+								var countNow = $(this).find("div").html().replace(',', '');
+								$(this).removeClass("active");
+								$(this).find("i").removeClass("fas fa-thumbs-down");
+								$(this).find("i").addClass("far");
+								$(this).find("i").addClass("fa-thumbs-down");
+								$(this).find("div").html(parseInt(countNow) - 1);
+								$(this).find("div").html($.number($(this).find("div").html()));
+							}
+						}
+					});
+
 					$.ajax({
 						url: "reviews/likeaction",
 						type: "POST",
@@ -120,6 +134,7 @@ $(function(){
 					});
 
 				}else{
+		      var review_id = $(this).find(".review_id").html();
 					$(this).find(".animated").remove();
 					$(this).removeClass("active");
 					$(this).find("i").addClass("ion-android-favorite-outline");
@@ -127,16 +142,17 @@ $(function(){
 					$(this).find("div").html(parseInt(countNow) - 1);
 					$(this).find("div").html($.number($(this).find("div").html()));
 
-					// add some code ("unlove")
+					// add some code ("love")
 					$.ajax({
 						url: "reviews/likeaction",
 						type: "POST",
-						data: { "emotion_type" : 1, "type" : 0 },
+						data: { "emotion_type" : 1, "type" : 0, "review_id" : review_id },
 						dataType: "json",
 						success: function(data) {
 
 						}
 					});
+
 				}
 				return false;
 			});
@@ -150,6 +166,7 @@ $(function(){
 			$(this).click(function(){
 				var countNow = $(this).find("div").html().replace(',', '');
 				if(!$(this).hasClass("active")) {
+		      var review_id = $(this).find(".review_id").html();
 					$(this).find(".animated").remove();
 					$(this).addClass("active");
 					$(this).find("i").removeClass("far");
@@ -157,8 +174,31 @@ $(function(){
 					$(this).find("i").addClass("fas fa-thumbs-down");
 					$(this).find("div").html(parseInt(countNow) + 1);
 					$(this).find("div").html($.number($(this).find("div").html()));
+					$(".love").each(function() {
+						if( $(this).find(".review_id").html() == review_id) {
+							if( $(this).hasClass("active")) {
+								var countNow = $(this).find("div").html().replace(',', '');
+								$(this).find(".animated").remove();
+								$(this).removeClass("active");
+								$(this).find("i").addClass("ion-android-favorite-outline");
+								$(this).find("i").removeClass("ion-android-favorite");
+								$(this).find("div").html(parseInt(countNow) - 1);
+								$(this).find("div").html($.number($(this).find("div").html()));
+							}
+						}
+					});
 					// add some code ("love")
+					$.ajax({
+						url: "reviews/likeaction",
+						type: "POST",
+						data: { "emotion_type" : 0, "type" : 1, "review_id" : review_id },
+						dataType: "json",
+						success: function(data) {
+
+						}
+					});
 				}else{
+		      var review_id = $(this).find(".review_id").html();
 					$(this).removeClass("active");
 					$(this).find("i").removeClass("fas fa-thumbs-down");
 					$(this).find("i").addClass("far");
@@ -167,6 +207,15 @@ $(function(){
 					$(this).find("div").html($.number($(this).find("div").html()));
 
 					// add some code ("unlove")
+					$.ajax({
+						url: "reviews/likeaction",
+						type: "POST",
+						data: { "emotion_type" : 0, "type" : 0, "review_id" : review_id },
+						dataType: "json",
+						success: function(data) {
+
+						}
+					});
 				}
 				return false;
 			});

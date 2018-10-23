@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  root 'reviews#index'
 
-  get 'reviews/show/:id' => 'reviews#show'
-  post 'reviews/likeaction' => 'reviews#likeaction'
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'reviews/autocomplete_review_food_name'
   resources :reviews
+  root 'reviews#index'
 
-  post 'comment/store' => 'comment#store'
+  post 'reviews/likeaction' => 'reviews#likeaction'
+
+
+  post 'comment/create' => 'comment#create'
 
   devise_for :users, :controllers => {:registrations => "users"}
 

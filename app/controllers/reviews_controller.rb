@@ -1,8 +1,15 @@
 class ReviewsController < ApplicationController
-  autocomplete :review, :food_name, :full => true
+  # autocomplete :review, :food_name, :full => true
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def autocomplete_review_food_name
+    term = params[:term]
+    food_name = params[:food_name]
+    store_name = params[:store_name]
+    reviews = Review.where('food_name LIKE ? OR store_name LIKE ?', "%#{term}%", "%#{term}%")
+    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name} }
+  end
   # GET /reviews
   # GET /reviews.json
   def index
@@ -11,12 +18,11 @@ class ReviewsController < ApplicationController
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
     # Count number of like and dislike
-    if params[:search]
-      @reviews = Review.name_like(params[:search]).paginate(:page => params[:page], :per_page => 5)
+    if params[:review_name]
+      @reviews = Review.name_like(params[:review_name]).paginate(:page => params[:page], :per_page => 5)
     else
       @reviews = Review.paginate(:page => params[:page], :per_page => 5)
     end
-    @test = 5
 
     @likes = {}
     @dislikes = {}
@@ -27,7 +33,9 @@ class ReviewsController < ApplicationController
       review.comments.each do |comment|
         if comment.emotion_type == 1
           like = like + 1
-        else
+        end
+
+        if comment.emotion_type == 0
           dislike = dislike + 1
         end
       end
@@ -45,15 +53,42 @@ class ReviewsController < ApplicationController
     emotion_type = params[:emotion_type]
     type = params[:type]
     reviewId = params[:review_id]
+    review = Review.find(reviewId)
+    comment = review.comments.find_by(user_id: current_user.id)
     case params[:emotion_type]
+    # 1 means user click like button
+    # 0 means user click dislike button
     when "1"
+      # type 1 means people click like else people unlike that
       if type == "1"
-        puts("liked")
+        if comment == nil
+          newCom = review.comments.new
+          newCom.user_id = current_user.id
+          newCom.emotion_type = 1
+          newCom.save
+        else
+          comment.emotion_type = 1
+          comment.save
+        end
       else
-        puts("unliked")
+          comment.emotion_type = -1
+          comment.save
       end
     when "0"
-      puts("Disliked")
+      if type == "1"
+        if comment == nil
+          newCom = review.comments.new
+          newCom.user_id = current_user.id
+          newCom.emotion_type = 0
+          newCom.save
+        else
+          comment.emotion_type = 0
+          comment.save
+        end
+      else
+          comment.emotion_type = -1
+          comment.save
+      end
     end
   end
 
@@ -62,6 +97,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user_of_review = User.find_by id:@review.user_id
+    # @comment = @review.comments
   end
 
   # GET /reviews/new
