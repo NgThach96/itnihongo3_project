@@ -1,8 +1,15 @@
 class ReviewsController < ApplicationController
-  autocomplete :review, :food_name, :full => true
+  # autocomplete :review, :food_name, :full => true
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def autocomplete_review_food_name
+    term = params[:term]
+    food_name = params[:food_name]
+    store_name = params[:store_name]
+    reviews = Review.where('food_name LIKE ? OR store_name LIKE ?', "%#{term}%", "%#{term}%")
+    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name} }
+  end
   # GET /reviews
   # GET /reviews.json
   def index
@@ -11,8 +18,8 @@ class ReviewsController < ApplicationController
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
     # Count number of like and dislike
-    if params[:search]
-      @reviews = Review.name_like(params[:search]).paginate(:page => params[:page], :per_page => 5)
+    if params[:review_name]
+      @reviews = Review.name_like(params[:review_name]).paginate(:page => params[:page], :per_page => 5)
     else
       @reviews = Review.paginate(:page => params[:page], :per_page => 5)
     end
