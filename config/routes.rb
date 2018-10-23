@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'reviews/likeaction' => 'reviews#likeaction'
 
 
-  post 'comment/store' => 'comment#store'
+  post 'comment/create' => 'comment#create'
 
   devise_for :users, :controllers => {:registrations => "users"}
 

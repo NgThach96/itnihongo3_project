@@ -97,6 +97,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user_of_review = User.find_by id:@review.user_id
+    # @comment = @review.comments
   end
 
   # GET /reviews/new
