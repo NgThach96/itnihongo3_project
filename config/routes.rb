@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'reviews/autocomplete_review_food_name'
   resources :reviews
 
-  post 'comment/store' => 'comment#store'
+  post 'comment/create' => 'comment#create'
 
   devise_for :users, :controllers => {:registrations => "users"}
 

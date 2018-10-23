@@ -31,7 +31,7 @@
 									</div>
 								</article>
 								<% end %>
-								
+
 							</div>
 						</aside>
 					</div>
@@ -51,18 +51,22 @@
                 				<p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
 								<p><%= @review.post_content %></p>
 							</div>
-							
+
 						</article>
 						<div class="sharing">
 						</div>
-						
+
 						<div class="line thin"></div>
 						<div class="comments">
 							<h2 class="title">Bình luận <a href="#">Write a Response</a></h2>
-							<div class="comment-list">
-							<% @review.comments.each do |comment| %> 
+
+
+
+						<div class="comment-list">
+
+							<% @review.comments.each do |comment| %>
 								<div class="item">
-									<div class="user">                                
+									<div class="user">
 										<figure>
 											<%= image_tag("n.png")%>
 										</figure>
@@ -75,21 +79,23 @@
 											<!-- <footer>
 												<a href="#">Reply</a>
 											</footer> -->
-											
+
 										</div>
 									</div>
 								</div>
-							<% end %>
+             　<% end %>
 
-							</div>
-							<form class="row" method="POST" action="url('/comment/store')">
-								<div class="form-group col-md-12">
-									<textarea class="form-control" name="message" placeholder="Nội dung bình luận ..."></textarea>
-								</div>
-								<div class="form-group col-md-12">
-									<button class="btn btn-primary">Gửi</button>
-								</div>
-							</form>
+						</div>
+
+						 <%= form_for :comment, url: '/comment/create', :remote => true do |f| %>
+								<%= f.hidden_field :review_id, { :value => @review.id}%>
+								<%= f.hidden_field :emotion_type, { :value => 1} %>
+								<%= f.text_area :comment, class: 'form-control', placeholder: 'Nội dung bình luận' %>
+								<br>
+								<%= f.submit 'Gửi bình luận'%>
+						 <% end %>
+
+
 						</div>
 					</div>
 				</div>
