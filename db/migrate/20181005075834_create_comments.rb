@@ -1,11 +1,14 @@
 class CreateComments < ActiveRecord::Migration[5.1]
-  def change
+  def self.up
     create_table :comments do |t|
-      t.integer :post_id, null: false
-      t.integer :user_id, null: false
-      t.string :comment
+      t.references :review, foreign_key: true
+      t.references :user, foreign_key: true
+      t.text :comment
       t.integer :emotion_type
       t.timestamps
     end
+  end
+   def self.down
+    drop_table :comments
   end
 end
