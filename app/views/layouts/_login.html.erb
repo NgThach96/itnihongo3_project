@@ -1,30 +1,12 @@
 <div class="col-md-3 col-sm-12 text-right login-menu">
-  <!-- <ul class="nav-icons">
-    <% if user_signed_in? %>
-      <li>
-        <a>
-        <i class="ion-person"></i><div class="user-setting"><%= current_user.name %></div>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-        </a>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to new_user_registration_path do %>
-          <i class="ion-person-add"></i><div>Register</div>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_user_session_path do %>
-          <i class="ion-person"></i><div>Login</div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul> -->
   <ul class="nav-list nav-icons">
     <li class="for-tablet nav-title"><a>Menu</a></li>
     <% if user_signed_in? %>
       <li class="dropdown magz-dropdown">
-        <a href="#">Hi <%= current_user.name %> <i style="float: right;" class="ion-ios-arrow-right"></i>
+        <div class="user_image">
+          <%= image_tag("news/chickenfry.jpg", :id => "user_image_img")%>
+        </div>
+        <a id="user_name" href="#">Hi <%= current_user.name %> <i style="float: right;" class="ion-ios-arrow-right"></i>
         </a>
         <ul class="dropdown-menu">
           <li>

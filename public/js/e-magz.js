@@ -786,6 +786,35 @@ $(function(){
 		});
 	}
 
+	var comment = function() {
+		$(".comment-text-box").each(function() {
+			$(this).keyup(function(e) {
+					if(e.keyCode == 13) {
+						var content = $(this).val();
+						var user_name = $(document).find('#user_name').text().slice(3);
+						var user_img = $(document).find('#user_image_img').prop("src");
+						$(this).parents(".actionBox").find(".commentList").append(
+							"<li> \
+                  <div class=\"commenterImage\"> \
+                    <img src=\""+ user_img + "\"> \
+                  </div> \
+                  <div class=\"commentText\"> \
+                      <p class=\"abc\"> \
+                        <span class=\"user-comment\" style=\"color: red;margin-right: 5px; font-weight: bold;\">" +
+                        user_name + "</span>"
+                        + content +
+                      "</p> \
+                      <span class=\"date sub-text\"> \
+                        abc \
+                      </span> \
+                  </div> \
+              </li>");
+						$(this).val("");
+					}
+			})
+		});
+	}
+
 	// Run Function
 	sectionFirstPadding();
 
@@ -794,6 +823,8 @@ $(function(){
 	love();
 
 	dislike();
+
+	comment();
 
 	newsletter();
 
@@ -824,4 +855,6 @@ $(function(){
 	loadFile();
 
 	loveNotSignin();
+
+
 });

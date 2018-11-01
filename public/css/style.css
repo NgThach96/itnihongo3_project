@@ -4243,6 +4243,7 @@ blockquote {
     width:100%;
     border-radius:50%;
 }
+
 .commentText p {
     margin:0;
 }
@@ -4265,5 +4266,19 @@ blockquote {
   color: red;
   margin-right: 5px;
   font-weight: bold;
+}
+
+.user_image {
+  width:40px;
+  margin-right:5px;
+  height:100%;
+  float:left;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.user_image img {
+  width:100%;
+  border-radius:50%;
 }
 

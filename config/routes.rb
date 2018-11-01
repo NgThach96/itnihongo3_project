@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'reviews#index'
 
   post 'reviews/likeaction' => 'reviews#likeaction'
-
+  get 'reviews/show/:id' => 'reviews#show'
 
   post 'comment/create' => 'comment#create'
 
