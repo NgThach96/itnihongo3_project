@@ -793,6 +793,7 @@ $(function(){
 						var content = $(this).val();
 						var user_name = $(document).find('#user_name').text().slice(3);
 						var user_img = $(document).find('#user_image_img').prop("src");
+						var review_id = $(this).parents(".article-list").find(".review_id").html();
 						$(this).parents(".actionBox").find(".commentList").append(
 							"<li> \
                   <div class=\"commenterImage\"> \
@@ -810,6 +811,15 @@ $(function(){
                   </div> \
               </li>");
 						$(this).val("");
+						$.ajax({
+							url: "reviews/commentaction",
+							type: "POST",
+							data: { "content" : content, "review_id" : review_id },
+							dataType: "json",
+							success: function(data) {
+								alert(review_id);
+							}
+						});
 					}
 			})
 		});

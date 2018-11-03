@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   resources :reviews
   root 'reviews#index'
 
-  post 'reviews/likeaction' => 'reviews#likeaction'
   get 'reviews/show/:id' => 'reviews#show'
 
   post 'comment/create' => 'comment#create'
+
+  # thach-nguyen
+  post 'reviews/commentaction' => 'reviews#commentaction'
+  post 'reviews/likeaction' => 'reviews#likeaction'
 
   devise_for :users, :controllers => {:registrations => "users"}
 

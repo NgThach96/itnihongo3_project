@@ -4201,9 +4201,8 @@ blockquote {
 
 .detailBox {
     width:100%;
-    border:1px solid #ADD8E6;
+    border-top:1px solid #eee;
     margin-bottom: 20px;
-    border-radius: 5px;
 }
 .titleBox {
     background-color:#fdfdfd;
@@ -4224,7 +4223,6 @@ blockquote {
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
 }
 .commentList li {
     margin:0;

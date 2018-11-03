@@ -54,7 +54,7 @@ class ReviewsController < ApplicationController
     type = params[:type]
     reviewId = params[:review_id]
     review = Review.find(reviewId)
-    comment = review.comments.find_by(user_id: current_user.id)
+    comment = review.comments.where("emotion_type != -2").find_by(user_id: current_user.id)
     case params[:emotion_type]
     # 1 means user click like button
     # 0 means user click dislike button
@@ -103,6 +103,18 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+  end
+
+  def commentaction
+    content = params[:content]
+    review_id = params[:review_id]
+    review = Review.find(review_id)
+    newCom = review.comments.new
+    newCom.user_id = current_user.id
+    newCom.emotion_type = -2
+    newCom.review_id = review_id
+    newCom.comment = content
+    newCom.save
   end
 
   # GET /reviews/1/edit
