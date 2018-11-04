@@ -825,6 +825,20 @@ $(function(){
 		});
 	}
 
+	var review = function() {
+
+		$('#li_review').on("click", function() {
+			$('#myModal').css('display', 'block');
+		});
+
+		$('#close').on("click", function() {
+			$('#myModal').css('display', 'none');
+		});
+
+	}
+
+	review();
+
 	// Run Function
 	sectionFirstPadding();
 
