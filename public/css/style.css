@@ -4201,9 +4201,8 @@ blockquote {
 
 .detailBox {
     width:100%;
-    border:1px solid #ADD8E6;
+    border-top:1px solid #eee;
     margin-bottom: 20px;
-    border-radius: 5px;
 }
 .titleBox {
     background-color:#fdfdfd;
@@ -4224,7 +4223,6 @@ blockquote {
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
 }
 .commentList li {
     margin:0;
@@ -4243,6 +4241,7 @@ blockquote {
     width:100%;
     border-radius:50%;
 }
+
 .commentText p {
     margin:0;
 }
@@ -4267,3 +4266,63 @@ blockquote {
   font-weight: bold;
 }
 
+.user_image {
+  width:40px;
+  margin-right:5px;
+  height:100%;
+  float:left;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.user_image img {
+  width:100%;
+  border-radius:50%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    z-index: 99999;
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    height: 80%;
+    width: 80%;
+/* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+#close:hover,
+#close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
