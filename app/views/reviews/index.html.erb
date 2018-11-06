@@ -2,21 +2,7 @@
   <div class="container">
     <div class="row">
       <!-- Left site -->
-      <div class="col-xs-6 col-md-2 sidebar" id="sidebar">
-        <%= form_tag(reviews_path, :method => "get", id: "search-form") do %>
-    <!-- text field tag=action,args,identifier,placeholdertext... -->
-        <%#= text_field_tag :search, params[:search], class: "search-query", placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
-        <%= autocomplete_field_tag 'review_name', '', reviews_autocomplete_review_food_name_path, :fields => {:food_name => '#food_element', :store_name => '#store_element'} %>
-
-        <%= submit_tag "Search" %>
-        <%end%>
-        <script type="text/javascript" charset="utf-8">
-          $('#search').bind('railsAutocomplete.select', function(event, data){
-            $('#search-form').submit()
-            });
-        </script>
-      </div>
-      <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
             <article class="col-md-12 article-list review-card">

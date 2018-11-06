@@ -1,0 +1,19 @@
+<div class="col-xs-6 col-md-12 sidebar" id="sidebar">
+  <div class = "row">
+    <div class = "col-md-6 col-md-offset-2">
+      <%= form_tag(reviews_path, :method => "get", id: "search-form") do %>
+      <!-- text field tag=action,args,identifier,placeholdertext... -->
+      <%#= text_field_tag :search, params[:search], placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
+      <%= autocomplete_field_tag 'review_name', '', reviews_autocomplete_review_food_name_path, class: "search-query", :fields => {:food_name => '#food_element', :store_name => '#store_element'} %>
+    </div>
+    <div class = "col-md-2">
+      <%= submit_tag "Search" %>
+    </div>
+  </div>
+  <%end%>
+  <script type="text/javascript" charset="utf-8">
+    $('#search').bind('railsAutocomplete.select', function(event, data){
+      $('#search-form').submit()
+      });
+  </script>      
+</div>
