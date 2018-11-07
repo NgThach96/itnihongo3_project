@@ -4326,3 +4326,7 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+
+.ui-autocomplete {
+  z-index: 100000000000;
+}

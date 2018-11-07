@@ -837,6 +837,18 @@ $(function(){
 
 	}
 
+	var commentnotsigin = function() {
+		$('.comment-text-box-signin').each(function() {
+			$(this).keyup(function (e) {
+					if(e.keyCode == 13) {
+					alert("Please, Sign in");
+				}
+			});
+		});
+	}
+
+	commentnotsigin();
+
 	review();
 
 	// Run Function

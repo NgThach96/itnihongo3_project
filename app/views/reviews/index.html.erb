@@ -145,7 +145,12 @@
                       </ul>
                       <div class="form-inline">
                           <div class="form-group test">
+                            <% if user_signed_in? %>
                               <input class="form-control comment-text-box" type="text" placeholder="Your comments" />
+                            <% else %>
+                              <input class="form-control comment-text-box-signin" type="text" placeholder="Your comments" />
+                            <% end %>
+
                           </div>
                       </div>
                   </div>
