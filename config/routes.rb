@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'reviews/show/:id' => 'reviews#show'
 
+  get 'stores/info/:id' => 'reviews#infostore'
+
   post 'comment/create' => 'comment#create'
 
   # thach-nguyen

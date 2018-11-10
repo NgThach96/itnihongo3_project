@@ -11,9 +11,9 @@
 							</div>
 						</aside>
 						<aside>
-							<h1 class="aside-title">Bài viết khác của <%= @review.user.name%></h1>
+							<h1 class="aside-title">Bài viết về <%= @review.store.store_name%></h1>
 							<div class="aside-body">
-								<% @user_of_review.reviews.each do |review| %>
+								<% @store_of_review.reviews.each do |review| %>
 								<article class="article-mini">
 									<div class="inner">
 										<figure>
@@ -38,33 +38,32 @@
 					<div class="col-md-8">
 						<article class="article main-article">
 							<header>
-								<h1><%= @review.title %></h1>
+
+								<h1><%= @review.store.store_name %></h1>
 								<ul class="details">
-									<li>Posted on <%= @review.created_at %></li>
-									<li>By <%= @review.user.name %></li>
+									<li>thông tin chi tiết</li>
+									<!-- <li>By <%= @review.user.name %></li> -->
 								</ul>
 							</header>
 							<div class="main">
-
-
-                <p>Địa chỉ: <%= @review.store.store_address %>(<a href="/stores/info/<%= @review.id %>">thông tin chi tiết</a>)</p>
-
-                <p>Đánh giá chất lượng: <%= @review.taste_rate%>/5</p>
-                <p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
-								<p><%= @review.post_content %></p>
+								<p>Tên nhà hàng: <%= @review.store.store_name %></p>
+                <p>Địa chỉ: <%= @review.store.store_address %></p>
+                <p>Giờ mở cửa: <%= @review.store.open_time %> h</p>
+                <p>Giá cả: <%= @review.store.price %> đồng</p>
+								<p>Số điện thoại: <%= @review.store.phone %></p>
 							</div>
 
 						</article>
 						<div class="sharing">
 						</div>
 
-						<div class="line thin"></div>
+						<!-- <div class="line thin"></div>
 						<div class="comments">
-							<h2 class="title">Bình luận <a href="#">Write a Response</a></h2>
+							<h2 class="title">Bình luận <a href="#">Write a Response</a></h2> -->
 
 
 
-						<div class="comment-list">
+						<!-- <div class="comment-list">
 
 							<% @review.comments.each do |comment| %>
 								<div class="item">
@@ -78,14 +77,14 @@
 											<div class="description">
 												<%= comment.comment%>
 											</div>
-											<!-- <footer>
+											<footer>
 												<a href="#">Reply</a>
-											</footer> -->
+											</footer>
 
 										</div>
 									</div>
 								</div>
-             　<% end %>
+             　              <% end %>
 
 						</div>
 
@@ -98,7 +97,7 @@
 						 <% end %>
 
 
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
