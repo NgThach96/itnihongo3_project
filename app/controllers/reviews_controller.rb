@@ -100,6 +100,11 @@ class ReviewsController < ApplicationController
     # @comment = @review.comments
   end
 
+  def infostore
+    @review = Review.find(params[:id])
+    @store_of_review = Store.find_by id:@review.store_id
+  end
+
   # GET /reviews/new
   def new
     @review = Review.new
