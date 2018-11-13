@@ -884,7 +884,7 @@ $(function(){
 		$('.control-comment-edit').each(function() {
 			$(this).on('click', function() {
 				var commentId = $(this).parents(".control-comment").find('.comment-id').text();
-				var comment = prompt("Please enter your name:", "Harry Potter");
+				var comment = prompt("Please enter your comment:", "your comment");
     		if (comment == null || comment == "") {
         	alert("Canceled");
     		} else {
