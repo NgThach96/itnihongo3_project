@@ -847,6 +847,65 @@ $(function(){
 		});
 	}
 
+	var comment_li_on_hover = function() {
+		$('.comment-li').each(function() {
+			$(this).mouseenter(function() {
+				$(this).find(".control-comment").css("visibility", "visible");
+			});
+
+			$(this).mouseleave(function() {
+				$(this).find(".control-comment").css("visibility", "hidden");
+			});
+		});
+	}
+
+	var control_comment = function() {
+		$('.control-comment-delete').each(function() {
+			$(this).on('click', function() {
+				var commentId = $(this).parents(".control-comment").find('.comment-id').text();
+				var r = confirm("Are you sure ?");
+				if ( r == true ) {
+					$(this).parents(".comment-li").html("");
+					$.ajax({
+						url: "reviews/deleteCommentAct",
+						type: "POST",
+						data: { "commentId" : commentId },
+						dataType: "json",
+						success: function(data) {
+							alert("Succed");
+						}
+					});
+				} else {
+					alert("Cancel");
+				}
+			});
+		});
+
+		$('.control-comment-edit').each(function() {
+			$(this).on('click', function() {
+				var commentId = $(this).parents(".control-comment").find('.comment-id').text();
+				var comment = prompt("Please enter your name:", "Harry Potter");
+    		if (comment == null || comment == "") {
+        	alert("Canceled");
+    		} else {
+    			$(this).parents(".commentText").find(".comment-naiyou").text(comment);
+    			$.ajax({
+						url: "reviews/editCommentAct",
+						type: "POST",
+						data: { "commentId" : commentId, "comment" : comment },
+						dataType: "json",
+						success: function(data) {
+							alert("Succed");
+						}
+					});
+    		}
+			})
+		});
+	}
+	control_comment();
+
+	comment_li_on_hover();
+
 	commentnotsigin();
 
 	review();

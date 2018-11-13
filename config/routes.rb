@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   # thach-nguyen
   post 'reviews/commentaction' => 'reviews#commentaction'
   post 'reviews/likeaction' => 'reviews#likeaction'
+  post 'reviews/deleteCommentAct' => 'reviews#deleteCommentAct'
+  post 'reviews/editCommentAct' => 'reviews#editCommentAct'
 
   devise_for :users, :controllers => {:registrations => "users"}
 

@@ -92,6 +92,20 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def editCommentAct
+    comment_id = params[:commentId]
+    comment = params[:comment]
+    target = Comment.find(comment_id)
+    target.comment = comment
+    target.save
+  end
+
+  def deleteCommentAct
+    comment_id = params[:commentId]
+    comment = Comment.find(comment_id)
+    comment.delete
+  end
+
   # GET /reviews/1
   # GET /reviews/1.json
   def show
