@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110120039) do
+ActiveRecord::Schema.define(version: 20181113035102) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.datetime "created_at", null: false
@@ -62,17 +62,17 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.string "store_name"
-    t.string "store_address"
-    t.string "open_time"
-    t.string "price"
-    t.string "phone"
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string "store_name", collation: "utf8mb4_unicode_ci"
+    t.string "store_address", collation: "utf8mb4_unicode_ci"
+    t.string "open_time", collation: "utf8mb4_unicode_ci"
+    t.string "price", collation: "utf8mb4_unicode_ci"
+    t.string "phone", collation: "utf8mb4_unicode_ci"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.date "birthday"
     t.integer "gender"
     t.string "avatar"
+    t.boolean "is_admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "comments", "reviews"

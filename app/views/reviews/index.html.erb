@@ -136,11 +136,13 @@
                                       <span class="comment-naiyou">
                                         <%= comment.comment %>
                                       </span>
-                                      <% if comment.user_id == current_user.id %>
-                                      <span class="control-comment" style="visibility: hidden;">
-                                        <span class="comment-id" style="visibility: hidden;"><%= comment.id %></span>
-                                        <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>|<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
-                                      </span>
+                                      <% if user_signed_in? %>
+                                        <% if comment.user_id == current_user.id %>
+                                        <span class="control-comment" style="visibility: hidden;">
+                                          <span class="comment-id" style="visibility: hidden;"><%= comment.id %></span>
+                                          <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>|<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
+                                        </span>
+                                        <% end %>
                                       <% end %>
                                     </p>
                                     <span class="date sub-text">
