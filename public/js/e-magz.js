@@ -902,6 +902,17 @@ $(function(){
 			})
 		});
 	}
+
+	var comment_icon = function() {
+		$('.comment-icon').each(function() {
+			$(this).on('click', function() {
+				$(this).parents(".article-list").find(".detailBox").toggle();
+			});
+		});
+	}
+
+	comment_icon();
+
 	control_comment();
 
 	comment_li_on_hover();

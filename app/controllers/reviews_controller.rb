@@ -26,10 +26,12 @@ class ReviewsController < ApplicationController
 
     @likes = {}
     @dislikes = {}
+    @nums = {}
     index = 0
     @reviews.each do |review|
       dislike = 0
       like = 0
+      num = 0
       review.comments.each do |comment|
         if comment.emotion_type == 1
           like = like + 1
@@ -38,7 +40,11 @@ class ReviewsController < ApplicationController
         if comment.emotion_type == 0
           dislike = dislike + 1
         end
+        if comment.emotion_type == -2
+          num = num + 1
+        end
       end
+      @nums[review.id] = num
       @likes[review.id] = like
       @dislikes[review.id] = dislike
     end

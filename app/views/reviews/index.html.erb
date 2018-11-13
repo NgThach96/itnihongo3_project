@@ -114,6 +114,18 @@
                     <p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
                   </a>
                 </li>
+
+                <li>
+                  <a class="custom-icon comment-icon"><i class="far fa-comments"></i>
+                    <div>
+                      <% @nums.each do |num| %>
+                        <% if num[0] == review.id %>
+                          <%= num[1] %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </a>
+                </li>
               </ul>
             </div>
 
