@@ -10,21 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110120039) do
+ActiveRecord::Schema.define(version: 20181113035102) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "review_id"
     t.bigint "user_id"
     t.text "comment"
@@ -35,7 +23,7 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "comment_id"
     t.bigint "user_id"
     t.text "reply"
@@ -46,7 +34,7 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "store_id"
     t.bigint "user_id"
     t.string "title"
@@ -62,7 +50,7 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "store_name"
     t.string "store_address"
     t.string "open_time"
@@ -72,7 +60,7 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -85,6 +73,7 @@ ActiveRecord::Schema.define(version: 20181110120039) do
     t.date "birthday"
     t.integer "gender"
     t.string "avatar"
+    t.boolean "is_admin", default: false
   end
 
   add_foreign_key "comments", "reviews"
