@@ -530,6 +530,7 @@ a.twitch {
 }
 
 header.primary {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   position: fixed;
   z-index: 1999;
   top: 0;
@@ -1235,7 +1236,7 @@ section.search .search-result {
   text-decoration: none;
 }
 .firstbar .brand img {
-  width: 200px;
+  width: 100px;
   display: block;
   float: left;
 }
@@ -2387,7 +2388,7 @@ aside .ads figcaption {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
 }
 .box.box-border {
-  box-shadow: none;
+
   border: 1px solid #f2f2f2;
 }
 .box .box-body {
@@ -4330,5 +4331,13 @@ input[type=submit]:hover {
 
 .ui-autocomplete {
   z-index: 100000000000;
+}
+
+.login-signup {
+  background: #dfdfdf;
+}
+
+.shadow-border {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
