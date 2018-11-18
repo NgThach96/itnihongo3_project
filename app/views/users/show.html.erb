@@ -2,71 +2,74 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-12 col-xs-12">
-            <p>content</p>
+          <br><br><br>
             <article class="col-md-12 article-list">
             <div class="inner">
               <div style="width: 300px; float: left">
-                <figure>
-                  <a href="single.html">
-                    <img src="images/news/img11.jpg" alt="Sample Article">
-                  </a>
+                <figure style="border-radius: 50%; float: left">
+                  <% if @user.avatar == nil %>
+                    
+                      <%= image_tag("avatar.png")%>
+                  
+                  <% else %>
+                    
+                      <%= image_tag(@user.avatar)%>
+                  
+                  <% end %>
+                  
+
+                  
                 </figure>
 
-                <!-- bar_chart -->
-                <div class="graph-cont">
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">6/10</span>
-                    <div style="height: 30px; width: 60%; background-color: #FFB2B2">
-                      Safety Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">7/10</span>
-                    <div style="height: 30px; width: 70%; background-color: #FFB2B2">
-                      Price Rate
-                    </div>
-                  </div>
-                  <div class="bar bar1">
-                    <span style="float: right;color: grey;">10/10</span>
-                    <div style="height: 30px; width: 100%; background-color: #FFB2B2">
-                      Delicious Rate
-                    </div>
-                  </div>
-                </div>
+               
               </div>
               <div class="details">
-                <div class="detail">
-                  <div class="category">
-                    <a href="#">Film</a>
-                  </div>
-                  <div class="time">December 19, 2016</div>
-                </div>
-                <h1><a href="single.html">Donec consequat arcu at ultrices sodales quam erat aliquet diam</a></h1>
-                <p>
-                n sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).
+                
+                <h1><a href="single.html">Personal Information</a></h1><br>
+                <form action="/reviews/change" method="POST">
+                <p style="font-size: 15px"><span class="fas fa-user"></span> Username: <%= @user.name%><a id="change_name_icon" style="float: right; font-size: 12px">Edit</a></p>
+                
+                  <input name="name" id="change_name" style="display: none" type="text" placeholder="" size="40" /><br>
+                  
+                
+                <br>
+                <p style="font-size: 15px"><span class="fas fa-envelope"></span> Email: <%= @user.email%><a id="change_email_icon" style="float: right; font-size: 12px">Edit</a>
                 </p>
+                
+                  <input name="email" id="change_email" style="display: none" type="text" placeholder="" size="40" /><br>
+                 
+               
+                
+                <br>
+                <p style="font-size: 15px"><span class="fas fa-map-marker-alt"></span> Address: <%= @user.address%><a id="change_address_icon" style="float: right; font-size: 12px">Edit</a>
+                </p>
+                
+                  <input name="address" id="change_address" style="display: none" type="text" placeholder="" size="40" /><br>
+                  
+                
+
+                <br>
+                <p style="font-size: 15px"><span class="far fa-calendar-alt"></span> Date of birth: <%= @user.birthday%><a id="change_birthday_icon" style="float: right; font-size: 12px">Edit</a>
+                </p>
+                
+                  <input name="birthday" id="change_birthday" style="display: none" type="date" placeholder="" size="40" /><br>
+                  
+                
+                <br>
+                <p style="font-size: 15px"><span class="fa fa-venus-mars"></span> Gender: <%= @user.gender%><a id="change_gender_icon" style="float: right; font-size: 12px">Edit</a>
+                </p>
+                
+                  <input name="gender" id="change_gender" style="display: none" type="integer" placeholder="" size="40" /><br>
+                  
+                
+                <input style="display: none;" id="enter" type="submit" name="submit" value="Lưu">
+                </form>
+                
+
+
+
                 <footer>
                 </footer>
-              </div>
-            </div>
-
-            <!-- Comment box -->
-            <div class="like-comment">
-              <ul class="nav-icons">
-                <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
-                </li>
-                <li>
-                  <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>273</div></a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pb-cmnt-container">
-              <div class="panel panel-info">
-                  <div class="panel-body">
-                      <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
-                  </div>
               </div>
             </div>
           </article>
@@ -74,74 +77,39 @@
           <div class="col-xs-6 col-md-4 sidebar" id="sidebar">
             <div class="sidebar-title for-tablet">Sidebar</div>
             <aside>
+              <br><br><br>
+              <h1 class="aside-title">Reviews of <%= @user.name%></h1>
               <div class="aside-body">
-                <div class="featured-author">
-                  <div class="featured-author-inner">
-                    <div class="featured-author-cover" style="background-image: url('images/news/img15.jpg');">
-                      <div class="badges">
-                        <div class="badge-item"><i class="ion-star"></i> Featured</div>
+                <% @user.reviews.each do |review| %>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= review.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= review.id %>"><%= review.title%></a></h1>
+                      
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= review.created_at %></a></div>
+                        <div class="time"></div>
                       </div>
-                      <div class="featured-author-center">
-                        <figure class="featured-author-picture">
-                          <img src="images/img01.jpg" alt="Sample Article">
-                        </figure>
-                        <div class="featured-author-info">
-                          <h2 class="name">John Doe</h2>
-                          <div class="desc">@JohnDoe</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="featured-author-body">
-                      <div class="featured-author-count">
-                        <div class="item">
-                          <a href="#">
-                            <div class="name">Posts</div>
-                            <div class="value">208</div>
-                          </a>
-                        </div>
-                        <div class="item">
-                          <a href="#">
-                            <div class="name">Stars</div>
-                            <div class="value">3,729</div>
-                          </a>
-                        </div>
-                        <div class="item">
-                          <a href="#">
-                            <div class="icon">
-                              <div>More</div>
-                              <i class="ion-chevron-right"></i>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="featured-author-quote">
-                        "Eur costrict mobsa undivani krusvuw blos andugus pu aklosah"
-                      </div>
-                      <div class="block">
-                        <h2 class="block-title">Photos</h2>
-                        <div class="block-body">
-                          <ul class="item-list-round" data-magnific="gallery">
-                            <li><a href="images/news/img06.jpg" style="background-image: url('images/news/img06.jpg');"></a></li>
-                            <li><a href="images/news/img07.jpg" style="background-image: url('images/news/img07.jpg');"></a></li>
-                            <li><a href="images/news/img08.jpg" style="background-image: url('images/news/img08.jpg');"></a></li>
-                            <li><a href="images/news/img09.jpg" style="background-image: url('images/news/img09.jpg');"></a></li>
-                            <li><a href="images/news/img10.jpg" style="background-image: url('images/news/img10.jpg');"></a></li>
-                            <li><a href="images/news/img11.jpg" style="background-image: url('images/news/img11.jpg');"></a></li>
-                            <li><a href="images/news/img12.jpg" style="background-image: url('images/news/img12.jpg');"><div class="more">+2</div></a></li>
-                            <li class="hidden"><a href="images/news/img13.jpg" style="background-image: url('images/news/img13.jpg');"></a></li>
-                            <li class="hidden"><a href="images/news/img14.jpg" style="background-image: url('images/news/img14.jpg');"></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="featured-author-footer">
-                        <a href="#">See All Authors</a>
-                      </div>
+                      <a class="review-id" style="visibility: hidden;"><%= review.id %>
+                      </a>
+
+                      <a class="edit-reviews"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                      <a class="delete-reviews"><i class="fas fa-trash"></i></a>
+
                     </div>
                   </div>
-                </div>
+                </article>
+                <% end %>
+
               </div>
             </aside>
           </div>
+
         </div>
       </div>
     </section>

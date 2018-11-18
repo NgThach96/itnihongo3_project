@@ -107,10 +107,52 @@ class ReviewsController < ApplicationController
     target.save
   end
 
+  def change
+    @target = User.find(current_user.id)
+    if params[:name]!=" "
+      @name = params[:name]
+      @target.name = @name
+      @target.save()
+    end
+    if params[:email]!=" "
+      @email = params[:email]
+      @target.email = @email
+      @target.save()
+    end
+    if params[:address]!=" "
+      @address = params[:address]
+      @target.address = @address
+      @target.save()
+    end
+    if params[:birthday]!=" "
+      @birthday = params[:birthday]
+      @target.birthday = @birthday
+      @target.save()
+    end
+    if params[:gender]!=" "
+      @gender = params[:gender]
+      @target.gender = @gender
+      @target.save()
+    end
+    
+    
+    
+    
+   
+    @target.save()
+    redirect_back(fallback_location: root_path)
+  end
+
   def deleteCommentAct
     comment_id = params[:commentId]
     comment = Comment.find(comment_id)
     comment.delete
+  end
+
+  def deleteReview
+    review_id = params[:reviewId]
+    review = Review.find(review_id)
+    review.delete
   end
 
   # GET /reviews/1
@@ -204,6 +246,3 @@ end
 
 
 
-# INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("1","Quá ngon","Xôi Hà Nội","Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la ","Xôi chả cua lạp xưởng ruốc - Xôi Bà Thảo","Số 41 Đường Thành, Hoàn Kiếm","5","4","3","1","2018-10-05 08:45:54","2018-10-05 08:45:54");
-# INSERT INTO reviews (id, title, food_name, post_content, store_name, store_address, taste_rate, safety_rate, price_rate, user_id, created_at, updated_at) VALUES ("2","50% đá là mất 30% trà sữa hả ???","Trà sữa","Mình uống rất nhiều quán rồi dù uống nhiều đá hay không vẫn full ly , lần đầu tiên 50% đá mà ly mất 1 khúc luôn mới ghê , bán đá hay bán trà sữa . Không hẹn gặp lại !!!
-# ","Hokkaido Tea","81 Âu Cơ, P.14, Quận 11, Thành phố Hồ Chí Minh","4","4","2","2","2017-07-04 08:45:54","2017-07-04 08:45:54");
