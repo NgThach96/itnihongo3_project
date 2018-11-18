@@ -11,7 +11,7 @@
                 <figure>
                   <a href="/reviews/show/<%= review.id %>">
                     <!-- <img src="images/news/chickenfry.jpg" alt="Sample Article"> -->
-                    <%= image_tag("news/chickenfry.jpg")%>
+                    <img src="<%= review.food_picture %>" %> alt="Sample Article">
                   </a>
                 </figure>
               </div>
@@ -36,7 +36,7 @@
                   <p><%= review.store.store_address %></p>
                 </div>
                 <div class="score-div">
-                  <a class="score">3.2/5</a>
+                  <a class="score">3.2/5 <icon class="fas fa-star"></icon></a>
                 </div>
                 <footer>
                 </footer>

@@ -1,54 +1,130 @@
 <%= form_with(model: review, local: true) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+  <div style="height: 100%">
+    <div class="img-in-form">
+      <div class="field">
+        <%= image_tag("news/chickenfry.jpg")%>
+        <%= form.file_field :food_picture, id: :review_food_picture, class: "image_upload" %>
+      </div>
+      <div class="price-rate">
+          <div style="border-top: orange solid 1px; padding-top: 10px;">
+            <div class="taste_rate_container">
+              <div class="col-md-5">
+                <label>Taste rate: </label>
+              </div>
+              <div class="col-md-7">
+                <label class="radio-rate">
+                  <input type="radio" name="review[taste_rate]" value="1" />
+                  <i class="far fa-star rate1"></i>
+                </label>
 
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+                <label class="radio-rate">
+                  <input type="radio" name="review[taste_rate]" value="2" />
+                  <i class="far fa-star rate2"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[taste_rate]" value="3" />
+                  <i class="far fa-star rate3"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[taste_rate]" value="4" />
+                  <i class="far fa-star rate4"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[taste_rate]" value="5" />
+                  <i class="far fa-star rate5"></i>
+                </label>
+              </div>
+            </div>
+
+            <div class="taste_rate_container">
+              <div class="col-md-5">
+                <label>Price rate: </label>
+              </div>
+              <div class="col-md-7">
+                <label class="radio-rate">
+                  <input type="radio" name="review[price_rate]" value="1" />
+                  <i class="far fa-star rate1"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[price_rate]" value="2" />
+                  <i class="far fa-star rate2"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[price_rate]" value="3" />
+                  <i class="far fa-star rate3"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[price_rate]" value="4" />
+                  <i class="far fa-star rate4"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[price_rate]" value="5" />
+                  <i class="far fa-star rate5"></i>
+                </label>
+              </div>
+            </div>
+
+            <div class="taste_rate_container">
+              <div class="col-md-5">
+                <label>Safety rate: </label>
+              </div>
+              <div class="col-md-7">
+                <label class="radio-rate">
+                  <input type="radio" name="review[safety_rate]" value="1" />
+                  <i class="far fa-star rate1"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[safety_rate]" value="2" />
+                  <i class="far fa-star rate2"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[safety_rate]" value="3" />
+                  <i class="far fa-star rate3"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[safety_rate]" value="4" />
+                  <i class="far fa-star rate4"></i>
+                </label>
+
+                <label class="radio-rate">
+                  <input type="radio" name="review[safety_rate]" value="5" />
+                  <i class="far fa-star rate5"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :food_name %>
-    <%= form.text_field :food_name, id: :review_food_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :store_name %>
-    <%= form.text_field :store_name, id: :review_store_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :store_address %>
-    <%= form.text_field :store_address, id: :review_store_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :food_picture %>
-    <%= form.text_field :food_picture, id: :review_food_picture %>
-  </div>
-
-  <div class="field">
-    <%= form.label :taste_rate %>
-    <%= form.number_field :taste_rate, id: :review_taste_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :safety_rate %>
-    <%= form.number_field :safety_rate, id: :review_safety_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price_rate %>
-    <%= form.number_field :price_rate, id: :review_price_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :review_user_id %>
+    <div class="basic-info-form" style="height: 100%">
+      <div class="field" style="height: 100%;">
+        <label>Store Name: </label>
+        <select name="review[store_id]" style="float: right; margin-bottom: 10px;">
+            <% Store.all.each do |store| %>
+                <option value="<%= store.id %>"><%= store.store_name %></option>
+            <% end %>
+        </select>
+        <div class="title-container">
+          <%= form.text_field :title, id: :review_title, placeholder: "Post's title (E.g: Very good)", class: "title" %>
+        </div>
+        <div class="title-container">
+          <%= form.text_field :food_name, id: :review_food_name, placeholder: "Food's name", class: "food-name" %>
+        </div>
+        <div style="height: 100%;">
+          <%= form.text_area :post_content, id: :review_post_content, placeholder: "Post content", class: "content" %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="actions">

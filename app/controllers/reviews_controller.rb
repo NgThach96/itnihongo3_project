@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
   def index
     # User Will_Paginate gem
     # 5 review per page
+    @review = Review.new
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
     # Count number of like and dislike
@@ -150,6 +151,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    @review.user_id = current_user.id
 
     respond_to do |format|
       if @review.save
@@ -194,7 +196,7 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:food_name, :store_name, :store_address, :food_picture, :taste_rate, :safety_rate, :price_rate, :user_id)
+      params.require(:review).permit(:food_name, :title, :post_content, :store_id, :food_picture, :taste_rate, :safety_rate, :price_rate, :user_id)
     end
 end
 

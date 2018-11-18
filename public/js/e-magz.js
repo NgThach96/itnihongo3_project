@@ -696,6 +696,44 @@ $(function(){
 		});
 	}
 
+	var radio_on_click = function() {
+		$('.radio-rate').each(function() {
+			$(this).on('click', function() {
+				value = $(this).find('input').val();
+				$(this).find("i").removeClass("far fa-star");
+				$(this).find("i").addClass("fas fa-star");
+				for(i = 1; i < value; i++) {
+					$(this).parents(".col-md-7").find(".rate" + i).removeClass("far fa-star");
+					$(this).parents(".col-md-7").find(".rate" + i).addClass("fas fa-star");
+				}
+				for(i = parseInt(value) + 1; i <= 5; i++) {
+					$(this).parents(".col-md-7").find(".rate" + i).removeClass("fas fa-star");
+					$(this).parents(".col-md-7").find(".rate" + i).addClass("far fa-star");
+				}
+			});
+		});
+	}
+
+	var preview_img = function() {
+		$('.image_upload').each(function() {
+				var preview = $(this).parents(".field").find("img");
+					$(this).change(function(event) {
+					var input = $(event.currentTarget);
+		      var file = input[0].files[0];
+		      var reader = new FileReader();
+		      reader.onload = function(e){
+		          image_base64 = e.target.result;
+		          preview.attr("src", image_base64);
+		      };
+		      reader.readAsDataURL(file);
+			});
+		});
+	}
+
+	preview_img();
+
+	radio_on_click();
+
 	comment_icon();
 
 	control_comment();

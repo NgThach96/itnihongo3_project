@@ -4299,12 +4299,11 @@ blockquote {
 /* Modal Content/Box */
 .modal-content {
     z-index: 99999;
-    background-color: #fefefe;
+    background: #F1F1F1;
     margin: 5% auto; /* 15% from the top and centered */
-    padding: 20px;
     border: 1px solid #888;
-    height: 80%;
-    width: 80%;
+    height: 75%;
+    width: 60%;
 /* Could be more or less, depending on screen size */
 }
 
@@ -4341,3 +4340,73 @@ input[type=submit]:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.img-in-form {
+  width: 300px;
+  float: left;
+}
+
+.img-in-form img {
+  width: 100%;
+}
+
+.basic-info-form .title {
+  width: 100%;
+  border: none;
+  font-weight: bold;
+}
+
+.basic-info-form .title:focus {
+  outline: none;
+}
+
+.basic-info-form .content {
+  width: 100%;
+  border: none;
+}
+
+.basic-info-form .content:focus {
+  outline: none;
+}
+
+.basic-info-form .title-container {
+  border-bottom: #F1F1F1 solid 1px;
+}
+
+.basic-info-form .store, .food-name {
+  width: 100%;
+  border: none;
+}
+
+.basic-info-form .store:focus, .food-name:focus {
+  outline: none;
+}
+
+.basic-info-form {
+  margin-left: 315px;
+  background-color: white;
+  padding: 10px;
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + i {
+  cursor: pointer;
+}
+
+.form-review {
+  height: 100%;
+}
+
+.form-review form {
+  height: 80%;
+}
+
+.form-review form .content {
+  height: 70%;
+}
