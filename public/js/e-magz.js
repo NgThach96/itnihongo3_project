@@ -579,6 +579,7 @@ $(function(){
 						var user_name = $(document).find('#user_name').text().slice(3);
 						var user_img = $(document).find('#user_image_img').prop("src");
 						var review_id = $(this).parents(".article-list").find(".review_id").html();
+						var date = new Date().toLocaleString();
 						$(this).parents(".actionBox").find(".commentList").append(
 							"<li> \
                   <div class=\"commenterImage\"> \
@@ -590,8 +591,8 @@ $(function(){
                         user_name + "</span>"
                         + content +
                       "</p> \
-                      <span class=\"date sub-text\"> \
-                        abc \
+                      <span class=\"date sub-text\"> "
+                        + date + "\
                       </span> \
                   </div> \
               </li>");
@@ -602,7 +603,6 @@ $(function(){
 							data: { "content" : content, "review_id" : review_id },
 							dataType: "json",
 							success: function(data) {
-								alert(review_id);
 							}
 						});
 					}
