@@ -62,12 +62,13 @@ ActiveRecord::Schema.define(version: 20181118113018) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string "store_name", collation: "utf8mb4_unicode_ci"
-    t.string "store_address", collation: "utf8mb4_unicode_ci"
-    t.string "open_time", collation: "utf8mb4_unicode_ci"
-    t.string "price", collation: "utf8mb4_unicode_ci"
-    t.string "phone", collation: "utf8mb4_unicode_ci"
+
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.string "store_name"
+    t.string "store_address"
+    t.string "open_time"
+    t.string "price"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
