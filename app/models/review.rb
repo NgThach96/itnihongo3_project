@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
 	belongs_to :user
-	has_many :comments
+	has_many :comments, dependent: :destroy 
 	belongs_to :store
   mount_uploader :food_picture, ImageUploader
   scope :name_like, -> (name) { where("food_name like ?", "%#{name}%")}

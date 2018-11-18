@@ -108,33 +108,34 @@ class ReviewsController < ApplicationController
   end
 
   def change
-    @target = User.find(current_user.id)
-    @name = params[:name]
-    if defined?(@name)!=nil
-        @target.name = @name
+
+    target = User.find(current_user.id)
+    name = params[:name]
+    if name != ""
+        target.name = name
     end
       
-    @email = params[:email]
-    if defined?(@email)!=nil
-        @target.email = @email
+    email = params[:email]
+    if email != ""
+        target.email = email
     end
       
-    @address = params[:address]
-    if defined?(@address)!=nil
-        @target.address = @address
+    address = params[:address]
+    if address != ""
+        target.address = address
     end
       
-    @birthday = params[:birthday]
-    if defined?(@birthday)!=nil
-        @target.birthday = @birthday
+    birthday = params[:birthday]
+    if birthday != ""
+        target.birthday = birthday
     end
       
-    @gender = params[:gender]
-    if defined?(@gender)!=nil
-        @target.gender = @gender
+    gender = params[:gender]
+    if gender != ""
+        target.gender = gender
     end
       
-    @target.save()
+    target.save()
     redirect_back(fallback_location: root_path)
   end
 
@@ -147,7 +148,7 @@ class ReviewsController < ApplicationController
   def deleteReview
     review_id = params[:reviewId]
     review = Review.find(review_id)
-    review.delete
+    review.destroy
   end
 
   # GET /reviews/1
