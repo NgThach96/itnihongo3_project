@@ -17,3 +17,6 @@
     width: 120%;
     height: 44px;
  }
+ #search_button_id {
+    float: right;
+  }
