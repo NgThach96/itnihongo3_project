@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  Rails.application.routes.default_url_options[:host] = "localhost:3000"
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'reviews/autocomplete_review_food_name'
   resources :reviews
@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   post 'reviews/deleteCommentAct' => 'reviews#deleteCommentAct'
   post 'reviews/editCommentAct' => 'reviews#editCommentAct'
 
-  devise_for :users, :controllers => {:registrations => "users"}
-
+  devise_for :users, :controllers => {:registrations => "users", :passwords => "passwords"}
   devise_scope :user do
     get 'users/:id', to: 'users#show', as: 'user'
   end
