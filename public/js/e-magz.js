@@ -657,7 +657,7 @@ $(function(){
 						data: { "commentId" : commentId },
 						dataType: "json",
 						success: function(data) {
-							alert("Succed");
+							alert("Succeed");
 						}
 					});
 				} else {
@@ -691,7 +691,70 @@ $(function(){
 	var comment_icon = function() {
 		$('.comment-icon').each(function() {
 			$(this).on('click', function() {
-				$(this).parents(".article-list").find(".detailBox").toggle();
+				$(this).parents(".article-list").find(".detailBox").fadeToggle();
+			});
+		});
+	}
+
+	var change_user = function() {
+
+		$('#change_name_icon').each(function() {
+			$(this).on('click', function() {
+				$(this).parents(".article-list").find("#change_name").fadeToggle();
+				$(this).parents(".article-list").find("#enter").fadeIn();
+			});
+		})
+
+		$('#change_email_icon').each(function() {
+			$(this).on('click', function() {
+				$(this).parents(".article-list").find("#change_email").fadeToggle();
+				$(this).parents(".article-list").find("#enter").fadeIn();
+			});
+		})
+
+		$('#change_address_icon').each(function() {
+			$(this).on('click', function() {
+				$(this).parents(".article-list").find("#change_address").fadeToggle();
+				$(this).parents(".article-list").find("#enter").fadeIn();
+			});
+		})
+
+		$('#change_birthday_icon').each(function() {
+			$(this).on('click',function() {
+				$(this).parents(".article-list").find("#change_birthday").fadeToggle();
+				$(this).parents(".article-list").find("#enter").fadeIn();
+			});
+		})
+
+		$('#change_gender_icon').each(function() {
+			$(this).on('click',function() {
+				$(this).parents(".article-list").find("#change_gender").fadeToggle();
+				$(this).parents(".article-list").find("#enter").fadeIn();
+			});
+		})
+	}
+
+	
+	var delete_review = function() {
+		$('.delete-reviews').each(function() {
+			$(this).on('click', function() {
+				var reviewId = $(this).parents(".article-mini").find(".review-id").text();
+				var r = confirm("Are you sure ?");
+				if (r == true) 
+				{
+					$(this).parents(".article-mini").html("");
+					$.ajax({
+						type: "POST",
+						url: "/reviews/deleteReview",
+						data: {  "reviewId" : reviewId },
+						dataType: "json",
+						success: function(data) {
+							alert("delete succeed");
+						}
+					});
+				} else {
+					alert("Cancel");
+				}
 			});
 		});
 	}
@@ -734,6 +797,10 @@ $(function(){
 
 	radio_on_click();
 
+	delete_review();
+
+	change_user();
+
 	comment_icon();
 
 	control_comment();
@@ -755,19 +822,11 @@ $(function(){
 
 	comment();
 
-	newsletter();
-
 	featuredImage();
 
 	headline();
 
 	floatingLabel();
-
-	bestOfTheWeek();
-
-	youtubeAPI();
-
-	verticalSlider();
 
 	featured();
 
