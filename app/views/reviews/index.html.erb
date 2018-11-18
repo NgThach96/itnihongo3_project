@@ -30,10 +30,10 @@
                   <a href="reviews/show/<%= review.id %>"><%= review.food_name %></a>
                 </h1>
                 <div class="store-div">
-                  <a class="store-name" href="#"><%= review.store_name %></a>
+                  <a class="store-name" href="#"><%= review.store.store_name %></a>
                 </div>
                 <div>
-                  <p><%= review.store_address %></p>
+                  <p><%= review.store.store_address %></p>
                 </div>
                 <div class="score-div">
                   <a class="score">3.2/5 <icon class="fas fa-star"></icon></a>
