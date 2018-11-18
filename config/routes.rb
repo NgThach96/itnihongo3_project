@@ -19,8 +19,6 @@ Rails.application.routes.draw do
   post 'reviews/change' => 'reviews#change'
   post 'reviews/deleteReview' => 'reviews#deleteReview'
 
-  # post 'users/change' => 'users#change'
-
   devise_for :users, :controllers => {:registrations => "users", :passwords => "passwords"}
   devise_scope :user do
     get 'users/:id', to: 'users#show', as: 'user'

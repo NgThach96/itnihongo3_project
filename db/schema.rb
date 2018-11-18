@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20181113035102) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.bigint "review_id"
     t.bigint "user_id"
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 20181113035102) do
     t.decimal "price", precision: 10
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
-
 
   create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "store_name"
