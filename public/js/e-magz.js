@@ -755,19 +755,11 @@ $(function(){
 
 	comment();
 
-	newsletter();
-
 	featuredImage();
 
 	headline();
 
 	floatingLabel();
-
-	bestOfTheWeek();
-
-	youtubeAPI();
-
-	verticalSlider();
 
 	featured();
 
