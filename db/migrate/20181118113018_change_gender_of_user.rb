@@ -1,5 +1,5 @@
 class ChangeGenderOfUser < ActiveRecord::Migration[5.1]
   def change
-    change_column :users, :gender, :string
+  	change_column :users, :gender, :string
   end
 end
