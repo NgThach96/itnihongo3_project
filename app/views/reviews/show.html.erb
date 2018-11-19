@@ -47,10 +47,10 @@
 							<div class="main">
 
 
-                <p>Địa chỉ: <%= @review.store.store_address %>(<a href="/stores/info/<%= @review.id %>">thông tin chi tiết</a>)</p>
-
-                <p>Đánh giá chất lượng: <%= @review.taste_rate%>/5</p>
-                <p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
+				                <p>Địa chỉ: <%= @review.store.store_address %>(<a href="/stores/info/<%= @review.id %>">thông tin chi tiết</a>)</p>
+								<p class="review_id" style="visibility: hidden;" ><%= review.id %></p>
+				                <p>Đánh giá chất lượng: <%= @review.taste_rate%>/5</p>
+				                <p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
 								<p><%= @review.post_content %></p>
 							</div>
 
@@ -85,17 +85,25 @@
 										</div>
 									</div>
 								</div>
-             　<% end %>
+             　              <% end %>
 
 						</div>
 
-						 <%= form_for :comment, url: '/comment/create', :remote => true do |f| %>
+						<!--  <%= form_for :comment, url: '/comment/create', :remote => true do |f| %>
 								<%= f.hidden_field :review_id, { :value => @review.id}%>
 								<%= f.hidden_field :emotion_type, { :value => 1} %>
 								<%= f.text_area :comment, class: 'form-control', placeholder: 'Nội dung bình luận' %>
 								<br>
 								<%= f.submit 'Gửi bình luận'%>
-						 <% end %>
+						 <% end %> -->
+
+						<% if user_signed_in? %>
+						 	<textarea class="form-control content-comment" name="comment"></textarea><br>
+						 	<input id="submit_signin" type="submit" name="submit">
+						<% else %>
+						 	<textarea class="form-control content-comment" name="comment"></textarea><br>
+						 	<input id="submit_notsignin" type="submit" name="submit">
+						<% end %>
 
 
 						</div>

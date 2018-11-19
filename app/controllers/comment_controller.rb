@@ -8,6 +8,7 @@ class CommentController < ApplicationController
 		else
 			render :file => "app/views/devise/sessions/new.html.erb"
 		end
+			
 	end
 
 

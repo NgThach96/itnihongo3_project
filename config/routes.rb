@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'stores/info/:id' => 'reviews#infostore'
 
-  post 'comment/create' => 'comment#create'
+  # post 'comment/create' => 'comment#create'
 
   # thach-nguyen
   post 'reviews/commentaction' => 'reviews#commentaction'

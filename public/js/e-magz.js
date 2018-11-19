@@ -793,6 +793,88 @@ $(function(){
 		});
 	}
 
+	var create_comment = function() {
+		$('#submit_signin').each(function() {
+			$(this).on('click',function() {
+				var content = $(this).parents(".comments").find(".content-comment").val();
+				var user_name = $(document).find('#user_name').text().slice(3);
+				var user_img = $(document).find('#user_image_img').prop("src");
+				var date = new Date().toLocaleString();
+				var review_id = $(this).parents(".comments").find(".review_id").html();
+				$(this).parents(".comments").find(".comment-list").append(
+					"<div class=\"item\"> \
+					<div class=\"user\"> \
+					<figure>" + user_img + "</figure> \
+					<div class=\"details\"> \ 
+					<h5 class=\"name\">" + user_name + "</h5> \ 
+					<div class=\"time\">" + date + "</div> \
+					<div class=\"description\">" + comment + "</div> \ 
+					</div></div></div>");
+				$.ajax({
+					url: "reviews/commentaction",
+					type: "POST",
+					data:  { "content" : content, "review_id" : review_id },
+					dataType: "json",
+					success: function(data) {
+						alert("success");
+					}
+				});
+			});
+		});
+	}
+
+	var create_comment_notsignin = function() {
+		$('#submit_notsignin').each(function() {
+			$(this).on('click',function() {
+				alert("Please sign in");
+			});
+		});
+	}
+
+	                            
+	// var comment = function() {
+	// 	$(".comment-text-box").each(function() {
+	// 		$(this).keyup(function(e) {
+	// 				if(e.keyCode == 13) {
+	// 					var content = $(this).val();
+	// 					var user_name = $(document).find('#user_name').text().slice(3);
+	// 					var user_img = $(document).find('#user_image_img').prop("src");
+	// 					var review_id = $(this).parents(".article-list").find(".review_id").html();
+	// 					var date = new Date().toLocaleString();
+	// 					$(this).parents(".actionBox").find(".commentList").append(
+	// 						"<li> \
+ //                  <div class=\"commenterImage\"> \
+ //                    <img src=\""+ user_img + "\"> \
+ //                  </div> \
+ //                  <div class=\"commentText\"> \
+ //                      <p class=\"abc\"> \
+ //                        <span class=\"user-comment\" style=\"color: red;margin-right: 5px; font-weight: bold;\">" +
+ //                        user_name + "</span>"
+ //                        + content +
+ //                      "</p> \
+ //                      <span class=\"date sub-text\"> "
+ //                        + date + "\
+ //                      </span> \
+ //                  </div> \
+ //              </li>");
+	// 					$(this).val("");
+	// 					$.ajax({
+	// 						url: "reviews/commentaction",
+	// 						type: "POST",
+	// 						data: { "content" : content, "review_id" : review_id },
+	// 						dataType: "json",
+	// 						success: function(data) {
+	// 						}
+	// 					});
+	// 				}
+	// 		})
+	// 	});
+	// }
+
+	create_comment();
+
+	create_comment_notsignin();
+ 
 	preview_img();
 
 	radio_on_click();
