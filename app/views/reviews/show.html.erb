@@ -84,28 +84,23 @@
 											<a class="reply" style="font-size: 12px">Reply
 												<span class="count_reply" style="margin-left: 5px"><%= comment.replies.count %></span>
 											</a>
-											<!-- <% if user_signed_in? %>
+											<% if user_signed_in? %>
 												<% if comment.user_id == current_user.id %>
-
-												<span class="control_comment_sp" style="visibility: hidden">
-
-													&nbsp;&nbsp
-
-													<span class="comment-id" style="visibility: hidden;"><%= comment.id %></span>
-													<i class="fa fa-trash" style="color: grey; cursor: pointer;"></i>
-													<i style="color: grey; cursor: pointer;" class="far fa-edit"></i>
-
+												<span class="control_comment_sp" style="visibility: hidden; float: right">
+													<span class="comment_id_sp" style="visibility: hidden;"><%= comment.id %></span>
+													<i class="fa fa-trash control-comment-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+													<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit-sp"></i>
 												</span>
-
 												<% end %>
-											<% end %> -->
+											<% end %>
 
 										</div>
 									</div>
 									<div class="reply-list" style="display: none">
+										<div class="reply-item2">
 										<% comment.replies.each do |reply| %>
 											<div class="reply-item" style="margin-bottom: 0px">
-												<div class="user" style="margin-bottom: 5px">
+												<div class="user" style="margin-bottom: 0px">
 													<figure>
 														<%= image_tag("avatar.png")%>
 													</figure>
@@ -115,11 +110,22 @@
 														</p>
 														<div class="description">
 															<%= reply.reply%>
+															<% if user_signed_in? %>
+																<% if reply.user_id == current_user.id %>
+																<span class="control_reply_sp" style="visibility: hidden; float: right">
+																	<span class="reply_id_sp" style="visibility: hidden;"><%= reply.id %></span>
+																	<i class="fa fa-trash control-reply-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+																	<i style="color: grey; cursor: pointer;" class="far fa-edit control-reply-edit-sp"></i>
+																</span>
+																<% end %>
+															<% end %>
 														</div>
+
 													</div>
 												</div>
 											</div>
 										<% end %>
+									</div>
 										<% if user_signed_in? %>
 												<div class="user">
 													<figure>

@@ -634,7 +634,7 @@ $(function(){
 	}
 
 	var comment_li_on_hover = function() {
-		$('.comment-li').each(function() {
+		$('.commentText').each(function() {
 			$(this).mouseenter(function() {
 				$(this).find(".control-comment").css("visibility", "visible");
 			});
@@ -685,7 +685,7 @@ $(function(){
 						}
 					});
     		}
-			})
+			});
 		});
 	}
 
@@ -801,7 +801,7 @@ $(function(){
 				var user_name = $(document).find('#user_name').text().slice(3);
 				var date = new Date().toLocaleString();
 				var review_id = $(this).parents(".comments").find("#reviewID").val();
-				alert(review_id);
+				// alert(review_id);
 				$(this).parents(".comments").find(".comment-list").append(
 					"<div class=\"item\"> \
 					<div class=\"user\"> \
@@ -859,7 +859,7 @@ $(function(){
   		});
   	});
   }
-	//
+
 	var create_reply = function() {
 		$(".content-reply").each(function() {
 			$(this).keyup(function(e) {
@@ -870,7 +870,7 @@ $(function(){
 					var count_reply = $(this).parents(".item").find(".count_reply").html();
 					++count_reply;
 					var date = new Date().toLocaleString();
-					$(this).parents(".item").find(".reply-item").append(
+					$(this).parents(".item").find(".reply-item2").append(
 					"<div class=\"user\"> \
 					<figure><img src=\"/assets/avatar.png\"></figure> \
 					<div class=\"details\"> \
@@ -903,7 +903,7 @@ $(function(){
 					var count_reply = $(this).parents(".comment-li").find(".count_reply").html();
 					++count_reply;
 					var date = new Date().toLocaleString();
-					$(this).parents(".reply-list").find(".reply-item").append(
+					$(this).parents(".reply-list").find(".reply-item1").append(
 					"<div class=\"commenterImage\"><img src=\"/assets/avatar.png\"></div> \
 					<div class=\"comment-text\" style=\"margin-left: 45px\"> \
 						<p style=\"margin-bottom: 0px\"> \
@@ -926,61 +926,187 @@ $(function(){
 		});
 	}
 
-	// var show_edit_rep = function() {
-	// 	$(".reply").each(function() {
-	// 		$(this).mouseenter(function() {
-	// 			$(this).removeAttr("style");
-	// 		});
-	// 	});
-	// }
-	//
-	// var hide_edit_rep = function() {
-	// 	$(".control_comment_sp").each(function() {
-	// 		$(this).mouseleave(function() {
-	// 			$(this).attr("style","visibility: hidden");
-	// 		});
-	// 	});
-	// }
+	var show_edit_com = function() {
+		$(".details").each(function() {
+			$(this).mouseenter(function() {
+				$(this).find(".control_comment_sp").css("visibility","visible");
+			});
+			$(this).mouseleave(function() {
+				$(this).find(".control_comment_sp").css("visibility","hidden");
+			});
+		});
+	}
+
+	var show_edit_rep = function() {
+		$(".reply-item").each(function() {
+			$(this).mouseenter(function() {
+				$(this).find(".control_reply_sp").css("visibility","visible");
+			});
+			$(this).mouseleave(function() {
+				$(this).find(".control_reply_sp").css("visibility","hidden");
+			});
+		});
+	}
+
+	var show_edit_rep_hp = function() {
+		$(".comment-text").each(function() {
+			$(this).mouseenter(function() {
+				$(this).find(".control_reply").css("visibility","visible");
+			});
+			$(this).mouseleave(function() {
+				$(this).find(".control_reply").css("visibility","hidden");
+			});
+		});
+	}
 
 
-	// var comment = function() {
-	// 	$(".comment-text-box").each(function() {
-	// 		$(this).keyup(function(e) {
-	// 				if(e.keyCode == 13) {
-	// 					var content = $(this).val();
-	// 					var user_name = $(document).find('#user_name').text().slice(3);
-	// 					var user_img = $(document).find('#user_image_img').prop("src");
-	// 					var review_id = $(this).parents(".article-list").find(".review_id").html();
-	// 					var date = new Date().toLocaleString();
-	// 					$(this).parents(".actionBox").find(".commentList").append(
-	// 						"<li> \
-  //                 <div class=\"commenterImage\"> \
-  //                   <img src=\""+ user_img + "\"> \
-  //                 </div> \
-  //                 <div class=\"commentText\"> \
-  //                     <p class=\"abc\"> \
-  //                       <span class=\"user-comment\" style=\"color: red;margin-right: 5px; font-weight: bold;\">" +
-  //                       user_name + "</span>"
-  //                       + content +
-  //                     "</p> \
-  //                     <span class=\"date sub-text\"> "
-  //                       + date + "\
-  //                     </span> \
-  //                 </div> \
-  //             </li>");
-	// 					$(this).val("");
-	// 					$.ajax({
-	// 						url: "reviews/commentaction",
-	// 						type: "POST",
-	// 						data: { "content" : content, "review_id" : review_id },
-	// 						dataType: "json",
-	// 						success: function(data) {
-	// 						}
-	// 					});
-	// 				}
-	// 		})
-	// 	});
-	// }
+
+
+	var control_comment_sp = function() { /*chuan*/
+		$('.control-comment-delete-sp').each(function() {
+			$(this).on('click', function() {
+				var commentId = $(this).parents(".control_comment_sp").find('.comment_id_sp').text();
+				// alert(commentId);
+				var r = confirm("Are you sure ?");
+				if ( r == true ) {
+					$(this).parents(".item").html("");
+					// $(this).parents(".item").css("border-bottom","0px solid #ddd");
+					$.ajax({
+						url: "/reviews/deleteCommentAct",
+						type: "POST",
+						data: { "commentId" : commentId },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				} else {
+					alert("Cancel");
+				}
+			});
+		});
+
+	$('.control-comment-edit-sp').each(function() {
+			$(this).on('click', function() {
+				var commentId = $(this).parents(".control_comment_sp").find('.comment_id_sp').text();
+				var comment = prompt("Please enter your comment:", "your comment");
+				if (comment == null || comment == "") {
+					alert("Canceled");
+				} else {
+					$(this).parents(".details").find(".description").text(comment);
+					$.ajax({
+						url: "/reviews/editCommentAct",
+						type: "POST",
+						data: { "commentId" : commentId, "comment" : comment },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				}
+			});
+		});
+	}
+
+	var control_reply = function() {
+		$('.control-reply-delete').each(function() {
+			$(this).on('click', function() {
+				var replyId = $(this).parents(".control_reply").find('.reply-id').text();
+				var count_reply = $(this).parents(".comment-li").find(".count_reply_hp");
+				--count_reply;
+				// alert(count_reply);
+				var r = confirm("Are you sure ?");
+				if ( r == true ) {
+					// $(this).parents(".comment-li").find(".count_reply_hp").html(count_reply);
+					$(this).parents(".reply-item").html("");
+
+					// $(this).parents(".item").css("border-bottom","0px solid #ddd");
+					$.ajax({
+						url: "/reviews/deleteReplyAct",
+						type: "POST",
+						data: { "replyId" : replyId },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				} else {
+					alert("Cancel");
+				}
+			});
+		});
+
+	$('.control-reply-edit').each(function() {
+			$(this).on('click', function() {
+				var replyId = $(this).parents(".control_reply").find('.reply-id').text();
+				var reply = prompt("Please enter your comment:", "your comment");
+				if (reply == null || reply == "") {
+					alert("Canceled");
+				} else {
+					$(this).parents(".reply-item").find(".comment-naiyou").text(reply);
+					$.ajax({
+						url: "/reviews/editReplyAct",
+						type: "POST",
+						data: { "replyId" : replyId, "reply" : reply },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				}
+			});
+		});
+	}
+
+	var control_reply_sp = function() {
+		$('.control-reply-delete-sp').each(function() {
+			$(this).on('click', function() {
+				var replyId = $(this).parents(".control_reply_sp").find('.reply_id_sp').text();
+				var count_reply = $(this).parents(".item").find(".count_reply").html();
+				--count_reply;
+				var r = confirm("Are you sure ?");
+				if ( r == true ) {
+					$(this).parents(".item").find(".count_reply").html(count_reply);
+					$(this).parents(".reply-item").html("");
+
+					// $(this).parents(".item").css("border-bottom","0px solid #ddd");
+					$.ajax({
+						url: "/reviews/deleteReplyAct",
+						type: "POST",
+						data: { "replyId" : replyId },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				} else {
+					alert("Cancel");
+				}
+			});
+		});
+
+	$('.control-reply-edit-sp').each(function() {
+			$(this).on('click', function() {
+				var replyId = $(this).parents(".control_reply_sp").find('.reply_id_sp').text();
+				var reply = prompt("Please enter your comment:", "your comment");
+				if (reply == null || reply == "") {
+					alert("Canceled");
+				} else {
+					$(this).parents(".reply-item").find(".description").text(reply);
+					$.ajax({
+						url: "/reviews/editReplyAct",
+						type: "POST",
+						data: { "replyId" : replyId, "reply" : reply },
+						dataType: "json",
+						success: function(data) {
+							alert("Succeed");
+						}
+					});
+				}
+			});
+		});
+	}
+
 
 	preview_img();
 
@@ -1047,7 +1173,17 @@ $(function(){
 
 	create_reply_notsignin();
 
+ 	show_edit_com();
 
+	show_edit_rep();
+
+	show_edit_rep_hp();
+
+	control_comment_sp();
+
+	control_reply();
+
+	control_reply_sp();
 
 
 });

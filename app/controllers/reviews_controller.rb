@@ -107,6 +107,14 @@ class ReviewsController < ApplicationController
     target.save
   end
 
+  def editReplyAct
+    reply_id = params[:replyId]
+    reply = params[:reply]
+    target = Reply.find(reply_id)
+    target.reply = reply
+    target.save
+  end
+
   def change
 
     target = User.find(current_user.id)
@@ -142,7 +150,13 @@ class ReviewsController < ApplicationController
   def deleteCommentAct
     comment_id = params[:commentId]
     comment = Comment.find(comment_id)
-    comment.delete
+    comment.destroy
+  end
+
+  def deleteReplyAct
+    reply_id = params[:replyId]
+    reply = Reply.find(reply_id)
+    reply.destroy
   end
 
   def deleteReview

@@ -3255,8 +3255,8 @@ blockquote {
 .comments .comment-list .item {
   border: 0px solid #ddd;
   padding: 0px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd
+  margin-bottom: 0px;
+  border-bottom: 0px solid #ddd;
 }
 .comments .comment-list .item .user .details .item2{
   border: 0px solid #ddd;
@@ -4241,7 +4241,7 @@ blockquote {
 }
 .commentList li {
     margin:0;
-    margin-top:10px;
+    margin-top: 10px;
 }
 .commentList li > div {
     display:table;

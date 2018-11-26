@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post 'reviews/deleteReview' => 'reviews#deleteReview'
   # post 'comment/replyaction' => 'comment#replyaction'
   post 'reviews/replyaction' => 'reviews#replyaction'
+  post 'reviews/deleteReplyAct' => 'reviews#deleteReplyAct'
+  post 'reviews/editReplyAct' => 'reviews#editReplyAct'
 
   devise_for :users, :controllers => {:registrations => "users", :passwords => "passwords"}
   devise_scope :user do
