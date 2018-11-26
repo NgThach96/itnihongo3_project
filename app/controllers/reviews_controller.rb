@@ -107,6 +107,14 @@ class ReviewsController < ApplicationController
     target.save
   end
 
+  def editReplyAct
+    reply_id = params[:replyId]
+    reply = params[:reply]
+    target = Reply.find(reply_id)
+    target.reply = reply
+    target.save
+  end
+
   def change
 
     target = User.find(current_user.id)
@@ -114,27 +122,27 @@ class ReviewsController < ApplicationController
     if name != ""
         target.name = name
     end
-      
+
     email = params[:email]
     if email != ""
         target.email = email
     end
-      
+
     address = params[:address]
     if address != ""
         target.address = address
     end
-      
+
     birthday = params[:birthday]
     if birthday != ""
         target.birthday = birthday
     end
-      
+
     gender = params[:gender]
     if gender != ""
         target.gender = gender
     end
-      
+
     target.save()
     redirect_back(fallback_location: root_path)
   end
@@ -142,13 +150,31 @@ class ReviewsController < ApplicationController
   def deleteCommentAct
     comment_id = params[:commentId]
     comment = Comment.find(comment_id)
-    comment.delete
+    comment.destroy
+  end
+
+  def deleteReplyAct
+    reply_id = params[:replyId]
+    reply = Reply.find(reply_id)
+    reply.destroy
   end
 
   def deleteReview
     review_id = params[:reviewId]
     review = Review.find(review_id)
     review.destroy
+  end
+
+  def replyaction
+    content = params[:content]
+    comment_id = params[:comment_id]
+    comment = Comment.find(comment_id)
+    newRep = comment.replies.new
+    newRep.user_id = current_user.id
+    newRep.emotion_type = -2
+    newRep.comment_id = comment_id
+    newRep.reply = content
+    newRep.save
   end
 
   # GET /reviews/1
@@ -226,6 +252,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def create_book_mark
+    @bookmark = BookMark.new
+    @bookmark.review_id = params[:id]
+    @bookmark.user_id = current_user.id
+    if @bookmark.save
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -237,8 +272,3 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:food_name, :title, :post_content, :store_id, :food_picture, :taste_rate, :safety_rate, :price_rate, :user_id)
     end
 end
-
-
-
-
-
