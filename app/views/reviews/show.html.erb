@@ -47,11 +47,12 @@
 							<div class="main">
 
 
-                <p>Địa chỉ: <%= @review.store.store_address %>(<a href="/stores/info/<%= @review.id %>">thông tin chi tiết</a>)</p>
+				        <p>Địa chỉ: <%= @review.store.store_address %>(<a href="/stores/info/<%= @review.id %>">thông tin chi tiết</a>)</p>
 
-                <p>Đánh giá chất lượng: <%= @review.taste_rate%>/5</p>
-                <p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
+				        <p>Đánh giá chất lượng: <%= @review.taste_rate%>/5</p>
+				       	<p>Đánh giá an toàn vệ sinh: <%= @review.safety_rate%>/5</p>
 								<p><%= @review.post_content %></p>
+
 							</div>
 
 						</article>
@@ -70,32 +71,101 @@
 								<div class="item">
 									<div class="user">
 										<figure>
-											<%= image_tag("n.png")%>
+											<%= image_tag("avatar.png")%>
 										</figure>
 										<div class="details">
-											<h5 class="name"><%= comment.user.name%></h5>
-											<div class="time"><%= comment.created_at%></div>
+											<p style="font-size: 15px" class="name"><%= comment.user.name%>
+												<span style="font-size: 10px; margin-left: 10px" class="time"><%= comment.created_at%></span>
+												<span class="comment_id" style="visibility: hidden;" ><%= comment.id %></span>
+											</p>
 											<div class="description">
 												<%= comment.comment%>
 											</div>
-											<!-- <footer>
-												<a href="#">Reply</a>
-											</footer> -->
+											<a class="reply" style="font-size: 12px">Reply
+												<span class="count_reply" style="margin-left: 5px"><%= comment.replies.count %></span>
+											</a>
+											<% if user_signed_in? %>
+												<% if comment.user_id == current_user.id %>
+												<span class="control_comment_sp" style="visibility: hidden; float: right">
+													<span class="comment_id_sp" style="visibility: hidden;"><%= comment.id %></span>
+													<i class="fa fa-trash control-comment-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+													<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit-sp"></i>
+												</span>
+												<% end %>
+											<% end %>
 
 										</div>
 									</div>
+									<div class="reply-list" style="display: none">
+										<div class="reply-item2">
+										<% comment.replies.each do |reply| %>
+											<div class="reply-item" style="margin-bottom: 0px">
+												<div class="user" style="margin-bottom: 0px">
+													<figure>
+														<%= image_tag("avatar.png")%>
+													</figure>
+													<div class="details">
+														<p style="font-size: 15px" class="name"><%= reply.user.name%>
+															<span style="font-size: 10px; margin-left: 10px" class="time"><%= reply.created_at%></span>
+														</p>
+														<div class="description">
+															<%= reply.reply%>
+															<% if user_signed_in? %>
+																<% if reply.user_id == current_user.id %>
+																<span class="control_reply_sp" style="visibility: hidden; float: right">
+																	<span class="reply_id_sp" style="visibility: hidden;"><%= reply.id %></span>
+																	<i class="fa fa-trash control-reply-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+																	<i style="color: grey; cursor: pointer;" class="far fa-edit control-reply-edit-sp"></i>
+																</span>
+																<% end %>
+															<% end %>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										<% end %>
+									</div>
+										<% if user_signed_in? %>
+												<div class="user">
+													<figure>
+														<%= image_tag("avatar.png")%>
+													</figure>
+													<div class="details">
+														<p style="font-size: 15px" class="name"><%= current_user.name%>
+														</p>
+														<input placeholder="your comment"type="text" name="reply" style="margin-top: 15px" value="" class="form-control content-reply">
+													</div>
+												</div>
+										<% else %>
+												<div class="user">
+													<figure>
+														<%= image_tag("avatar.png")%>
+													</figure>
+													<div class="details">
+														<input placeholder="your comment" type="text" name="" value="" class="form-control content-reply-not-signin">
+													</div>
+												</div>
+										<% end %>
+
+									</div>
 								</div>
-             　<% end %>
+						<% end %>
+					</div><br>
 
-						</div>
 
-						 <%= form_for :comment, url: '/comment/create', :remote => true do |f| %>
-								<%= f.hidden_field :review_id, { :value => @review.id}%>
-								<%= f.hidden_field :emotion_type, { :value => 1} %>
-								<%= f.text_area :comment, class: 'form-control', placeholder: 'Nội dung bình luận' %>
-								<br>
-								<%= f.submit 'Gửi bình luận'%>
-						 <% end %>
+
+						<% if user_signed_in? %>
+							 	<textarea placeholder="Your comment" style="height: 100px" class="form-control content-comment" name="comment"></textarea><br>
+							 	<input type="hidden" id="reviewID" value="<%= @review.id %>" name="re_id">
+							 	<input id="submit_signin" type="submit" name="submit">
+						<% else %>
+						 	<textarea class="form-control content-comment" name="comment"></textarea><br>
+						 	<input id="submit_notsignin" type="submit" name="submit">
+						<% end %>
+
+
+
 
 
 						</div>

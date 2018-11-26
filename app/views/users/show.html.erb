@@ -8,63 +8,63 @@
               <div style="width: 300px; float: left">
                 <figure style="border-radius: 50%; float: left">
                   <% if @user.avatar == nil %>
-                    
-                      <%= image_tag("avatar.png")%>
-                  
-                  <% else %>
-                    
-                      <%= image_tag(@user.avatar)%>
-                  
-                  <% end %>
-                  
 
-                  
+                      <%= image_tag("avatar.png")%>
+
+                  <% else %>
+
+                      <%= image_tag(@user.avatar)%>
+
+                  <% end %>
+
+
+
                 </figure>
 
-               
+
               </div>
               <div class="details">
-                
+
                 <h1><a href="single.html">Personal Information</a></h1><br>
                 <form action="/reviews/change" method="POST">
                 <p style="font-size: 15px"><span class="fas fa-user"></span> Username: <%= @user.name%><a id="change_name_icon" style="float: right; font-size: 12px">Edit</a></p>
-                
+
                   <input name="name" id="change_name" style="display: none" type="text" placeholder="" size="40" /><br>
-                  
-                
+
+
                 <br>
                 <p style="font-size: 15px"><span class="fas fa-envelope"></span> Email: <%= @user.email%><a id="change_email_icon" style="float: right; font-size: 12px">Edit</a>
                 </p>
-                
+
                    <input name="email" id="change_email" style="display: none" type="text" placeholder="" size="40" /><br>
-                 
-               
-                
+
+
+
                 <br>
                 <p style="font-size: 15px"><span class="fas fa-map-marker-alt"></span> Address: <%= @user.address%><a id="change_address_icon" style="float: right; font-size: 12px">Edit</a>
                 </p>
-                
+
                   <input name="address" id="change_address" style="display: none" type="text" placeholder="" size="40" /><br>
-                  
-                
+
+
 
                 <br>
                 <p style="font-size: 15px"><span class="far fa-calendar-alt"></span> Date of birth: <%= @user.birthday%><a id="change_birthday_icon" style="float: right; font-size: 12px">Edit</a>
                 </p>
-                
+
                    <input name="birthday" id="change_birthday" style="display: none" type="date" placeholder="" size="40" /><br>
-                  
-                
+
+
                 <br>
                 <p style="font-size: 15px"><span class="fa fa-venus-mars"></span> Gender: <%= @user.gender%><a id="change_gender_icon" style="float: right; font-size: 12px">Edit</a>
                 </p>
-                
+
                   <input name="gender" id="change_gender" style="display: none" type="integer" placeholder="" size="40" /><br><br>
-                  
-                
+
+
                 <input style="display: none;" id="enter" type="submit" name="submit" value="Submit">
                 </form>
-                
+
 
 
 
@@ -90,7 +90,7 @@
                     </figure>
                     <div class="padding">
                       <h1><a href="/reviews/show/<%= review.id %>"><%= review.title%></a></h1>
-                      
+
                       <div class="detail">
                         <div class="category"><a href="category.html"><%= review.created_at %></a></div>
                         <div class="time"></div>

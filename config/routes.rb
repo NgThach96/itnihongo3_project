@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   get 'stores/info/:id' => 'reviews#infostore'
 
-  post 'comment/create' => 'comment#create'
+  # post 'comment/create' => 'comment#create'
+
 
   # thach-nguyen
   post 'reviews/commentaction' => 'reviews#commentaction'
@@ -18,6 +19,10 @@ Rails.application.routes.draw do
   post 'reviews/editCommentAct' => 'reviews#editCommentAct'
   post 'reviews/change' => 'reviews#change'
   post 'reviews/deleteReview' => 'reviews#deleteReview'
+  # post 'comment/replyaction' => 'comment#replyaction'
+  post 'reviews/replyaction' => 'reviews#replyaction'
+  post 'reviews/deleteReplyAct' => 'reviews#deleteReplyAct'
+  post 'reviews/editReplyAct' => 'reviews#editReplyAct'
 
   devise_for :users, :controllers => {:registrations => "users", :passwords => "passwords"}
   devise_scope :user do
