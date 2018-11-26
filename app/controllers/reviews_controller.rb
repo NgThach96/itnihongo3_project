@@ -114,27 +114,27 @@ class ReviewsController < ApplicationController
     if name != ""
         target.name = name
     end
-      
+
     email = params[:email]
     if email != ""
         target.email = email
     end
-      
+
     address = params[:address]
     if address != ""
         target.address = address
     end
-      
+
     birthday = params[:birthday]
     if birthday != ""
         target.birthday = birthday
     end
-      
+
     gender = params[:gender]
     if gender != ""
         target.gender = gender
     end
-      
+
     target.save()
     redirect_back(fallback_location: root_path)
   end
@@ -149,6 +149,18 @@ class ReviewsController < ApplicationController
     review_id = params[:reviewId]
     review = Review.find(review_id)
     review.destroy
+  end
+
+  def replyaction
+    content = params[:content]
+    comment_id = params[:comment_id]
+    comment = Comment.find(comment_id)
+    newRep = comment.replies.new
+    newRep.user_id = current_user.id
+    newRep.emotion_type = -2
+    newRep.comment_id = comment_id
+    newRep.reply = content
+    newRep.save
   end
 
   # GET /reviews/1
@@ -237,8 +249,3 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:food_name, :title, :post_content, :store_id, :food_picture, :taste_rate, :safety_rate, :price_rate, :user_id)
     end
 end
-
-
-
-
-

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # post 'comment/create' => 'comment#create'
 
+
   # thach-nguyen
   post 'reviews/commentaction' => 'reviews#commentaction'
   post 'reviews/likeaction' => 'reviews#likeaction'
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   post 'reviews/editCommentAct' => 'reviews#editCommentAct'
   post 'reviews/change' => 'reviews#change'
   post 'reviews/deleteReview' => 'reviews#deleteReview'
+  # post 'comment/replyaction' => 'comment#replyaction'
+  post 'reviews/replyaction' => 'reviews#replyaction'
 
   devise_for :users, :controllers => {:registrations => "users", :passwords => "passwords"}
   devise_scope :user do

@@ -138,7 +138,8 @@
                             <% if comment.comment != nil %>
                             <li class="comment-li">
                                 <div class="commenterImage">
-                                  <%= image_tag("news/chickenfry.jpg")%>
+                                  <%= image_tag("avatar.png")%>
+                                  <!-- <img src="/assets/img01.jpg"> -->
                                 </div>
                                 <div class="commentText">
                                     <p class="">
@@ -152,18 +153,89 @@
                                         <% if comment.user_id == current_user.id %>
                                         <span class="control-comment" style="visibility: hidden;">
                                           <span class="comment-id" style="visibility: hidden;"><%= comment.id %></span>
-                                          <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>|<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
+                                          <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+                                          <i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
                                         </span>
                                         <% end %>
                                       <% end %>
                                     </p>
-                                    <span class="date sub-text">
+                                    <p class="date sub-text">
+
                                       <%= comment.updated_at %>
+                                    </p>
+                                    <span>
+                                      <a class="reply" style="font-size: 10px">Reply
+                                        <span class="count_reply" style="margin-left: 5px"><%= comment.replies.count %> </span>
+                                        <span class="comment_id_hp" style="display: none"><%= comment.id %></span>
+                                      </a>
                                     </span>
+                                </div>
+
+                                <div class="reply-list" style="display: none; padding-left: 50px; margin-top: 8px">
+                                  <div class="reply-item">
+                                  <% comment.replies.each do |reply| %>
+                                  <div class="reply-item">
+                                    <div class="commenterImage">
+                                      <%= image_tag("avatar.png")%>
+                                    </div>
+                                    <div class="comment-text" style="margin-left: 45px">
+                                        <p class="" style="margin-bottom: 0px">
+                                          <span class="user-comment" style="color: red;margin-right: 5px; font-weight: bold;">
+                                          <%= reply.user.name %>
+                                          </span>
+                                          <span class="comment-naiyou">
+                                            <%= reply.reply %>
+                                          </span>
+                                          <% if user_signed_in? %>
+                                            <% if reply.user_id == current_user.id %>
+                                            <span class="control-comment" style="visibility: hidden;">
+                                              <span class="comment-id" style="visibility: hidden;"><%= reply.id %></span>
+                                              <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
+                                              <i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
+                                            </span>
+                                            <% end %>
+                                          <% end %>
+                                        </p>
+                                        <p style="display: inline-block" class="date sub-text">
+                                          <%= reply.created_at %>
+                                        </p>
+                                    </div>
+
+                                  <% end %>
+                                </div>
+
+                                  <% if user_signed_in? %>
+                                  <div class="comment-homepage">
+                                    <div class="commenterImage">
+                                      <%= image_tag("avatar.png")%>
+                                    </div>
+                                    <div class="comment-text" style="margin-left: 45px">
+                                      <p class="" style="margin-bottom: 5px">
+                                        <span class="user-comment" style="color: red;margin-right: 5px; font-weight: bold;">
+                                        <%= current_user.name %>
+                                        </span>
+                                        <span>
+                                          <input placeholder="Your comment" type="text" name="" value="" class="content-reply-homepage">
+                                          <input class="comment-id-homepage" type="hidden" name="" value="<% comment.id %>">
+                                        </span>
+                                      </p>
+
+                                    </div>
+                                  </div>
+                                  <% else %>
+                                  <div class="commenterImage">
+                                    <%= image_tag("avatar.png")%>
+                                  </div>
+                                  <div class="comment-text" style="margin-left: 45px">
+                                    <input style="margin-top: 10px" placeholder="Your comment" class="content-reply-not-signin" type="text">
+                                  </div>
+
+                                  <% end %>
                                 </div>
                             </li>
                             <% end %>
                           <% end %>
+
                       </ul>
                       <div class="form-inline">
                           <div class="form-group test">

@@ -3248,19 +3248,32 @@ blockquote {
 .comments .comment-list {
   margin-top: 10px;
 }
+.comments .comment-list .item .reply-list{
+  margin-top: 10px;
+  margin-left: 20px;
+} /*add*/
 .comments .comment-list .item {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
+  border: 0px solid #ddd;
+  padding: 0px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd
 }
+.comments .comment-list .item .user .details .item2{
+  border: 0px solid #ddd;
+  padding: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-top: 15px;
+  /* border-bottom: 1px solid #ddd */
+} /*add*/
 .comments .comment-list .item .user {
   display: inline-block;
   width: 100%;
   margin-bottom: 10px;
 }
 .comments .comment-list .item .user figure {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
   overflow: hidden;
   border-radius: 50%;
   float: left;
@@ -3270,12 +3283,12 @@ blockquote {
   width: 100%;
 }
 .comments .comment-list .item .user .details {
-  margin-left: 85px;
+  margin-left: 55px;
 }
 .comments .comment-list .item .user .details .name {
   margin: 0;
-  margin-bottom: 3px;
-  margin-top: 15px;
+  margin-bottom: 0px;
+  margin-top: 5px;
   font-weight: 700;
 }
 .comments .comment-list .item .user .details .time {
@@ -3283,7 +3296,7 @@ blockquote {
 }
 .comments .comment-list .item .user .details .description {
   font-size: 15px;
-  margin-top: 20px;
+  margin-top: 0px;
   line-height: 26px;
 }
 .comments .comment-list .item .reply-list {
@@ -4231,7 +4244,7 @@ blockquote {
     margin-top:10px;
 }
 .commentList li > div {
-    display:table-cell;
+    display:table;
 }
 .commenterImage {
     width:40px;
