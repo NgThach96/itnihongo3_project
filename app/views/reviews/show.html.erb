@@ -11,20 +11,22 @@
 							</div>
 						</aside>
 						<aside>
-							<h1 class="aside-title">Bài viết khác của <%= @review.user.name%></h1>
+							<h1 class="aside-title">Các bài viết được yêu thích nhất</h1>
 							<div class="aside-body">
-								<% @user_of_review.reviews.each do |review| %>
+								<% @arr.each do |rev| %>
 								<article class="article-mini">
 									<div class="inner">
 										<figure>
-											<a href="/reviews/show/<%= review.id %>">
+											<a href="/reviews/show/<%= rev.review.id %>">
 												<%= image_tag("news/buffet.jpg")%>
 											</a>
 										</figure>
 										<div class="padding">
-											<h1><a href="/reviews/show/<%= review.id %>"><%= review.title%></a></h1>
+											<h1><a href="/reviews/show/<%= rev.review.id %>"><%= rev.review.title%></a></h1>
 											<div class="detail">
-												<div class="category"><a href="category.html"><%= review.created_at %></a></div>
+												<div class="category"><a href="category.html"><%= rev.review.created_at %></a></div>
+												<div class="fas fa-heart" style="color: red">&nbsp</div>
+												<div class="category"><a href="category.html"><%= rev.count_like %></a></div>
 												<div class="time"></div>
 											</div>
 										</div>
@@ -38,6 +40,7 @@
 					<div class="col-md-8">
 						<article class="article main-article">
 							<header>
+								<br><br>
 								<h1><%= @review.title %></h1>
 								<ul class="details">
 									<li>Posted on <%= @review.created_at %></li>
@@ -86,7 +89,7 @@
 											</a>
 											<% if user_signed_in? %>
 												<% if comment.user_id == current_user.id %>
-												<span class="control_comment_sp" style="visibility: hidden; float: right">
+												<span class="control_comment_sp" style="visibility: hidden">
 													<span class="comment_id_sp" style="visibility: hidden;"><%= comment.id %></span>
 													<i class="fa fa-trash control-comment-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
 													<i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit-sp"></i>
@@ -112,7 +115,7 @@
 															<%= reply.reply%>
 															<% if user_signed_in? %>
 																<% if reply.user_id == current_user.id %>
-																<span class="control_reply_sp" style="visibility: hidden; float: right">
+																<span class="control_reply_sp" style="visibility: hidden">
 																	<span class="reply_id_sp" style="visibility: hidden;"><%= reply.id %></span>
 																	<i class="fa fa-trash control-reply-delete-sp" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
 																	<i style="color: grey; cursor: pointer;" class="far fa-edit control-reply-edit-sp"></i>
