@@ -107,14 +107,6 @@ class ReviewsController < ApplicationController
     target.save
   end
 
-  def editReplyAct
-    reply_id = params[:replyId]
-    reply = params[:reply]
-    target = Reply.find(reply_id)
-    target.reply = reply
-    target.save
-  end
-
   def change
 
     target = User.find(current_user.id)
@@ -150,31 +142,13 @@ class ReviewsController < ApplicationController
   def deleteCommentAct
     comment_id = params[:commentId]
     comment = Comment.find(comment_id)
-    comment.destroy
-  end
-
-  def deleteReplyAct
-    reply_id = params[:replyId]
-    reply = Reply.find(reply_id)
-    reply.destroy
+    comment.delete
   end
 
   def deleteReview
     review_id = params[:reviewId]
     review = Review.find(review_id)
     review.destroy
-  end
-
-  def replyaction
-    content = params[:content]
-    comment_id = params[:comment_id]
-    comment = Comment.find(comment_id)
-    newRep = comment.replies.new
-    newRep.user_id = current_user.id
-    newRep.emotion_type = -2
-    newRep.comment_id = comment_id
-    newRep.reply = content
-    newRep.save
   end
 
   # GET /reviews/1
