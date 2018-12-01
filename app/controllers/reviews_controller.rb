@@ -181,8 +181,13 @@ class ReviewsController < ApplicationController
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @user_of_review = User.find_by id:@review.user_id
-    # @comment = @review.comments
+    # @user_of_review = User.find_by id:@review.user_id
+    @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    @arr = Array.new
+    @arr.push @review_love[0]
+    @arr.push @review_love[1]
+    @arr.push @review_love[2]
+    @arr.push @review_love[3]
   end
 
   def infostore

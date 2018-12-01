@@ -151,7 +151,7 @@
                                       </span>
                                       <% if user_signed_in? %>
                                         <% if comment.user_id == current_user.id %>
-                                        <span class="control-comment" style="visibility: hidden; float: right">
+                                        <span class="control-comment" style="visibility: hidden">
                                           <span class="comment-id" style="visibility: hidden;"><%= comment.id %></span>
                                           <i class="fa fa-trash control-comment-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
                                           <i style="color: grey; cursor: pointer;" class="far fa-edit control-comment-edit"></i>
@@ -189,7 +189,7 @@
                                           </span>
                                           <% if user_signed_in? %>
                                             <% if reply.user_id == current_user.id %>
-                                            <span class="control_reply" style="visibility: hidden; float: right">
+                                            <span class="control_reply" style="visibility: hidden">
                                               <span class="reply-id" style="visibility: hidden;"><%= reply.id %></span>
                                               <i class="fa fa-trash control-reply-delete" style="color: grey; cursor: pointer;" aria-hidden="true"></i>
                                               <i style="color: grey; cursor: pointer;" class="far fa-edit control-reply-edit"></i>
@@ -217,7 +217,7 @@
                                         <%= current_user.name %>
                                         </span>
                                         <span>
-                                          <input placeholder="Your comment" type="text" name="" value="" class="content-reply-homepage" style="width: 600px">
+                                          <input placeholder="Your comment" type="text" name="" value="" class="content-reply-homepage" style="width: 400px">
                                           <input class="comment-id-homepage" type="hidden" name="" value="<% comment.id %>">
                                         </span>
                                       </p>

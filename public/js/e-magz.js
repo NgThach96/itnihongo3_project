@@ -657,9 +657,9 @@ $(function(){
 						type: "POST",
 						data: { "commentId" : commentId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -680,9 +680,9 @@ $(function(){
 						type: "POST",
 						data: { "commentId" : commentId, "comment" : comment },
 						dataType: "json",
-						success: function(data) {
-							alert("Succed");
-						}
+						// success: function(data) {
+						// 	alert("Succed");
+						// }
 					});
     		}
 			});
@@ -818,9 +818,9 @@ $(function(){
 					type: "POST",
 					data:  { "content" : content, "review_id" : review_id },
 					dataType: "json",
-					success: function(data) {
-						alert("success");
-					}
+					// success: function(data) {
+					// 	alert("success");
+					// }
 				});
 			});
 		});
@@ -884,8 +884,8 @@ $(function(){
 						type: "POST",
 						data: { "content" : content, "comment_id" : comment_id },
 						dataType: "json",
-						success: function(data) {
-						alert("reply success")}
+						// success: function(data) {
+						// alert("reply success")}
 					});
 				}
 			});
@@ -918,8 +918,8 @@ $(function(){
 						type: "POST",
 						data: { "content" : content, "comment_id" : comment_id },
 						dataType: "json",
-						success: function(data) {
-						alert("reply homepage success")}
+						// success: function(data) {
+						// alert("reply homepage success")}
 					});
 				}
 			});
@@ -1026,9 +1026,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -1049,9 +1049,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId, "reply" : reply },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				}
 			});
@@ -1075,9 +1075,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -1098,9 +1098,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId, "reply" : reply },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				}
 			});
