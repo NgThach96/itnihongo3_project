@@ -6,9 +6,8 @@ class ReviewsController < ApplicationController
   def autocomplete_review_food_name
     term = params[:term]
     food_name = params[:food_name]
-    store_name = params[:store_name]
-    reviews = Review.where('food_name LIKE ? OR store_name LIKE ?', "%#{term}%", "%#{term}%")
-    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name} }
+    reviews = Review.where('food_name LIKE ?', "%#{term}%")
+    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name, :url => review.food_picture, :title => review.title} }
   end
   # GET /reviews
   # GET /reviews.json
