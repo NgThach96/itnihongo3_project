@@ -1026,6 +1026,28 @@ $(function(){
 		});
 	}
 
+	var auto_search = function() {
+	    $('#searchbar').autocomplete({
+	      source: 'reviews/autocomplete_review_food_name',
+	      create: function () {
+	            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+	              var markup = [
+	                '<span class="img">',
+	                  '<img src="' + item.url.url + '" />',
+	                '</span>',
+	                '<span class="title">' + item.value + '</span>',
+	                '<span class="author">' + item.title + '</span>',
+	                '<span class="price">' + item.price + '</span>'
+	              ];
+	              return $('<li>')
+	                .append(markup.join(''))
+	                .appendTo(ul);
+	            };
+	        }
+	    });
+	}
+
+	auto_search();
 
 	preview_img();
 
@@ -1044,8 +1066,6 @@ $(function(){
 	commentnotsigin();
 
 	review();
-
-	// Run Function
 
 	love();
 

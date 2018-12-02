@@ -1,34 +1,14 @@
 <div class="col-xs-6 col-md-12 sidebar" id="sidebar">
   <div class = "row">
     <div class = "col-md-6 col-md-offset-2">
-      <%= form_tag(reviews_path, :method => "get", id: "search-form") do %>
-      <!-- text field tag=action,args,identifier,placeholdertext... -->
-      <%#= text_field_tag :search, params[:search], placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
-      <input type="text" placeholder="Type food name or restaurant's name" id="searchbar" class="search-query"">
-    </div>
-    <div class = "col-md-2" >
-      <%= submit_tag "Search" ,id: 'search_button_id'%>
-    </div>
+      <%= form_tag("search", method: "get") do %>
+        <!-- text field tag=action,args,identifier,placeholdertext... -->
+        <%#= text_field_tag :search, params[:search], placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
+        <input name="search_text" type="text" placeholder="Type food name or restaurant's name" id="searchbar" class="search-query"">
+      </div>
+      <div class = "col-md-2" >
+        <%= submit_tag "Search"%>
+      </div>
+    <% end %>
   </div>
-  <%end%>
-  <script type="text/javascript" charset="utf-8">
-    $('#searchbar').autocomplete({
-      source: 'reviews/autocomplete_review_food_name',
-      create: function () {
-            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
-              var markup = [
-                '<span class="img">',
-                  '<img src="' + item.url.url + '" />',
-                '</span>',
-                '<span class="title">' + item.value + '</span>',
-                '<span class="author">' + item.title + '</span>',
-                '<span class="price">' + item.price + '</span>'
-              ];
-              return $('<li>')
-                .append(markup.join(''))
-                .appendTo(ul);
-            };
-        }
-    });
-  </script>
 </div>

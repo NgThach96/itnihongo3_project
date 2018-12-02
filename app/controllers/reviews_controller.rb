@@ -3,6 +3,10 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def search
+    @search_text = params[:search_text]
+  end
+
   def autocomplete_review_food_name
     term = params[:term]
     food_name = params[:food_name]
