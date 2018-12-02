@@ -32,12 +32,17 @@
     <%= stylesheet_link_tag "/scripts/magnific-popup/dist/magnific-popup.css" %>
     <%= stylesheet_link_tag "/scripts/sweetalert/dist/sweetalert.css" %>
 
+
     <!-- Custom style -->
     <%= stylesheet_link_tag "/css/jquery-ui.min.css" %>
+
+    <%= stylesheet_link_tag "/fontawesome/css/all.css" %>
+
+    <%= stylesheet_link_tag "/scripts/icheck/skins/all.css" %>
+
     <%= stylesheet_link_tag "/css/style.css" %>
     <%= stylesheet_link_tag "/css/skins/all.css" %>
     <%= stylesheet_link_tag "/css/demo.css" %>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   </head>
 
   <body class="skin-orange">
@@ -66,7 +71,13 @@
     <%= javascript_include_tag '/scripts/easescroll/jquery.easeScroll.js' %>
     <%= javascript_include_tag '/scripts/sweetalert/dist/sweetalert.min.js' %>
     <%= javascript_include_tag '/scripts/toast/jquery.toast.min.js' %>
+    <%= javascript_include_tag '/scripts/icheck/icheck.min.js' %>
     <%= javascript_include_tag '/js/jquery-ui.min.js' %>
+    <script>$("input").iCheck({
+      checkboxClass: 'icheckbox_square-red',
+      radioClass: 'iradio_square-red',
+      cursor: true
+		});</script>
     <%= javascript_include_tag '/js/e-magz.js' %>
   </body>
 </html>

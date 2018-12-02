@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def search
-    
+    @search_text = params[:search_text]
   end
 
   def autocomplete_review_food_name
