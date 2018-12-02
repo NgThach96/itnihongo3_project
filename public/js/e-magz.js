@@ -1046,9 +1046,6 @@ $(function(){
 	review();
 
 	// Run Function
-	sectionFirstPadding();
-
-	stickyHeader();
 
 	love();
 
