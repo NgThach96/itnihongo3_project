@@ -14,6 +14,16 @@ class ReviewsController < ApplicationController
   def index
     # User Will_Paginate gem
     # 5 review per page
+    @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    @count0 = @review_love[0].count_like
+    @count1 = @review_love[1].count_like
+    @count2 = @review_love[2].count_like
+    @count3 = @review_love[3].count_like
+    @rev0 = Review.find(@review_love[0].review_id)
+    @rev1 = Review.find(@review_love[1].review_id)
+    @rev2 = Review.find(@review_love[2].review_id)
+    @rev3 = Review.find(@review_love[3].review_id)
+
     @review = Review.new
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
