@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
 
   # thach-nguyen
+  post 'reviews/search' => 'reviews#search'
   post 'reviews/commentaction' => 'reviews#commentaction'
   post 'reviews/likeaction' => 'reviews#likeaction'
   post 'reviews/deleteCommentAct' => 'reviews#deleteCommentAct'
