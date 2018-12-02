@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <!-- Left site -->
-      <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+      <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
             <article class="col-md-12 article-list review-card">
@@ -258,6 +258,34 @@
         <div class="pagination" style="width: 100%; text-align: center; font-size: 15px">
           <%= will_paginate @users %>
         </div>
+      </div>
+      <div class="col-md-4">
+        <aside class="review-card minh">
+              <h1 class="aside-title">Các bài viết được yêu thích nhất</h1>
+              <div class="aside-body">
+
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="">Title</a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html">Creaed at</a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html">Count like</a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+
+              </div>
+            </aside>
       </div>
   </div>
 </section>
