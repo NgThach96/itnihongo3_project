@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   # post 'comment/create' => 'comment#create'
 
-
+  post 'reviews/:id/create-book-mark' => 'reviews#create_book_mark', as: 'create-bookmark'
+  delete 'reviews/:id/delete-bookmark' => 'reviews#delete_bookmark', as: 'delete-bookmark'
+  resources :book_marks
   # thach-nguyen
   get 'search' => 'reviews#search'
   post 'reviews/commentaction' => 'reviews#commentaction'

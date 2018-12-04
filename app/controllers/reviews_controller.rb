@@ -170,7 +170,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    # @user_of_review = User.find_by id:@review.user_id
+    @user_of_review = User.find_by id:@review.user_id
     @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
     @count0 = @review_love[0].count_like
     @count1 = @review_love[1].count_like
@@ -248,6 +248,22 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def create_book_mark
+    @bookmark = BookMark.new
+    @bookmark.review_id = params[:id]
+    @bookmark.user_id = current_user.id
+    if @bookmark.save 
+      redirect_to root_path
+    end
+  end
+
+  def delete_bookmark
+    @bookmark = BookMark.where(review_id: params[:id]).where(user_id: current_user.id).first
+    if @bookmark.destroy 
+      redirect_to root_path
     end
   end
 
