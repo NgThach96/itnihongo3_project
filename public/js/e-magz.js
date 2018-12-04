@@ -1047,6 +1047,15 @@ $(function(){
 	    });
 	}
 
+	$('#demo').text("500,000");
+	var price_choose = function() {
+		$('#myRange').on("input", function() {
+			$('#demo').text($(this).val() + "0," + "000");
+		})
+	}
+
+	price_choose();
+
 	auto_search();
 
 	preview_img();
