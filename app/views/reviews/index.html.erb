@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <!-- Left site -->
-      <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+      <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <% @reviews.each do |review| %>
             <article class="col-md-12 article-list review-card">
@@ -269,6 +269,123 @@
         <div class="pagination" style="width: 100%; text-align: center; font-size: 15px">
           <%= will_paginate @users %>
         </div>
+      </div>
+            <div class="col-md-4">
+        <aside class="review-card minh" style="margin-left: 20px">
+              <h1 class="aside-title" style="margin-left: 20px">The most favourit reviews</h1>
+              <article class="article-fw" style="width: 350px">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure>
+                        <a href="/reviews/show/<%= @rev0.id %>">
+                          <%= image_tag("news/buffet.jpg")%>
+                        </a>
+                      </figure>
+                      <div class="details">
+                        <div class="detail">
+                          <div class="time"><%= @rev0.created_at %></div>&nbsp;&nbsp;&nbsp;
+                          <div class="fas fa-heart" style="color: red">&nbsp;<%= @count0 %></div>
+                         </div>
+                        <h1><a href="/reviews/show/<%= @rev0.id %>"><%= @rev0.title%></a></h1>
+                        <!-- <p>
+                          Donec congue turpis vitae mauris condimentum luctus. Ut dictum neque at egestas convallis.
+                        </p> -->
+                        <div class="line"></div>
+                      </div>
+                    </div>
+              </article>
+              <div class="aside-body" style="margin-left: 10px">
+                 <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= @rev1.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev1.id %>"><%= @rev1.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= @rev1.created_at %></a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html"><%= @count1 %></a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= @rev2.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev2.id %>"><%= @rev2.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= @rev2.created_at %></a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html"><%= @count2 %></a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= @rev3.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev3.id %>"><%= @rev3.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= @rev3.created_at %></a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html"><%= @count3 %></a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+               </div>
+        </aside>
+        <aside class="review-card minh" style="margin-left: 20px">
+              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 460px">
+                        <a href="">
+                          <%= image_tag("h.jpeg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside>
+        <aside class="review-card minh" style="margin-left: 20px">
+              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 420px">
+                        <a href="">
+                          <%= image_tag("ae.jpg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside>
+         <aside class="review-card minh" style="margin-left: 20px">
+              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 420px">
+                        <a href="">
+                          <%= image_tag("poster.jpg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside>
       </div>
   </div>
 </section>
