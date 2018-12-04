@@ -1,0 +1,44 @@
+<section class="single">
+    <div class="container">
+        <div class="row">
+            <% @bookmarks.each do |bookmark| %>
+                <div class="col-md-4 sidebar" id="sidebar">
+                    <aside>
+                        <div class="aside-body">
+                            <figure class="ads" style="padding-top: 50px">
+                                <% if bookmark.review.food_picture.present? %>
+                                    <%= image_tag(bookmark.review.food_picture)%>
+                                <% else %>
+                                    <%= image_tag("news/buffet.jpg")%>
+                                <% end %>
+                                <figcaption>Advertisement</figcaption>
+                            </figure>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-md-8">
+                    <article class="article main-article">
+                        <header>
+                            <br><br>
+                            <h1><%= bookmark.review.title %></h1>
+                            <ul class="details">
+                                <li>Posted on <%= bookmark.review.created_at %></li>
+                                <li>By <%= bookmark.review.user.name %></li>
+                            </ul>
+                        </header>
+                        <div class="main">
+                            <p>Địa chỉ: <%= bookmark.review.store.store_address %>(<a href="/stores/info/<%= bookmark.review.id %>">thông tin chi tiết</a>)</p>
+
+                            <p>Đánh giá chất lượng: <%= bookmark.review.taste_rate%>/5</p>
+                            <p>Đánh giá an toàn vệ sinh: <%= bookmark.review.safety_rate%>/5</p>
+                            <p><%= bookmark.review.post_content %></p>
+                        </div>
+
+                    </article>
+                    <div class="sharing">
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

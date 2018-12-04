@@ -1,85 +1,4 @@
 $(function(){
-	var youtube_api_key = 'YOUR_API_KEY';
-
-	var loading = {
-		show: function() {
-			$("body").append("<div class='main-loading'></div>");
-		},
-		hide: function() {
-			$(".main-loading").remove();
-		}
-	}
-
-	var backdrop = {
-		show: function(el) {
-			if(!el) el = 'body';
-			$(el).prepend($("<div/>", {
-				class: "backdrop"
-			}));
-			$(".backdrop").fadeIn();
-		},
-		hide: function() {
-			$(".backdrop").fadeOut(function() {
-				$(".backdrop").remove();
-			});
-		},
-		click: function(clicked) {
-			$(document).on("click", ".backdrop", function() {
-				clicked.call(this);
-				return false;
-			});
-		}
-	}
-
-	var sectionFirstPadding = function() {
-		if($("header.primary").length) {
-			$("section").eq(0).addClass("first");
-			$("section.first").css({
-				paddingTop: $("header.primary").outerHeight() + 15
-			})
-		}
-		$(window).on("resize",function(){
-			if($("header.primary").length) {
-				$("section.first").css({
-					paddingTop: $("header.primary").outerHeight() + 15
-				})
-			}
-		});
-	}
-
-	var stickyHeader = function() {
-		var didScroll;
-		$(window).on("scroll", function(event){
-			didScroll = true;
-		});
-
-		setInterval(function() {
-			if(didScroll) {
-				hasScrolled();
-				didScroll = false;
-			}
-		},250);
-
-		var hasScrolled = function() {
-			var scrollTop = $(this).scrollTop();
-			var toTop = 0;
-			$("header.primary > :not(.menu)").each(function(){
-				toTop += $(this).outerHeight();
-			});
-
-			if(scrollTop > 100) {
-				$("header.primary").addClass("up").css({
-					top: -toTop
-				});
-			}
-			if(scrollTop < 300) {
-				$("header.primary").removeClass("up").css({
-					top: 0
-				});
-			}
-		}
-	}
-
 
 	var loveNotSignin = function() {
 		$(".love-not-signin").each(function() {
@@ -657,9 +576,9 @@ $(function(){
 						type: "POST",
 						data: { "commentId" : commentId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -680,9 +599,9 @@ $(function(){
 						type: "POST",
 						data: { "commentId" : commentId, "comment" : comment },
 						dataType: "json",
-						success: function(data) {
-							alert("Succed");
-						}
+						// success: function(data) {
+						// 	alert("Succed");
+						// }
 					});
     		}
 			});
@@ -818,9 +737,9 @@ $(function(){
 					type: "POST",
 					data:  { "content" : content, "review_id" : review_id },
 					dataType: "json",
-					success: function(data) {
-						alert("success");
-					}
+					// success: function(data) {
+					// 	alert("success");
+					// }
 				});
 			});
 		});
@@ -884,8 +803,8 @@ $(function(){
 						type: "POST",
 						data: { "content" : content, "comment_id" : comment_id },
 						dataType: "json",
-						success: function(data) {
-						alert("reply success")}
+						// success: function(data) {
+						// alert("reply success")}
 					});
 				}
 			});
@@ -918,8 +837,8 @@ $(function(){
 						type: "POST",
 						data: { "content" : content, "comment_id" : comment_id },
 						dataType: "json",
-						success: function(data) {
-						alert("reply homepage success")}
+						// success: function(data) {
+						// alert("reply homepage success")}
 					});
 				}
 			});
@@ -1026,9 +945,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -1049,9 +968,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId, "reply" : reply },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				}
 			});
@@ -1075,9 +994,9 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				} else {
 					alert("Cancel");
@@ -1098,15 +1017,37 @@ $(function(){
 						type: "POST",
 						data: { "replyId" : replyId, "reply" : reply },
 						dataType: "json",
-						success: function(data) {
-							alert("Succeed");
-						}
+						// success: function(data) {
+						// 	alert("Succeed");
+						// }
 					});
 				}
 			});
 		});
 	}
 
+	var auto_search = function() {
+	    $('#searchbar').autocomplete({
+	      source: 'reviews/autocomplete_review_food_name',
+	      create: function () {
+	            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+	              var markup = [
+	                '<span class="img">',
+	                  '<img src="' + item.url.url + '" />',
+	                '</span>',
+	                '<span class="title">' + item.value + '</span>',
+	                '<span class="author">' + item.title + '</span>',
+	                '<span class="price">' + item.price + '</span>'
+	              ];
+	              return $('<li>')
+	                .append(markup.join(''))
+	                .appendTo(ul);
+	            };
+	        }
+	    });
+	}
+
+	auto_search();
 
 	preview_img();
 
@@ -1125,11 +1066,6 @@ $(function(){
 	commentnotsigin();
 
 	review();
-
-	// Run Function
-	sectionFirstPadding();
-
-	stickyHeader();
 
 	love();
 

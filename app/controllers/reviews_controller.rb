@@ -3,18 +3,31 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def search
+    @search_text = params[:search_text]
+  end
+
   def autocomplete_review_food_name
     term = params[:term]
     food_name = params[:food_name]
-    store_name = params[:store_name]
-    reviews = Review.where('food_name LIKE ? OR store_name LIKE ?', "%#{term}%", "%#{term}%")
-    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name} }
+    reviews = Review.where('food_name LIKE ?', "%#{term}%")
+    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name, :url => review.food_picture, :title => review.title} }
   end
   # GET /reviews
   # GET /reviews.json
   def index
     # User Will_Paginate gem
     # 5 review per page
+    #@review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    # @count0 = @review_love[0].count_like
+    # @count1 = @review_love[1].count_like
+    # @count2 = @review_love[2].count_like
+    # @count3 = @review_love[3].count_like
+    # @rev0 = Review.find(@review_love[0].review_id)
+    # @rev1 = Review.find(@review_love[1].review_id)
+    # @rev2 = Review.find(@review_love[2].review_id)
+    # @rev3 = Review.find(@review_love[3].review_id)
+
     @review = Review.new
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
@@ -107,14 +120,6 @@ class ReviewsController < ApplicationController
     target.save
   end
 
-  def editReplyAct
-    reply_id = params[:replyId]
-    reply = params[:reply]
-    target = Reply.find(reply_id)
-    target.reply = reply
-    target.save
-  end
-
   def change
 
     target = User.find(current_user.id)
@@ -150,13 +155,7 @@ class ReviewsController < ApplicationController
   def deleteCommentAct
     comment_id = params[:commentId]
     comment = Comment.find(comment_id)
-    comment.destroy
-  end
-
-  def deleteReplyAct
-    reply_id = params[:replyId]
-    reply = Reply.find(reply_id)
-    reply.destroy
+    comment.delete
   end
 
   def deleteReview
@@ -165,24 +164,22 @@ class ReviewsController < ApplicationController
     review.destroy
   end
 
-  def replyaction
-    content = params[:content]
-    comment_id = params[:comment_id]
-    comment = Comment.find(comment_id)
-    newRep = comment.replies.new
-    newRep.user_id = current_user.id
-    newRep.emotion_type = -2
-    newRep.comment_id = comment_id
-    newRep.reply = content
-    newRep.save
-  end
-
   # GET /reviews/1
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @user_of_review = User.find_by id:@review.user_id
-    # @comment = @review.comments
+    # @user_of_review = User.find_by id:@review.user_id
+    # @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    # @count0 = @review_love[0].count_like
+    # @count1 = @review_love[1].count_like
+    # @count2 = @review_love[2].count_like
+    # @count3 = @review_love[3].count_like
+    # @rev0 = Review.find(@review_love[0].review_id)
+    # @rev1 = Review.find(@review_love[1].review_id)
+    # @rev2 = Review.find(@review_love[2].review_id)
+    # @rev3 = Review.find(@review_love[3].review_id)
+
+
   end
 
   def infostore
@@ -256,7 +253,14 @@ class ReviewsController < ApplicationController
     @bookmark = BookMark.new
     @bookmark.review_id = params[:id]
     @bookmark.user_id = current_user.id
-    if @bookmark.save
+    if @bookmark.save 
+      redirect_to root_path
+    end
+  end
+
+  def delete_bookmark
+    @bookmark = BookMark.where(review_id: params[:id]).where(user_id: current_user.id).first
+    if @bookmark.destroy 
       redirect_to root_path
     end
   end

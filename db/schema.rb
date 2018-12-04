@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181204025306) do
-
+ActiveRecord::Schema.define(version: 20181118113018) do
   create_table "book_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "review_id"
     t.integer "user_id"
   end
+  
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.bigint "review_id"
     t.bigint "user_id"
     t.text "comment"
@@ -55,17 +66,17 @@ ActiveRecord::Schema.define(version: 20181204025306) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "store_name"
-    t.string "store_address"
-    t.string "open_time"
-    t.string "price"
-    t.string "phone"
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string "store_name", collation: "utf8mb4_unicode_ci"
+    t.string "store_address", collation: "utf8mb4_unicode_ci"
+    t.string "open_time", collation: "utf8mb4_unicode_ci"
+    t.string "price", collation: "utf8mb4_unicode_ci"
+    t.string "phone", collation: "utf8mb4_unicode_ci"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -79,6 +90,8 @@ ActiveRecord::Schema.define(version: 20181204025306) do
     t.string "gender"
     t.string "avatar"
     t.boolean "is_admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "comments", "reviews"

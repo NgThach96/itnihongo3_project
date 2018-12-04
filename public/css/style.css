@@ -531,7 +531,6 @@ a.twitch {
 
 header.primary {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  position: fixed;
   z-index: 1999;
   top: 0;
   left: 0;
@@ -4422,4 +4421,87 @@ input[type=submit]:hover {
 
 .form-review form .content {
   height: 70%;
+}
+
+.img-in-search {
+  float: left;
+  width: 10%;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.ui-widget-content {
+  background: #fff;
+  font-size: .9em;
+  padding: .5em 0;
+  border-color: #ddd;
+  box-shadow: 0 .1em .2em rgba(187, 187, 187, 0.64);
+  line-height: 1.2;
+  max-height: 20em;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.ui-menu-item {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  padding: .4em .6em .4em 6.2em;
+  position: relative;
+  border: 0;
+  border-left: 5px solid transparent;
+  position: relative;
+  height: 6.5em;
+}
+
+.ui-state-focus {
+  background: #fff;
+  border-left-color: #08c;
+  font-weight: 300;
+}
+
+.ui-menu-item .img {
+  position: absolute;
+  width: 5em;
+  height: 6em;
+  top: .4em;
+  left: .6em;
+  overflow: hidden;
+}
+
+.ui-menu-item .img img {
+  max-width: 100%;
+}
+
+.ui-menu-item .title {
+  display: block;
+  color: #555;
+}
+
+.ui-menu-item .author {
+  display: block;
+  font-size: .8em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-top: .6em;
+  letter-spacing: 1px;
+}
+
+.ui-menu-item .price {
+  display: block;
+  font-size: .8em;
+  color: #aaa;
+  margin-top: .5em;
+}
+
+.ui-state-focus .price,
+.ui-state-focus .author,
+.ui-state-focus .title {
+  color: #08c;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-state-active.ui-button:hover
+{
+  border: none;
+  background: none;
 }

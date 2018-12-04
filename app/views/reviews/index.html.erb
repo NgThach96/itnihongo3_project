@@ -17,9 +17,15 @@
               </div>
               <div class="details">
               <% if user_signed_in? %>
+                <% if BookMark.where(review_id: review.id).where(user_id: current_user.id) != [] %>
                   <div style = "float: right">
-                    <%= link_to "Book mark", create_bookmark_path(review.id), class:"btn btn-primary", method: :post %>
+                    <%= link_to "Unbookmark", delete_bookmark_path(review.id), class:"btn btn-primary", method: :delete %>
                   </div>
+                <% else %>
+                  <div style = "float: right">
+                    <%= link_to "Bookmark", create_bookmark_path(review.id), class:"btn btn-primary", method: :post %>
+                  </div>
+                <% end %>
               <% end %>
                 <div class="detail">
                   <div class="category">
