@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
 
   def search
     @search_text = params[:search_text]
+    @reviews = Review.where('food_name LIKE ?', "%#{@search_text}%").paginate(:page => params[:page], :per_page => 5)
+    @count = @reviews.count
   end
 
   def autocomplete_review_food_name
