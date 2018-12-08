@@ -6,15 +6,6 @@
           <h2 class="aside-title">Filter</h2>
           <div class="aside-body">
             <form class="checkbox-group">
-              <div style="width: 100%" class="group-title">Price
-                  <span style="float: right;font-weight: 300;"><span id="demo"></span> VND</span>
-              </div>
-              <div class="form-group">
-                <div class="slidecontainer">
-                  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                </div>
-              </div>
-
               <div class="group-title">Date</div>
               <div class="form-group">
                 <label><input type="radio" name="date" checked> Anytime</label>
@@ -44,54 +35,66 @@
         <div class="nav-tabs-group">
           <ul class="nav-tabs-list">
             <li class="active"><a href="#">All</a></li>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Popular</a></li>
             <li><a href="#">Trending</a></li>
+            <li><a href="#">Videos</a></li>
           </ul>
           <div class="nav-tabs-right">
             <select class="form-control">
-              <option>Sort By</option>
-              <option>Price</option>
-              <option>Like</option>
-              <option>Dislike</option>
+              <option>Limit</option>
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+              <option>100</option>
             </select>
           </div>
         </div>
         <div class="search-result">
-          Search results for keyword "<%= @search_text %>" found in <%= @count %> posts.
+          Search results for keyword "hello" found in 5,200 posts.
         </div>
         <div class="row">
-
-          <% @reviews.each do |review| %>
-            <article class="col-md-12 article-list">
-              <div class="inner">
-                <figure>
-                  <a href="reviews/show/<%= review.id %>">
-                    <%= image_tag(review.food_picture)%>
-                  </a>
-                </figure>
-                <div class="details">
-                  <div class="detail">
-                    <time><%= review.created_at %></time>
+          <article class="col-md-12 article-list">
+            <div class="inner">
+              <figure>
+                <a href="single.html">
+                  <img src="images/news/img11.jpg">
+                </a>
+              </figure>
+              <div class="details">
+                <div class="detail">
+                  <div class="category">
+                    <a href="#">Film</a>
                   </div>
-                  <h1><a href="reviews/show/<%= review.id %>"> <%= review.title %> </a></h1>
-                  <p>
-                  <%= review.food_name %>
-                  </p>
-                  <p>
-                  Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
-                  </p>
-                  <footer>
-                    <a class="btn btn-primary more" href="reviews/show/<%= review.id %>">
-                      <div>More</div>
-                      <div><i class="ion-ios-arrow-thin-right"></i></div>
-                    </a>
-                  </footer>
+                  <time>December 19, 2016</time>
                 </div>
+                <h1><a href="single.html">Donec consequat arcu at ultrices sodales quam erat aliquet diam</a></h1>
+                <p>
+                Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
+                </p>
+                <footer>
+                  <a class="btn btn-primary more" href="single.html">
+                    <div>More</div>
+                    <div><i class="ion-ios-arrow-thin-right"></i></div>
+                  </a>
+                </footer>
               </div>
-            </article>
-          <% end %>
+            </div>
+          </article>
 
-          <div class="col-md-12 text-center pagination">
-            <%= will_paginate @users %>
+          <div class="col-md-12 text-center">
+            <ul class="pagination">
+              <li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">...</a></li>
+              <li><a href="#">97</a></li>
+              <li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+            </ul>
+            <div class="pagination-help-text">
+              Showing 8 results of 776 &mdash; Page 1
+            </div>
           </div>
 
 

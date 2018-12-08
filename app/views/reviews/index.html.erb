@@ -351,7 +351,68 @@
                </div>
         </aside>
         <aside class="review-card minh" style="margin-left: 20px">
-              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+              <h1 class="aside-title" style="margin-left: 20px">The most recent reviews</h1>
+              <div class="aside-body" style="margin-left: 10px">
+              <% @arr.each do |arr_one| %>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= arr_one.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev1.id %>"><%= arr_one.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= arr_one.created_at %></a></div>
+                        <!-- <div class="fas fa-heart" style="color: red">&nbsp</div> -->
+                        <!-- <div class="category"><a href="category.html"><%= @count1 %></a></div> -->
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              <% end %>
+                <!-- <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= @rev2.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev2.id %>"><%= @rev2.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= @rev2.created_at %></a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html"><%= @count2 %></a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="article-mini">
+                  <div class="inner">
+                    <figure>
+                      <a href="/reviews/show/<%= @rev3.id %>">
+                        <%= image_tag("news/buffet.jpg")%>
+                      </a>
+                    </figure>
+                    <div class="padding">
+                      <h1><a href="/reviews/show/<%= @rev3.id %>"><%= @rev3.title%></a></h1>
+                      <div class="detail">
+                        <div class="category"><a href="category.html"><%= @rev3.created_at %></a></div>
+                        <div class="fas fa-heart" style="color: red">&nbsp</div>
+                        <div class="category"><a href="category.html"><%= @count3 %></a></div>
+                        <div class="time"></div>
+                      </div>
+                    </div>
+                  </div>
+                </article> -->
+              </div>
+        </aside>
+        <aside class="review-card minh" style="margin-left: 20px">
+
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
                       <figure style="width: 340px; height: 460px">
@@ -363,7 +424,7 @@
               </article>
          </aside>
         <aside class="review-card minh" style="margin-left: 20px">
-              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
                       <figure style="width: 340px; height: 420px">
@@ -374,18 +435,18 @@
                      </div>
               </article>
          </aside>
-         <aside class="review-card minh" style="margin-left: 20px">
-              <!-- <h1 class="aside-title" style="margin-left: 20px">Các bài viết được yêu thích nhất</h1> -->
+         <!-- <aside class="review-card minh" style="margin-left: 20px; height: 296px">
+
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
-                      <figure style="width: 340px; height: 420px">
+                      <figure style="width: 340px; height: 270px">
                         <a href="">
                           <%= image_tag("poster.jpg")%>
                         </a>
                       </figure>
                      </div>
               </article>
-         </aside>
+         </aside> -->
       </div>
   </div>
 </section>
