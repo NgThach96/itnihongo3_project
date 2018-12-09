@@ -47,7 +47,7 @@
                   <p><%= review.store.store_address %></p>
                 </div>
                 <div class="score-div">
-                  <a class="score"><%= ((review.taste_rate + review.safety_rate + review.price_rate).to_f / 3).round(1) %>/5 <icon class="fas fa-star"></icon></a>
+                  <a class="score"><%= ((review.taste_rate + review.safety_rate + review.price_rate).to_f / 3).round(0) %>/5 <icon class="fas fa-star"></icon></a>
                 </div>
                 <footer>
                 </footer>
