@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :book_marks
   # thach-nguyen
   get 'search' => 'reviews#search'
+  post 'reviews/searchAction' => 'reviews#searchAction'
   post 'reviews/commentaction' => 'reviews#commentaction'
   post 'reviews/likeaction' => 'reviews#likeaction'
   post 'reviews/deleteCommentAct' => 'reviews#deleteCommentAct'

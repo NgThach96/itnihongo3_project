@@ -3,6 +3,56 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def searchAction
+    price = params[:price]
+    price = BigDecimal.new(price + "0000")
+    today = Date.today
+    sort = params[:sort]
+    if sort == "date"
+      sort = "created_at"
+    end
+    lastweek = (Time.now - 7.day)
+    lastmonth = (Time.now - 30.day)
+    search_text = params[:search_text].tr('"/', "")
+    val = params[:value]
+    type = params[:type]
+    if type == "radio"
+      case val
+      when "anytime"
+        post = Review.where('food_name LIKE ? AND price < ? ', "%#{search_text}%", price)
+      when  "today"
+        post = Review.where('food_name LIKE ? AND created_at > ? AND price < ?', "%#{search_text}%", today, price)
+      when "lastweek"
+        post = Review.where('food_name LIKE ? AND created_at >= ? AND created_at < ? AND price < ?', "%#{search_text}%", lastweek, today, price)
+      when "lastmonth"
+        post = Review.where('food_name LIKE ? AND created_at >= ? AND created_at < ? AND price < ?', "%#{search_text}%", lastmonth, today, price)
+      end
+
+    elsif type == "checkbox"
+      case val
+      when "stores"
+        post = 5
+      when "post"
+        post = 6
+      end
+    end
+
+    if sort != "Sort By"
+      post = post.order(sort + " DESC")
+    end
+
+    res = {"res" => post}
+
+    respond_to do |format|
+     format.html
+     format.js {}
+     format.json {
+        render json: res
+     }
+   end
+
+  end
+
   def search
     @search_text = params[:search_text]
     @reviews = Review.where('food_name LIKE ?', "%#{@search_text}%").paginate(:page => params[:page], :per_page => 5)
@@ -255,14 +305,14 @@ class ReviewsController < ApplicationController
     @bookmark = BookMark.new
     @bookmark.review_id = params[:id]
     @bookmark.user_id = current_user.id
-    if @bookmark.save 
+    if @bookmark.save
       redirect_to root_path
     end
   end
 
   def delete_bookmark
     @bookmark = BookMark.where(review_id: params[:id]).where(user_id: current_user.id).first
-    if @bookmark.destroy 
+    if @bookmark.destroy
       redirect_to root_path
     end
   end
