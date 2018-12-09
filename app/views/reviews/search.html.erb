@@ -4,29 +4,32 @@
       <div class="col-md-3">
         <aside>
           <h2 class="aside-title">Filter</h2>
+          <input type="text" id="hidden_test_id" value="anytime" name="hidden_test" style="display: none;">
           <div class="aside-body">
             <form class="checkbox-group">
+              <div style="width: 100%" class="group-title">Price
+                  <span style="float: right;font-weight: 300;"><span id="demo"></span> VND</span>
+              </div>
+              <div class="form-group">
+                <div class="slidecontainer">
+                  <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
+                </div>
+              </div>
               <div class="group-title">Date</div>
               <div class="form-group">
-                <label><input type="radio" name="date" checked> Anytime</label>
+                <label><input type="radio" name="date" value="anytime" checked> Anytime</label>
               </div>
               <div class="form-group">
-                <label><input type="radio" name="date"> Today</label>
+                <label><input type="radio" id="today" value="today" name="date"> Today</label>
               </div>
               <div class="form-group">
-                <label><input type="radio" name="date"> Last Week</label>
+                <label><input type="radio" value="lastweek" name="date"> Last Week</label>
               </div>
               <div class="form-group">
-                <label><input type="radio" name="date"> Last Month</label>
+                <label><input type="radio" value="lastmonth" name="date"> Last Month</label>
               </div>
               <br>
-              <div class="group-title">Types</div>
-              <div class="form-group">
-                <label><input type="checkbox" name="category">Stores</label>
-              </div>
-              <div class="form-group">
-                <label><input type="checkbox" name="category">Review Post</label>
-              </div>
+
             </form>
           </div>
         </aside>
@@ -35,38 +38,45 @@
         <div class="nav-tabs-group">
           <ul class="nav-tabs-list">
             <li class="active"><a href="#">All</a></li>
-            <li><a href="#">Latest</a></li>
-            <li><a href="#">Popular</a></li>
-            <li><a href="#">Trending</a></li>
-            <li><a href="#">Videos</a></li>
           </ul>
           <div class="nav-tabs-right">
-            <select class="form-control">
-              <option>Limit</option>
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
+            <select id="sort" class="form-control">
+              <option>Sort By</option>
+              <option>price</option>
+              <option>date</option>
             </select>
           </div>
         </div>
         <div class="search-result">
-          Search results for keyword "hello" found in 5,200 posts.
+          Search results for keyword <span id="search_text">"<%= @search_text %>"</span> found in <%= @count %> posts.
         </div>
-        <div class="row">
-          <article class="col-md-12 article-list">
-            <div class="inner">
-              <figure>
-                <a href="single.html">
-                  <img src="images/news/img11.jpg">
-                </a>
-              </figure>
-              <div class="details">
-                <div class="detail">
-                  <div class="category">
-                    <a href="#">Film</a>
+        <div class="row search_content">
+
+          <% @reviews.each do |review| %>
+            <article class="col-md-12 article-list">
+              <div class="inner">
+                <figure>
+                  <a href="reviews/show/<%= review.id %>">
+                    <%= image_tag(review.food_picture)%>
+                  </a>
+                </figure>
+                <div class="details">
+                  <div class="detail">
+                    <time><%= review.created_at %></time>
                   </div>
-                  <time>December 19, 2016</time>
+                  <h1><a href="reviews/show/<%= review.id %>"> <%= review.title %> </a></h1>
+                  <p>
+                  <%= review.food_name %> - <%= review.price %> VND
+                  </p>
+                  <p>
+                  Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
+                  </p>
+                  <footer>
+                    <a class="btn btn-primary more" href="reviews/show/<%= review.id %>">
+                      <div>More</div>
+                      <div><i class="ion-ios-arrow-thin-right"></i></div>
+                    </a>
+                  </footer>
                 </div>
                 <h1><a href="single.html">Donec consequat arcu at ultrices sodales quam erat aliquet diam</a></h1>
                 <p>
@@ -81,23 +91,9 @@
               </div>
             </div>
           </article>
-
-          <div class="col-md-12 text-center">
-            <ul class="pagination">
-              <li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">97</a></li>
-              <li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-            </ul>
-            <div class="pagination-help-text">
-              Showing 8 results of 776 &mdash; Page 1
-            </div>
-          </div>
-
-
+          <div class="col-md-12 text-center pagination">
+            <%= will_paginate @users %>
+        </div>
         </div>
       </div>
     </div>

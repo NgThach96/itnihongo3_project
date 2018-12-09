@@ -1047,12 +1047,175 @@ $(function(){
 	    });
 	}
 
-	$('#demo').text("500,000");
+	$('#demo').text("1,000,000");
 	var price_choose = function() {
 		$('#myRange').on("input", function() {
 			$('#demo').text($(this).val() + "0," + "000");
+			$(this).attr("value", parseInt($(this).val()));
+  		var search_text = $('#search_text').text();
+			var value = $('#hidden_test_id').val();
+			var price = $(this).val();
+  		var sort = $('#sort').find(":selected").text();
+  		$('.search_content').html("");
+  		$.ajax({
+				url: "reviews/searchAction",
+				type: "POST",
+				data: { "value" : value, "type": "radio", "search_text": search_text, "price": price, "sort": sort},
+				dataType: "json",
+				success: function(data) {
+					var test = [];
+					data.res.forEach(function(entry) {
+						var date = entry.created_at.replace("T", " ").replace(".000Z", " UTC");
+						var markup =[
+						'<article class="col-md-12 article-list">',
+              '<div class="inner">',
+                '<figure>',
+                  '<a href="reviews/show/' + entry.id +'">',
+                    '<img src="' + entry.food_picture.url + '">',
+                  '</a>',
+                '</figure>',
+                '<div class="details">',
+                  '<div class="detail">',
+                    '<time>' + date + '</time>',
+                  '</div>',
+                  '<h1><a href="reviews/show/' + entry.id + '">' + entry.title + '</a></h1>',
+                  '<p>' + entry.food_name +' - ' + entry.price + '</p>',
+                  '<p>' + 'Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.' + '</p>',
+                  '<footer>',
+                    '<a class="btn btn-primary more" href="reviews/show/' + entry.id +'">',
+                      '<div>More</div>',
+                      '<div><i class="ion-ios-arrow-thin-right"></i></div>',
+                    '</a>',
+                  '</footer>',
+                '</div>',
+              '</div>',
+            '</article>'];
+					 	test.push(markup.join(''));
+					});
+					$('.search_content').html(test);
+				}
+			});
 		})
 	}
+
+  var search_tool = function() {
+  	var search_text = $('#search_text').text();
+  	$('input[type=checkbox]').on("ifChanged", function(event) {
+  		var price = $("#myRange").attr("value");
+  		var value = $(this).val();
+  		var sort = $('#sort').find(":selected").text();
+  		$('.search_content').html("");
+  		$.ajax({
+				url: "reviews/searchAction",
+				type: "POST",
+				data: { "value" : value, "type": "checkbox", "search_text": search_text, "price": price, "sort": sort},
+				dataType: "json",
+				success: function(data) {
+					$('.search_content').html(data.post);
+				}
+			});
+  	});
+
+  	$('input[type=radio]').on("ifChecked", function(event) {
+  		var sort = $('#sort').find(":selected").text();
+  		var price = $("#myRange").attr("value");
+  		var value = $(this).val();
+  		$('#hidden_test_id').val(value);
+  		$('.search_content').html("");
+  		$.ajax({
+				url: "reviews/searchAction",
+				type: "POST",
+				data: { "value" : value, "type": "radio", "search_text": search_text, "price": price, "sort": sort},
+				dataType: "json",
+				success: function(data) {
+					var test = [];
+					data.res.forEach(function(entry) {
+						var date = entry.created_at.replace("T", " ").replace(".000Z", " UTC");
+						var markup =[
+						'<article class="col-md-12 article-list">',
+              '<div class="inner">',
+                '<figure>',
+                  '<a href="reviews/show/' + entry.id +'">',
+                    '<img src="' + entry.food_picture.url + '">',
+                  '</a>',
+                '</figure>',
+                '<div class="details">',
+                  '<div class="detail">',
+                    '<time>' + date + '</time>',
+                  '</div>',
+                  '<h1><a href="reviews/show/' + entry.id + '">' + entry.title + '</a></h1>',
+                  '<p>' + entry.food_name +' - ' + entry.price + '</p>',
+                  '<p>' + 'Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.' + '</p>',
+                  '<footer>',
+                    '<a class="btn btn-primary more" href="reviews/show/' + entry.id +'">',
+                      '<div>More</div>',
+                      '<div><i class="ion-ios-arrow-thin-right"></i></div>',
+                    '</a>',
+                  '</footer>',
+                '</div>',
+              '</div>',
+            '</article>'];
+					 	test.push(markup.join(''));
+					});
+					$('.search_content').html(test);
+				}
+			});
+  	});
+  }
+
+  var sort_by = function() {
+  	$('#sort').on('change', function() {
+  		var search_text = $('#search_text').text();
+  		var sort = $(this).find(":selected").text();
+  		var price = $("#myRange").attr("value");
+  		var value = $('#hidden_test_id').val();
+
+  		$('.search_content').html("");
+  		$.ajax({
+				url: "reviews/searchAction",
+				type: "POST",
+				data: { "value" : value, "type": "radio", "search_text": search_text, "price": price, "sort": sort},
+				dataType: "json",
+				success: function(data) {
+					var test = [];
+					data.res.forEach(function(entry) {
+						var date = entry.created_at.replace("T", " ").replace(".000Z", " UTC");
+						var markup =[
+						'<article class="col-md-12 article-list">',
+              '<div class="inner">',
+                '<figure>',
+                  '<a href="reviews/show/' + entry.id +'">',
+                    '<img src="' + entry.food_picture.url + '">',
+                  '</a>',
+                '</figure>',
+                '<div class="details">',
+                  '<div class="detail">',
+                    '<time>' + date + '</time>',
+                  '</div>',
+                  '<h1><a href="reviews/show/' + entry.id + '">' + entry.title + '</a></h1>',
+                  '<p>' + entry.food_name +' - ' + entry.price + '</p>',
+                  '<p>' + 'Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.' + '</p>',
+                  '<footer>',
+                    '<a class="btn btn-primary more" href="reviews/show/' + entry.id +'">',
+                      '<div>More</div>',
+                      '<div><i class="ion-ios-arrow-thin-right"></i></div>',
+                    '</a>',
+                  '</footer>',
+                '</div>',
+              '</div>',
+            '</article>'];
+					 	test.push(markup.join(''));
+					});
+					$('.search_content').html(test);
+				}
+			});
+  	})
+
+  }
+
+  sort_by();
+
+  search_tool();
 
 	price_choose();
 
