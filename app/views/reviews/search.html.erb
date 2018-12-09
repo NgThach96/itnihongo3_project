@@ -15,7 +15,6 @@
                   <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
                 </div>
               </div>
-
               <div class="group-title">Date</div>
               <div class="form-group">
                 <label><input type="radio" name="date" value="anytime" checked> Anytime</label>
@@ -79,10 +78,19 @@
                     </a>
                   </footer>
                 </div>
+                <h1><a href="single.html">Donec consequat arcu at ultrices sodales quam erat aliquet diam</a></h1>
+                <p>
+                Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.
+                </p>
+                <footer>
+                  <a class="btn btn-primary more" href="single.html">
+                    <div>More</div>
+                    <div><i class="ion-ios-arrow-thin-right"></i></div>
+                  </a>
+                </footer>
               </div>
-            </article>
-          <% end %>
-
+            </div>
+          </article>
           <div class="col-md-12 text-center pagination">
             <%= will_paginate @users %>
         </div>

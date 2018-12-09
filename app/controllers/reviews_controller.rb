@@ -80,6 +80,19 @@ class ReviewsController < ApplicationController
     @rev2 = Review.find(@review_love[2].review_id)
     @rev3 = Review.find(@review_love[3].review_id)
 
+
+    # --------------------------------
+    # most recent reviews 
+    @arr = Array.new
+    @review_all = Review.order("created_at DESC")
+    @arr.push @review_all[0]
+    @arr.push @review_all[1]
+    @arr.push @review_all[2]
+    @arr.push @review_all[3]
+
+    # ---------------------------------
+    #
+
     @review = Review.new
     @reviews = Review.paginate(:page => params[:page], :per_page => 5)
 
