@@ -18,7 +18,7 @@
 									<div class="inner">
 										<figure>
 											<a href="/reviews/show/<%= @rev0.id %>">
-												<%= image_tag("news/buffet.jpg")%>
+												<img src="<%= @rev0.food_picture %>"  alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -36,7 +36,7 @@
 									<div class="inner">
 										<figure>
 											<a href="/reviews/show/<%= @rev1.id %>">
-												<%= image_tag("news/buffet.jpg")%>
+												<img src="<%= @rev1.food_picture %>"  alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -54,7 +54,7 @@
 									<div class="inner">
 										<figure>
 											<a href="/reviews/show/<%= @rev2.id %>">
-												<%= image_tag("news/buffet.jpg")%>
+												<img src="<%= @rev2.food_picture %>"  alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -72,7 +72,7 @@
 									<div class="inner">
 										<figure>
 											<a href="/reviews/show/<%= @rev3.id %>">
-												<%= image_tag("news/buffet.jpg")%>
+												<img src="<%= @rev3.food_picture %>"  alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -125,6 +125,7 @@
 						<div class="comment-list">
 
 							<% @review.comments.each do |comment| %>
+							<% if comment.comment != nil %>
 								<div class="item">
 									<div class="user">
 										<figure>
@@ -207,6 +208,7 @@
 
 									</div>
 								</div>
+							<% end %>
 						<% end %>
 					</div><br>
 
