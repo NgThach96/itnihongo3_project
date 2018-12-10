@@ -63,7 +63,7 @@ class ReviewsController < ApplicationController
     term = params[:term]
     food_name = params[:food_name]
     reviews = Review.where('food_name LIKE ?', "%#{term}%")
-    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name, :url => review.food_picture, :title => review.title} }
+    render :json => reviews.map { |review| {:id => review.id, :label => review.food_name, :value => review.food_name, :url => review.food_picture, :title => review.title, :price => review.price} }
   end
   # GET /reviews
   # GET /reviews.json
@@ -82,7 +82,7 @@ class ReviewsController < ApplicationController
 
 
     # --------------------------------
-    # most recent reviews 
+    # most recent reviews
     @arr = Array.new
     @review_all = Review.order("created_at DESC")
     @arr.push @review_all[0]

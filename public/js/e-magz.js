@@ -1037,7 +1037,7 @@ $(function(){
 	                '</span>',
 	                '<span class="title">' + item.value + '</span>',
 	                '<span class="author">' + item.title + '</span>',
-	                '<span class="price">' + item.price + '</span>'
+	                '<span class="price">' + item.price + 'VND</span>'
 	              ];
 	              return $('<li>')
 	                .append(markup.join(''))

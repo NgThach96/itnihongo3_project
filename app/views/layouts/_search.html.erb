@@ -4,7 +4,7 @@
       <%= form_tag("search", method: "get") do %>
         <!-- text field tag=action,args,identifier,placeholdertext... -->
         <%#= text_field_tag :search, params[:search], placeholder: "namesearch", type: "search", data: {autocomplete: reviews_autocomplete_review_food_name_path} %>
-        <input name="search_text" type="text" placeholder="Type food name or restaurant's name" id="searchbar" class="search-query"">
+        <input name="search_text" type="text" placeholder="Type food name or restaurant's name" id="searchbar" class="search-query search_fix">
       </div>
       <div class = "col-md-2" >
         <%= submit_tag "Search"%>
