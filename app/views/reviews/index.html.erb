@@ -39,7 +39,7 @@
                   <p><%= review.store.store_address %></p>
                 </div>
                 <div class="score-div">
-      
+        <a class="score"><%= ((review.taste_rate + review.safety_rate + review.price_rate).to_f / 3).round(0) %>/5 <icon class="fas fa-star"></icon></a>
                 </div>
                 <footer>
                 </footer>
@@ -262,7 +262,6 @@
           <%= will_paginate @users %>
         </div>
       </div>
-<<<<<<< HEAD
             <div class="col-md-4">
         <aside class="review-card minh" style="margin-left: 20px">
               <h1 class="aside-title" style="margin-left: 20px">The most favourit reviews</h1>
@@ -405,8 +404,38 @@
               </div>
         </aside>
         <aside class="review-card minh" style="margin-left: 20px">
-=======
->>>>>>> bookmark
-
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 460px">
+                        <a href="">
+                          <%= image_tag("h.jpeg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside>
+        <aside class="review-card minh" style="margin-left: 20px">
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 420px">
+                        <a href="">
+                          <%= image_tag("ae.jpg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside>
+         <!-- <aside class="review-card minh" style="margin-left: 20px; height: 296px">
+              <article class="article-fw" style="width: 350px;">
+                    <div class="inner" style="margin-left: 10px">
+                      <figure style="width: 340px; height: 270px">
+                        <a href="">
+                          <%= image_tag("poster.jpg")%>
+                        </a>
+                      </figure>
+                     </div>
+              </article>
+         </aside> -->
+      </div>
   </div>
 </section>

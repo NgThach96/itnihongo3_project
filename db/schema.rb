@@ -12,11 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20181209101805) do
 
-<<<<<<< HEAD
-  create_table "book_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-=======
   create_table "book_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
->>>>>>> bookmark
     t.integer "review_id"
     t.integer "user_id"
   end
