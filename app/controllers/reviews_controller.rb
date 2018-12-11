@@ -72,7 +72,9 @@ class ReviewsController < ApplicationController
 
   def search
     @search_text = params[:search_text]
-    @reviews = Review.where('food_name LIKE ?', "%#{@search_text}%").paginate(:page => params[:page], :per_page => 5)
+    @reviews = Review.joins("INNER JOIN stores ON stores.id = reviews.id")
+    @reviews = @reviews.select("*")
+    @reviews = @reviews.where('food_name LIKE ?', "%#{@search_text}%").paginate(:page => params[:page], :per_page => 5)
     @count = @reviews.count
   end
 

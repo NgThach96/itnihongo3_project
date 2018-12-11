@@ -70,6 +70,9 @@
                     <time><%= review.created_at %></time>
                   </div>
                   <h1><a href="reviews/show/<%= review.id %>"> <%= review.title %> </a></h1>
+                  <p style="font-weight: bold;">
+                  <%= review.store_address %>
+                  </p>
                   <p>
                   <%= review.food_name %> - <%= review.price %> VND
                   </p>
