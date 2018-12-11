@@ -99,7 +99,6 @@ class ReviewsController < ApplicationController
     @rev2 = Review.find(@review_love[2].review_id)
     @rev3 = Review.find(@review_love[3].review_id)
 
-
     # --------------------------------
     # most recent reviews
     @arr = Array.new
@@ -263,7 +262,6 @@ class ReviewsController < ApplicationController
     @rev2 = Review.find(@review_love[2].review_id)
     @rev3 = Review.find(@review_love[3].review_id)
 
-
   end
 
   def infostore
@@ -338,14 +336,20 @@ class ReviewsController < ApplicationController
     @bookmark.review_id = params[:id]
     @bookmark.user_id = current_user.id
     if @bookmark.save
-      redirect_to root_path
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
     end
   end
 
   def delete_bookmark
     @bookmark = BookMark.where(review_id: params[:id]).where(user_id: current_user.id).first
     if @bookmark.destroy
-      redirect_to root_path
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
     end
   end
 

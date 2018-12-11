@@ -16,17 +16,9 @@
                 </figure>
               </div>
               <div class="details">
-              <% if user_signed_in? %>
-                <% if BookMark.where(review_id: review.id).where(user_id: current_user.id) != [] %>
-                  <div style = "float: right">
-                    <%= link_to "Unbookmark", delete_bookmark_path(review.id), class:"btn btn-primary", method: :delete %>
-                  </div>
-                <% else %>
-                  <div style = "float: right">
-                    <%= link_to "Bookmark", create_bookmark_path(review.id), class:"btn btn-primary", method: :post %>
-                  </div>
-                <% end %>
-              <% end %>
+                <div class="bookmarks-<%= review.id %>">
+                  <%= render 'book_mark', review: review %>
+                </div>
                 <div class="detail">
                   <div class="category">
                     <a href="#">
@@ -47,7 +39,7 @@
                   <p><%= review.store.store_address %></p>
                 </div>
                 <div class="score-div">
-                  <a class="score"><%= ((review.taste_rate + review.safety_rate + review.price_rate).to_f / 3).round(0) %>/5 <icon class="fas fa-star"></icon></a>
+        <a class="score"><%= ((review.taste_rate + review.safety_rate + review.price_rate).to_f / 3).round(0) %>/5 <icon class="fas fa-star"></icon></a>
                 </div>
                 <footer>
                 </footer>
@@ -412,7 +404,6 @@
               </div>
         </aside>
         <aside class="review-card minh" style="margin-left: 20px">
-
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
                       <figure style="width: 340px; height: 460px">
@@ -424,7 +415,6 @@
               </article>
          </aside>
         <aside class="review-card minh" style="margin-left: 20px">
-
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
                       <figure style="width: 340px; height: 420px">
@@ -436,7 +426,6 @@
               </article>
          </aside>
          <!-- <aside class="review-card minh" style="margin-left: 20px; height: 296px">
-
               <article class="article-fw" style="width: 350px;">
                     <div class="inner" style="margin-left: 10px">
                       <figure style="width: 340px; height: 270px">

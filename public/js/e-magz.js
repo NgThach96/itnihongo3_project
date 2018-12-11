@@ -141,7 +141,49 @@ $(function(){
 		});
 	}
 
+	var bookmark = function() {
+		$(".bookmark").each(function(){
+			$(this).find("div").html($.number($(this).find("div").html()));
+			$(this).click(function(){
+				var countNow = $(this).find("div").html().replace(',', '');
+				if(!$(this).hasClass("active")) {
+		      var review_id = $(this).find(".review_id").html();
+					$(this).find(".animated").remove();
+					$(this).addClass("active");
+					$(this).find("i").removeClass("far");
+					$(this).find("i").removeClass("fa-thumbs-down");
+					$(this).find("i").addClass("fas fa-thumbs-down");
+					// add some code ("love")
+					$.ajax({
+						url: "reviews/:id/create-book-mark",
+						type: "POST",
+						data: { "review_id" : review_id },
+						dataType: "json",
+						success: function(data) {
 
+						}
+					});
+				}else{
+		      var review_id = $(this).find(".review_id").html();
+					$(this).removeClass("active");
+					$(this).find("i").removeClass("fas fa-thumbs-down");
+					$(this).find("i").addClass("far");
+					$(this).find("i").addClass("fa-thumbs-down");
+					// add some code ("unlove")
+					$.ajax({
+						url: "reviews/:id/delete-bookmark",
+						type: "DELETE",
+						data: { "review_id" : review_id },
+						dataType: "json",
+						success: function(data) {
+
+						}
+					});
+				}
+				return false;
+			});
+		});
+	}
 
 
 	// newsletter
