@@ -1202,6 +1202,7 @@ $(function(){
                     '<time>' + date + '</time>',
                   '</div>',
                   '<h1><a href="reviews/show/' + entry.id + '">' + entry.title + '</a></h1>',
+                  '<p style="font-weight: bold;">' + entry.store_address + '</p>',
                   '<p>' + entry.food_name +' - ' + entry.price + '</p>',
                   '<p>' + 'Donec consequat, arcu at ultrices sodales, quam erat aliquet diam, sit amet interdum libero nunc accumsan nisi.' + '</p>',
                   '<footer>',
