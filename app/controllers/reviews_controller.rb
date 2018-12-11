@@ -19,8 +19,8 @@ class ReviewsController < ApplicationController
     val = params[:value]
     type = params[:type]
 
-    post = Review.joins("INNER JOIN stores ON stores.id = reviews.id")
-    post = post.select("*")
+    post = Review.joins("INNER JOIN stores ON stores.id = reviews.store_id")
+    post = post.select("reviews.id, food_name, reviews.price, reviews.created_at, reviews.price, store_address, food_picture, title")
 
     if type == "radio"
       case val
@@ -72,8 +72,8 @@ class ReviewsController < ApplicationController
 
   def search
     @search_text = params[:search_text]
-    @reviews = Review.joins("INNER JOIN stores ON stores.id = reviews.id")
-    @reviews = @reviews.select("*")
+    @reviews = Review.joins("INNER JOIN stores ON stores.id = reviews.store_id")
+    @reviews = @reviews.select("reviews.id, food_name, reviews.price, reviews.created_at, reviews.price, store_address, food_picture, title")
     @reviews = @reviews.where('food_name LIKE ?', "%#{@search_text}%").paginate(:page => params[:page], :per_page => 5)
     @count = @reviews.count
   end
