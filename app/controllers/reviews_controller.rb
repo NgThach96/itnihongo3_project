@@ -8,6 +8,8 @@ class ReviewsController < ApplicationController
     price = BigDecimal.new(price + "0000")
     today = Date.today
     sort = params[:sort]
+    location = params[:location]
+
     if sort == "date"
       sort = "created_at"
     end
@@ -16,16 +18,20 @@ class ReviewsController < ApplicationController
     search_text = params[:search_text].tr('"/', "")
     val = params[:value]
     type = params[:type]
+
+    post = Review.joins("INNER JOIN stores ON stores.id = reviews.id")
+    post = post.select("*")
+
     if type == "radio"
       case val
       when "anytime"
-        post = Review.where('food_name LIKE ? AND price < ? ', "%#{search_text}%", price)
+        post = post.where('food_name LIKE ? AND reviews.price < ? ', "%#{search_text}%", price)
       when  "today"
-        post = Review.where('food_name LIKE ? AND created_at > ? AND price < ?', "%#{search_text}%", today, price)
+        post = post.where('food_name LIKE ? AND reviews.created_at > ? AND reviews.price < ?', "%#{search_text}%", today, price)
       when "lastweek"
-        post = Review.where('food_name LIKE ? AND created_at >= ? AND created_at < ? AND price < ?', "%#{search_text}%", lastweek, today, price)
+        post = post.where('food_name LIKE ? AND reviews.created_at >= ? AND reviews.created_at < ? AND reviews.price < ?', "%#{search_text}%", lastweek, today, price)
       when "lastmonth"
-        post = Review.where('food_name LIKE ? AND created_at >= ? AND created_at < ? AND price < ?', "%#{search_text}%", lastmonth, today, price)
+        post = post.where('food_name LIKE ? AND reviews.created_at >= ? AND reviews.created_at < ? AND reviews.price < ?', "%#{search_text}%", lastmonth, today, price)
       end
 
     elsif type == "checkbox"
@@ -37,8 +43,19 @@ class ReviewsController < ApplicationController
       end
     end
 
+
+    if location != ""
+      post = post.where('store_address LIKE ?', "%#{location}%")
+    end
+
     if sort != "Sort By"
-      post = post.order(sort + " DESC")
+      if sort == "price asc"
+        post = post.order("reviews.price asc")
+      elsif sort == "price desc"
+        post = post.order("reviews.price desc")
+      else
+        post = post.order(sort + "desc")
+      end
     end
 
     res = {"res" => post}

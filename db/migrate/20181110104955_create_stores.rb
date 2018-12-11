@@ -4,7 +4,6 @@ class CreateStores < ActiveRecord::Migration[5.1]
       t.string :store_name
       t.string :store_address
       t.string :open_time
-      t.string :price
       t.string :phone
       t.timestamps
     end
