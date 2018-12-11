@@ -90,6 +90,7 @@ class ReviewsController < ApplicationController
     # User Will_Paginate gem
     # 5 review per page
     @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    if(@review_love.length > 3)
     @count0 = @review_love[0].count_like
     @count1 = @review_love[1].count_like
     @count2 = @review_love[2].count_like
@@ -98,7 +99,7 @@ class ReviewsController < ApplicationController
     @rev1 = Review.find(@review_love[1].review_id)
     @rev2 = Review.find(@review_love[2].review_id)
     @rev3 = Review.find(@review_love[3].review_id)
-
+    end
 
     # --------------------------------
     # most recent reviews
@@ -254,6 +255,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @user_of_review = User.find_by id:@review.user_id
     @review_love = Comment.select("review_id, count(emotion_type) as count_like").where("emotion_type = 1").group("review_id").order("count_like DESC")
+    if(@review_love.length > 3)
     @count0 = @review_love[0].count_like
     @count1 = @review_love[1].count_like
     @count2 = @review_love[2].count_like
@@ -262,7 +264,7 @@ class ReviewsController < ApplicationController
     @rev1 = Review.find(@review_love[1].review_id)
     @rev2 = Review.find(@review_love[2].review_id)
     @rev3 = Review.find(@review_love[3].review_id)
-
+    end
 
   end
 
@@ -338,14 +340,20 @@ class ReviewsController < ApplicationController
     @bookmark.review_id = params[:id]
     @bookmark.user_id = current_user.id
     if @bookmark.save
-      redirect_to root_path
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
     end
   end
 
   def delete_bookmark
     @bookmark = BookMark.where(review_id: params[:id]).where(user_id: current_user.id).first
     if @bookmark.destroy
-      redirect_to root_path
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
     end
   end
 

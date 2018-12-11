@@ -12,12 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20181209101805) do
 
+<<<<<<< HEAD
   create_table "book_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+=======
+  create_table "book_marks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> bookmark
     t.integer "review_id"
     t.integer "user_id"
   end
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "review_id"
     t.bigint "user_id"
     t.text "comment"
@@ -28,7 +32,7 @@ ActiveRecord::Schema.define(version: 20181209101805) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "comment_id"
     t.bigint "user_id"
     t.text "reply"
@@ -39,7 +43,7 @@ ActiveRecord::Schema.define(version: 20181209101805) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "store_id"
     t.bigint "user_id"
     t.string "title"
@@ -56,7 +60,7 @@ ActiveRecord::Schema.define(version: 20181209101805) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "store_name"
     t.string "store_address"
     t.string "open_time"
@@ -66,7 +70,7 @@ ActiveRecord::Schema.define(version: 20181209101805) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
